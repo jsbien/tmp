@@ -1,1 +1,2 @@
-Index tools repository for ChatGPT
+Index tools repository for ChatGPT Assistant
+
