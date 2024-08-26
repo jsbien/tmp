@@ -34,7 +34,10 @@ END QUOTE
 We don't use colors and skip the path, so for the coordinates 49,66,157,223
 we get
 
-Hochfeder-02_PT01_020bis_mask.djvu?djvuopts=&page=1&highlight=49,66,180,174
+Hochfeder-02_PT01_020bis.djvu?djvuopts=&page=1&highlight=49,66,180,174
+
+The file is the input file name with the postfix '_mask' removed and
+the extension changed to 'djvu'.
 
 Moreover  all the relevant data are to be consolidated into an index
 supported by 'djview4poliqarp' program
