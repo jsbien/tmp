@@ -113,6 +113,13 @@ def write_index_file(letter_boxes, input_filename, image_height):
             index_line = f"{row_num};file:{base_filename}.djvu?djvuopts=&page=1&highlight={x},{y},{w},{h};{base_filename} l {line_num} b {box_num}; ※"
             index_file.write(index_line + "\n")
 
+def write_letter_box_images(image, letter_boxes, input_filename):
+    for line_num, box_num, box in letter_boxes:
+        image_path = f"{input_filename}_line_{line_num:03}_box_{box_num:03}.png"
+        cur_image = image.copy(box)
+        cur_image.save(image_path)
+
+            
 
 def segment_image(image_path):
     input_filename = image_path.split('.')[0]
@@ -125,6 +132,7 @@ def segment_image(image_path):
     hor_lines = calculate_cutlines_locations(strips)
     letter_boxes = calculate_letter_boxes_with_splits(image, hor_lines)
     write_index_file(letter_boxes, input_filename, image.height())
+    write_letter_box_images(image, letter_boxes, input_filename)
     return letter_boxes
 
 
