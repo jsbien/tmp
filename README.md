@@ -89,8 +89,6 @@ csv, e.g. Hochfeder-02_PT01_020bisOCR.csv.
 
 The header is not needed,
 
-TODO:
-
 The task of the wrapper 'segment-all.py' is to do for all png
 files in the given directory the following operations:
 
