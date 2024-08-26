@@ -2,13 +2,10 @@ The purposes of the segment_character_table.py is to split a graphical
 character table into the images of the individual glyphs and to
 provide an index to the table in the djview4poliqarp format.
 
-TODO:
-
-The prototype prints just the letterbox coordinates. It is to be changed to the
-the format used by the djview4
+The letterbox coordinates are in the format used by the djview4
 program, cf. e.g.  https://github.com/barak/djview4.
 
-Here are the relenat excerpts from the man page (https://djvu.sourceforge.net/doc/man/djview4.html)
+Here are the relevant excerpts from the man page (https://djvu.sourceforge.net/doc/man/djview4.html)
 
 START QUOTE
 
@@ -92,4 +89,16 @@ csv, e.g. Hochfeder-02_PT01_020bisOCR.csv.
 
 The header is not needed,
 
+TODO:
+
+The task of the wrapper 'segment-all.py' is to do for all png
+files in the given directory the following operations:
+
+1. For every file <name>_mask.png create subdirectory name just <name>.
+
+2. Run the script segment_character_table.py on every file and move
+the created letterbox images to appropriate directories.
+
+3. At the very end concatenate all the *.csv indexes into one index
+named all_tables.csv
 
