@@ -14,7 +14,6 @@ from PyQt5.QtGui import QImage, QTransform, QPixmap, QPolygon
 from PyQt5.QtCore import QRect, QPoint
 from datetime import datetime
 
-
 def detect_black_index(image):
     colortable = image.colorTable()
     assert(len(colortable) == 2)
@@ -54,7 +53,6 @@ def calculate_cutlines_locations(sums):
         if background == background_strip:
             continue
 
-        # We crossed a region.
         if background:
            strip_end = i-1
            element_strips.append((strip_start, strip_end))
@@ -82,7 +80,6 @@ def split_polygonal(image, box1, box2):
     if overlap_region:
         diagonal_cut = QPolygon([QPoint(overlap_region.left(), overlap_region.top()),
                                  QPoint(overlap_region.right(), overlap_region.bottom())])
-        # Adjust the boxes based on the diagonal cut
         box1.adjust(0, 0, -diagonal_cut.boundingRect().width(), -diagonal_cut.boundingRect().height())
         box2.adjust(diagonal_cut.boundingRect().width(), diagonal_cut.boundingRect().height(), 0, 0)
     return [box1, box2]
@@ -97,19 +94,25 @@ def calculate_letter_boxes_with_splits(image, xstrips):
         ystrips = calculate_cutlines_locations(calculate_horizontal_sums(cur_image))
         for i, (x0, x1) in enumerate(ystrips):
             box = QRect(x0, y0, x1-x0, y1-y0)
-            if i > 0:  # Check with previous box for overlap
+            if i > 0:
                 prev_box = boxes[-1][2]
                 if prev_box.intersects(box):
                     boxes[-1][2], box = split_polygonal(image, prev_box, box)
-            print(f"Box {len(boxes)+1}: ({x0}, {y0}), ({x1}, {y1})")  # Debugging print
             boxes.append((line_num, i+1, box))
     return boxes
 
-def write_letter_box_images(image, letter_boxes, input_filename):
-    for line_num, box_num, box in letter_boxes:
-        image_path = f"{input_filename}_line_{line_num:03}_box_{box_num:03}.png"
-        cur_image = image.copy(box)
-        cur_image.save(image_path)
+def write_index_file(letter_boxes, input_filename, image_height):
+    base_filename = input_filename.replace("_mask", "")
+    index_filename = f"{base_filename}.csv"
+    with open(index_filename, "w") as index_file:
+        for row_num, (line_num, box_num, box) in enumerate(letter_boxes, start=1):
+            x = box.left()
+            y = image_height - box.bottom()  # Adjust for bottom-left origin
+            w = box.width()
+            h = box.height()
+            index_line = f"{row_num};file:{base_filename}.djvu?djvuopts=&page=1&highlight={x},{y},{w},{h};{base_filename} l {line_num} b {box_num}; ※"
+            index_file.write(index_line + "\n")
+
 
 def segment_image(image_path):
     input_filename = image_path.split('.')[0]
@@ -121,8 +124,9 @@ def segment_image(image_path):
     strips = calculate_horizontal_sums(image)
     hor_lines = calculate_cutlines_locations(strips)
     letter_boxes = calculate_letter_boxes_with_splits(image, hor_lines)
-    write_letter_box_images(image, letter_boxes, input_filename)
+    write_index_file(letter_boxes, input_filename, image.height())
     return letter_boxes
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -132,4 +136,4 @@ if __name__ == "__main__":
     image_path = sys.argv[1]
     letter_boxes = segment_image(image_path)
     if letter_boxes:
-        print("Segmentation completed. Letter box coordinates printed for debugging.")
+        print("Segmentation completed. Index file created.")
