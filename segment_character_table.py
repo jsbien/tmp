@@ -1,4 +1,5 @@
 import sys
+import os
 from PyQt5.QtGui import QImage, QTransform, QPolygon
 from PyQt5.QtCore import QRect, QPoint
 
@@ -123,12 +124,29 @@ def write_letter_box_images(image, letter_boxes, input_filename):
         cur_image.save(image_path)
 
 def segment_image(image_path):
-    input_filename = image_path.split('.')[0]
+    # Check if the file exists
+    if not os.path.exists(image_path):
+        print(f"Error: The file '{image_path}' does not exist.")
+        return
+
+    # Print the file path for debugging
+    print(f"Attempting to open file: {image_path}")
 
     # Load the image using QImage
     image = QImage(image_path)
 
-    # Check if the image is black and white
+    # Check if the image was loaded successfully
+    if image.isNull():
+        print(f"Error: Failed to load the image from '{image_path}'.")
+        return
+    else:
+        print(f"Image loaded successfully from '{image_path}'.")
+
+    # Print some properties of the loaded image
+    print(f"Image size: {image.width()}x{image.height()}")
+    print(f"Image depth: {image.depth()} bits per pixel")
+
+    # Ensure it is a black and white image
     if not is_black_and_white(image):
         print("Error: The selected file is not a binary black-and-white image.")
         return
@@ -142,8 +160,8 @@ def segment_image(image_path):
     strips = calculate_horizontal_sums(image)
     hor_lines = calculate_cutlines_locations(strips)
     letter_boxes = calculate_letter_boxes_with_splits(image, hor_lines)
-    write_index_file(letter_boxes, input_filename, image.height())
-    write_letter_box_images(image, letter_boxes, input_filename)
+    write_index_file(letter_boxes, image_path, image.height())
+    write_letter_box_images(image, letter_boxes, image_path)
     return letter_boxes
 
 if __name__ == "__main__":
@@ -152,6 +170,4 @@ if __name__ == "__main__":
         sys.exit(1)
     
     image_path = sys.argv[1]
-    letter_boxes = segment_image(image_path)
-    if letter_boxes:
-        print("Segmentation completed. Index file created.")
+    segment_image(image_path)
