@@ -1,23 +1,11 @@
-# The code extracted from glyphtracer by Jussi Pakkanen
-# (https://github.com/jpakkane/glyphtracer) and modified by ChatGPT 3.5
-# according to the specification provided by Janusz S. Bień
-
-# Intended to be used for the masks in the PBM format of DjVu document,
-# primarily the character tables from "Polonia Typographica"
-# (https://github.com/jsbien/early_fonts_inventory)
-
-# TO DO: investigate the warnings produced by Thonny
-# TO DO: output the letter box coordinates in the djview4poliqarp format
-
 import sys
-from PyQt5.QtGui import QImage, QTransform, QPixmap, QPolygon
+from PyQt5.QtGui import QImage, QTransform, QPolygon
 from PyQt5.QtCore import QRect, QPoint
-from datetime import datetime
 
 def detect_black_index(image):
     colortable = image.colorTable()
     assert(len(colortable) == 2)
-    if(colortable[0] > colortable[1]):
+    if colortable[0] > colortable[1]:
         return 1
     return 0
 
@@ -54,8 +42,8 @@ def calculate_cutlines_locations(sums):
             continue
 
         if background:
-           strip_end = i-1
-           element_strips.append((strip_start, strip_end))
+            strip_end = i-1
+            element_strips.append((strip_start, strip_end))
         strip_start = i
         background_strip = background
 
@@ -119,13 +107,20 @@ def write_letter_box_images(image, letter_boxes, input_filename):
         cur_image = image.copy(box)
         cur_image.save(image_path)
 
-            
-
 def segment_image(image_path):
     input_filename = image_path.split('.')[0]
+
+    # Load the image using QImage
     image = QImage(image_path)
+
+    # Check if the image is binary (1-bit depth)
     if image.isNull() or image.depth() != 1:
-        print("Error: Selected file is not a 1 bit image.")
+        print("Error: The selected file is not a binary 1-bit image.")
+        return
+
+    # Check if the color table length is 2 (binary image)
+    if len(image.colorTable()) != 2:
+        print("Error: The image does not have exactly 2 colors in the color table.")
         return
 
     strips = calculate_horizontal_sums(image)
@@ -134,7 +129,6 @@ def segment_image(image_path):
     write_index_file(letter_boxes, input_filename, image.height())
     write_letter_box_images(image, letter_boxes, input_filename)
     return letter_boxes
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
