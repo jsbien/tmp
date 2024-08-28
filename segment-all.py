@@ -9,12 +9,12 @@ def create_directory_if_not_exists(directory):
         os.makedirs(directory)
 
 def process_directory(directory):
-    png_files = glob.glob(os.path.join(directory, '*_mask.png'))
+    tiff_files = glob.glob(os.path.join(directory, '*_mask.tiff'))
     all_csv_files = []
     
-    for png_file in png_files:
+    for tiff_file in tiff_files:
         # Split the filename and extension
-        filename = os.path.basename(png_file)
+        filename = os.path.basename(tiff_file)
         name, ext = os.path.splitext(filename)
         
         # Remove the _mask suffix from the name
@@ -24,7 +24,7 @@ def process_directory(directory):
             base_name = name  # Fallback in case '_mask' is not present
         
         # Debugging output
-        print(f"Processing file: {png_file}")
+        print(f"Processing file: {tiff_file}")
         print(f"Base name derived: {base_name}")
         
         output_dir = os.path.join(directory, base_name)
@@ -34,17 +34,17 @@ def process_directory(directory):
         
         # Step 2: Run the segmentation script using subprocess
         # Extract just the filename without any leading directory components
-        filename = os.path.basename(png_file)
+        filename = os.path.basename(tiff_file)
 
         # Use this filename when calling the segmentation script
         try:
             subprocess.run(['python3', 'segment_character_table.py', filename], check=True)
         except subprocess.CalledProcessError as e:
-            print(f"Error processing {png_file}: {e}")
+            print(f"Error processing {tiff_file}: {e}")
             continue
         
         # Move the generated images to the appropriate directory
-        for file in glob.glob(f"{name}_line_*.png"):
+        for file in glob.glob(f"{name}_line_*.tiff"):
             shutil.move(file, output_dir)
         
         # Track the generated CSV file for concatenation
