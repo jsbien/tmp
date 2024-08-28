@@ -2,9 +2,24 @@ import sys
 from PyQt5.QtGui import QImage, QTransform, QPolygon
 from PyQt5.QtCore import QRect, QPoint
 
+def is_black_and_white(image):
+    # Convert the image to a format we can easily inspect
+    image = image.convertToFormat(QImage.Format_Indexed8)
+    
+    unique_colors = set()
+    
+    for y in range(image.height()):
+        for x in range(image.width()):
+            unique_colors.add(image.pixel(x, y))
+            if len(unique_colors) > 2:
+                return False
+    
+    return len(unique_colors) == 2
+
 def detect_black_index(image):
     colortable = image.colorTable()
-    assert(len(colortable) == 2)
+    if len(colortable) < 2:
+        raise ValueError("Color table does not have exactly 2 colors.")
     if colortable[0] > colortable[1]:
         return 1
     return 0
@@ -113,13 +128,14 @@ def segment_image(image_path):
     # Load the image using QImage
     image = QImage(image_path)
 
-    # Check if the image is binary (1-bit depth)
-    if image.isNull() or image.depth() != 1:
-        print("Error: The selected file is not a binary 1-bit image.")
+    # Check if the image is black and white
+    if not is_black_and_white(image):
+        print("Error: The selected file is not a binary black-and-white image.")
         return
 
-    # Check if the color table length is 2 (binary image)
-    if len(image.colorTable()) != 2:
+    # Now proceed with the colortable check
+    colortable = image.colorTable()
+    if len(colortable) != 2:
         print("Error: The image does not have exactly 2 colors in the color table.")
         return
 
