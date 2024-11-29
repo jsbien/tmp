@@ -12,4 +12,4 @@ the root directory and in the beginning contains only the
 header. Additionally please fill the `number' field with the
 subsequent numbers starting with 1.
 
-If possible commit the script to the repository.
+If possible please commit the script to the repository.
