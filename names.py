@@ -17,7 +17,9 @@ def parse_filenames(directory):
     for filename in os.listdir(directory):
         match = FILENAME_PATTERN.match(filename)
         if match:
-            results.append(match.groupdict())
+            parsed_entry = match.groupdict()
+            parsed_entry["filename"] = filename  # Add the full file name
+            results.append(parsed_entry)
         else:
             print(f"Skipped file: {filename} (Does not match pattern)")
     return results
@@ -40,10 +42,17 @@ def write_to_csv(output_path, data):
     with open(output_path, mode="w", newline="", encoding="utf-8") as csv_file:
         writer = csv.writer(csv_file)
         # Write header
-        writer.writerow(["number", "printer", "font", "fascicule", "plate"])
+        writer.writerow(["number", "filename", "printer", "font", "fascicule", "plate"])
         # Write rows with a sequential number field
         for idx, entry in enumerate(data, start=1):
-            writer.writerow([f"{idx:02}", entry["printer"], entry["font"], entry["fascicule"], entry["plate"]])
+            writer.writerow([
+                f"{idx:02}",                 # Zero-padded number
+                entry["filename"],           # Full file name
+                entry["printer"],            # Printer
+                entry["font"],               # Font
+                entry["fascicule"],          # Fascicule
+                entry["plate"]               # Plate
+            ])
 
 def main():
     # Ensure the directory exists
