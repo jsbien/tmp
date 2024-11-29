@@ -10,6 +10,6 @@ Please write a script named `names.py' which will parse the names and
 place the results in the CSV file named names.csv, which is present in
 the root directory and in the beginning contains only the
 header. Additionally please fill the `number' field with the
-subsequent numbers starting with 0.
+subsequent numbers starting with 1.
 
 If possible commit the script to the repository.
