@@ -14,4 +14,11 @@ header.
 After sorting fill the `number' field with the subsequent 2 digit
 numbers starting with 1.
 
+Please insert also as field 2 the complete with name (with the
+extension).
+
+So the header will be:
+number,file_name,printer,font,fascicule,plate
+
+
 If possible please commit the script to the repository.
