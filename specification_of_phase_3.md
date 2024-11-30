@@ -22,16 +22,23 @@ input file. The second is: "DjVufile" explained later and used only as
 string in the index creation process. The third is an optional one
 "directory", defaulting to "tmp", for storing the results. 
 
-2. We need a log containing the number of recognized lines and the
-number of letterboxes in every line. I have no specific preferences
-about the arrangement of this data, the file should be in plain text
-format. The name of the log should be <input file base name>.log.
-
-3. The script creates an index. The updated specification of the index
+2. The script creates an index. The updated specification of the index
 is stored as index_format.md. The table identifier mentioned in the
 specification is to be extracted from the input file name by removing
 the "m" prefix. The Djvu document name is to be provided as the second
 argument.
+
+3. We need a log containing the number of recognized lines and the
+number of letterboxes in every line. I have no specific preferences
+about the arrangement of this data, the file should be in plain text
+format. The name of the log should be <input file base name>.log.  The
+log should be both human and computer readable. The first line should
+contains the arguments of the run. The subsequent lines can have the
+form
+
+<line number>: <number of letterboxes>
+
+The last line should be a timestamp.
 
 3. The second argument is used also to name the index file, the
 extension "djvu" is to be replaced by "csv".
