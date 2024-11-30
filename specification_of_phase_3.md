@@ -29,8 +29,7 @@ the "m" prefix. The Djvu document name is to be provided as the second
 argument.
 
 3. We need a log containing the number of recognized lines and the
-number of letterboxes in every line. I have no specific preferences
-about the arrangement of this data, the file should be in plain text
+number of letterboxes in every line. The file should be in plain text
 format. The name of the log should be <input file base name>.log.  The
 log should be both human and computer readable. The first line should
 contains the arguments of the run. The subsequent lines can have the
