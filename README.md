@@ -5,6 +5,9 @@ scanned font tables into letterboxes and create an index for them.
 See
 
 specification_of_phase_1.md
+
 specification_of_phase_2.md
+
+specification_of_phase_3.md
 
 Other phases will be described later.
