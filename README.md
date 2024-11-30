@@ -7,4 +7,4 @@ See
 specification_of_phase_1.md
 specification_of_phase_2.md
 
-Pther phases will be described later.
+Other phases will be described later.
