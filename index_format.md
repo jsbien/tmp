@@ -64,15 +64,16 @@ We don't use colors and skip the path, so e.g. for the coordinates
 
 Augezdecki-01a_PT08_403.djvu?djvuopts=&page=1&highlight=49,66,180,174
 
-The entry will be the table identifier (e.g. 20) the table line
-number, prefixed by "l ", and the letterbox number in the line,
-prefixed by "b "; the description will be almost identical as the
-entry, but the table identifier will be replace by the djvu base
-document name; the comment will be just a single space and ※.
+The entry will be the table identifier, i.e. a 3 digit number
+(e.g. 020) the table line number, prefixed by "l ", and the letterbox
+number in the line, prefixed by "b "; the description will be almost
+identical as the entry, but the table identifier will be replace by
+the djvu base document name; the comment will be just a single space
+and ※.
 
 Here is a complete example of the index line:
 
-20 l 1 b 1;020bis.djvu?djvuopts=&page=1&highlight=49,66,180,174;Augezdecki-01a_PT08_403 l 1 b 1; ※
+020 l 1 b 1;020bis.djvu?djvuopts=&page=1&highlight=49,66,180,174;Augezdecki-01a_PT08_403 l 1 b 1; ※
 
 The name of the index should the document base name with the extension
 csv, e.g. Hochfeder-02_PT01_020bisOCR.csv.
