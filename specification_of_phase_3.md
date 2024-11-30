@@ -17,14 +17,15 @@ The starting point was the code of https://github.com/jpakkane/glyphtracer.
 The script segment_character_table.py present in the repository
 requires some adjustments.
 
-1. We need two additional argument: "DjVufile" explained earlier and
-an optional argument "directory, defaulting to "tmp", for storing the
-results.
+1. We need two additional argument besides the first one which is the
+input file. The second is: "DjVufile" explained later and used only as
+string in the index creation process. The third is an optional one
+"directory", defaulting to "tmp", for storing the results. 
 
 2. We need a log containing the number of recognized lines and the
 number of letterboxes in every line. I have no specific preferences
-for the format. The name of the log should be <input file base
-name>.log.
+about the arrangement of this data, the file should be in plain text
+format. The name of the log should be <input file base name>.log.
 
 3. The script creates an index. The updated specification of the index
 is stored as index_format.md. The table identifier mentioned in the
@@ -39,3 +40,11 @@ extension "djvu" is to be replaced by "csv".
 because it was checked earlier. Hence the cheking code is to be
 removed.
 
+A typical call will be something like
+
+python3 segment_character_table.py masks/m01.tiff Augezdecki-01a_PT08_403.djvu
+
+The index line for this run should be similar to this
+
+01 l 1 b 1;file:Augezdecki-01a_PT08_403.djvu.djvu?djvuopts=&page=1&highlight=47,903,63,104;Augezdecki-01a_PT08_403 l 1 b 1; ※
+01 l 1 b 2;file:Augezdecki-01a_PT08_403.djvu.djvu?djvuopts=&page=1&highlight=136,903,70,104;Augezdecki-01a_PT08_403 l 1 b 2; ※
