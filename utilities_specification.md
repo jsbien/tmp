@@ -6,7 +6,8 @@ Iterate over *.log files in the subdirectories of the argument.
 Every file has a time stamp as its last line.
 
 List and count the file names of the logs which have the modification
-time later than the creation time stamp.
+time later than the creation time stamp. The list should be sorted
+alphabetically.
 
 At the end of the run print the total number of the files.
 
