@@ -47,6 +47,14 @@ line.
 
 ### Actions for a specific numeric speckle identifier ###
 
+For a numeric speckle identifier (e.g., `-01`), the script should:
+1. Extract the identifier and locate the corresponding image file.
+2. Find the matching row(s) in the original `.csv` file based on:
+   - Table ID (from the log or file name).
+   - Line and box number inferred from the speckle.
+3. Append the exact matching rows to `speckles.csv`.
+
+
 Hence `-38` in the line `3: 44 -38` in the log
 `m01-2024-11-30-12-54.log` refers to the file
 `m01.tiff_line_003_box_038.png` in the same directory, the file is to be
@@ -63,8 +71,16 @@ Last but not least, a new log is be written with the speckle identifier place in
 
 ### Actions for a speckle line identifier ###
 
+
 The note `-l` means the line is either just a speckle or contains only
-speckles. Let's illustrate it with an example of the following
+speckles. 
+
+For a line-level identifier (e.g., `-l`), the script should:
+1. Identify all rows in the original `.csv` file corresponding to the line number.
+2. Move all related image files (one for each box in the line) to the `speckles` directory.
+3. Copy all matching rows to `speckles.csv`.
+
+Let's illustrate it with an example of the following
 fragment of a log
 
 	Arguments: input_file=masks/m03.tiff, djvu_file=Augezdecki-01b_PT08_404.djvu, output_directory=03
