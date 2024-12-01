@@ -1,0 +1,11 @@
+Arguments: input_file=masks/m01.tiff, djvu_file=Augezdecki-01_PT08_402.djvu, output_directory=01
+1: 28
+2: 41
+3: 44 -38
+4: 25
+5: 42 -21
+6: 10
+
+Invalid strips (no letterboxes):
+y-coordinates: 482-484
+Timestamp: 2024-11-30T12:54:30.464937

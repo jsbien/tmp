@@ -1,0 +1,11 @@
+Arguments: input_file=masks/m09.tiff, djvu_file=Augezdecki-07_PT08_409.djvu, output_directory=09
+1: 1
+2: 25
+3: 1
+4: 42
+5: 3
+6: 20
+7: 1
+
+Invalid strips (no letterboxes):
+Timestamp: 2024-11-30T12:54:34.946643

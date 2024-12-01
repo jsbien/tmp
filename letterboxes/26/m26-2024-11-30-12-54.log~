@@ -1,0 +1,11 @@
+Arguments: input_file=masks/m26.tiff, djvu_file=Haller-07_PT04_170.djvu, output_directory=26
+1: 26
+2: 4
+3: 49
+4: 45
+5: 1
+6: 2
+7: 12
+
+Invalid strips (no letterboxes):
+Timestamp: 2024-11-30T12:54:48.905548

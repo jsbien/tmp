@@ -1,0 +1,9 @@
+Arguments: input_file=masks/m04.tiff, djvu_file=Augezdecki-02_PT08_405.djvu, output_directory=04
+1: 30 22 fake glyph 24 fake glyph
+2: 43 25 fake glyph
+3: 26 11 fake glyph
+4: 31 1 split3??? 
+5: 36
+
+Invalid strips (no letterboxes):
+Timestamp: 2024-11-30T12:54:31.707765

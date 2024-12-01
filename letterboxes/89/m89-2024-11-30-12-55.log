@@ -1,0 +1,9 @@
+Arguments: input_file=masks/m89.tiff, djvu_file=Wirzbięta-15_PT11_566.djvu, output_directory=89
+1: 7 V
+2: 27 11:2 -14 17:5
+3: 30 -29
+4: 10
+5: 1 -l
+
+Invalid strips (no letterboxes):
+Timestamp: 2024-11-30T12:55:20.696302

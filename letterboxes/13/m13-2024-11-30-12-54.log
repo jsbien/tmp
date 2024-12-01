@@ -1,0 +1,6 @@
+Arguments: input_file=masks/m13.tiff, djvu_file=Augezdecki-11_PT08_408.djvu, output_directory=13
+1: 27
+2: 6 -6
+
+Invalid strips (no letterboxes):
+Timestamp: 2024-11-30T12:54:36.970620

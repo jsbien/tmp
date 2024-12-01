@@ -1,0 +1,9 @@
+Arguments: input_file=masks/m79.tiff, djvu_file=Wirzbięta-04_PT09_469.djvu, output_directory=79
+1: 24
+2: 41
+3: 37 -36
+
+deskew
+
+Invalid strips (no letterboxes):
+Timestamp: 2024-11-30T12:55:16.528501

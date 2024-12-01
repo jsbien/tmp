@@ -1,0 +1,9 @@
+Arguments: input_file=masks/m19.tiff, djvu_file=Augezdecki-17_PT08_411.djvu, output_directory=19
+1: 14 12+13
+2: 1 -l
+3: 3
+4: 18 line split!
+5: 1 -l
+
+Invalid strips (no letterboxes):
+Timestamp: 2024-11-30T12:54:44.070272

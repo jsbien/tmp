@@ -1,0 +1,9 @@
+Arguments: input_file=masks/m44.tiff, djvu_file=Ungler1-03_PT03_114.djvu, output_directory=44
+1: 26 13+14 17+18 20+21
+2: 35
+3: 31
+4: 30
+5: 10
+
+Invalid strips (no letterboxes):
+Timestamp: 2024-11-30T12:55:02.408478
