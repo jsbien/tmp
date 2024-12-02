@@ -3,102 +3,134 @@
 I have reviewed the output of `segment-all` and noticed a lot of
 speckles recognized erroneusly as characters. I have marked them by
 hand in the log files and in this phase we will convert my notes to
-the form suitable for further processing. This means:
+the form suitable for further processing. This is to be done by a
+Python script named `collect-speckles.py`.
 
-1. the relevant log files will be edited and new version created with
-the new time-stamp
-
-2. speckles images will be copied to the a separate directory for
-additional inspection
-
-3. speckles information will be retrieved from the appropriate CVS
-   files and copies to new CVS file.
-
-I have made also other notes in the log file which for the time being
-should be just preserved.
+I have made also some other notes in the log file which for the time
+being should be just preserved.
 
 # Script specification #
 
-The Python script is to be named `collect-specles.py`, it takes one
-argument in the form of a directory name.
+## Objective ##
+ Process logs to identify speckles and handle them appropriately:
+            
+  * Update log files with modified content.
+  * Move speckle images to a new directory (`speckles`) for further inspection.
+  * Append speckle-related data to a new CSV file (`speckles.csv`),
+    called later speckle index+.
 
-In this directory a subdirectory `speckles` is to be created. It will
-contain the index `speckles.csv` and the speckles image files.
+## Inputs #
+  *  A directory name is passed as an argument.
+  *  Subdirectories within this directory contain `.log` files to be
+     processed. They contain also the index files and so called
+     snippets graphic files, which are used by the script in the way
+     described below..
+	 
+## Outputs	 
+  *  The output of the script will be placed in the directory passed
+as the argument, in the subdirectory `speckles` and the file
+`speckles.csv`
+  *  Updated logs will be placed in the directory of the original log
+  .
+##  Processing ##
 
-The subdirectories of the argument directory are searched for log
-files containing at least one `-` character. The list of the logs
-found is sorted alphabetically, then for every log the following
-operations are be performed.
+*        Identify .log files containing speckle identifiers (indicated by "-").
 
-## Actions for a specific log file ##
+	Search for "-" only in in the proper content of the logs,
+    i.e. ignoring the metadata, namely
+	* the first line (a header)
+    * the last line (a time stamp)
+	* optional lines after `Invalid strips (no letterboxes):`
+	
+	The syntax of the content line is the following: 
+	
+`	<line numer>:<space><letterboxes count><space><optional speckle idemtifiers and other comments>`
+	
+* Extract, if present, the speckle identifiers. 
 
-First, the context of the `-` character is to be analized as we have
-two types of speckle identifiers. `-` can preceed a number or the
-letter `l`. The constructs `-<number>` may occur several times in a
-line with or without the spaces between them. Here are some examples:
+The character `-` can preceed a number (we call it numerical identifier) or the
+letter `l` (we call it line identifier). The numerical identifiers may
+occur several times in a line with or without the spaces between them
+and be interspersed with some other notes. Here are some examples:
 
     1: 1 -l
 	1: 30 -22-24
     3: 44 -38
 
-If the log contains both `-l` and `-<number>`, we start processing with
-`-<number`. The number refers to the letterbox in th specified
-line. 
+* Convert speckle identifiers to their index form.
 
-### Actions for a specific numeric speckle identifier ###
+For numerical identifiers it is
+`l <line numer> b <letterbox number>`
+For example "1: 30 -22-24" becomes "l 1 b 22" and "l 1 b 24".
 
-For a numeric speckle identifier (e.g., `-01`), the script should:
-1. Extract the identifier and locate the corresponding image file.
-2. Find the matching row(s) in the original `.csv` file based on:
-   - Table ID (from the log or file name).
-   - Line and box number inferred from the speckle.
-3. Append the exact matching rows to `speckles.csv`.
+The line identifiers are just missing the letterbox part, so "1: 1 -l"
+becomes "l 1".
+
+* Convert speckle identifiers to their so called here snippet form.
+
+The form is similar to the index form, but all numbers have 3 digits,
+insted of space there is underscore, instead of "l" there is "line"
+and instead of "b" there is ""box". So "1: 30 -22-24" becomes
+"`line_001 box_22`" and "`line_001 box_24`", and "1: 1 -l" becomes
+"`line_001`".
+
+* Extract relevant metadata from the log file.
+
+** The name of the log file has the form `<table-id>-<time
+stamp>.log`. Extract the `table-id` as it will be needed later.  **
+The first line of the log contains 3 fields, separated by comma, e.g.
+`Arguments: input_file=masks/m89.tiff,
+djvu_file=Wirzbięta-15_PT11_566.djvu, output_directory=89` Extract the
+base name of the "djvu_file", as it will be neede later; let's call it
+"table-name".
+
+* Locate the relevant index file.
+
+It in the same subdirectory as the log file and has the name `<table-name>.csv`.
+This is the only `csv` file in this directory.
+
+*Actions for Numeric Speckle Identifiers (-<number>): 
+
+For every speckle id found in the log file do the following:
+
+Move the corresponding image file. i.e. the file matching the regular
+expression `*<snippet form>*` to the `speckles` directory.
+Append the corresponding line from the relevant `.csv` file,
+i.e.the regular expression one matching `*<snippet form>*` to
+`speckles.csv`.  
+		
+There should be only one such line in the index and only such file in the directory.
+		
+
+Copy the .log file changing the time stamp in its name to the current
+one. Add the time stamp line above the existing one.  Change the
+content of the new log by placing the all relevant speckle ids in the
+brackets.
 
 
-Hence `-38` in the line `3: 44 -38` in the log
-`m01-2024-11-30-12-54.log` refers to the file
-`m01.tiff_line_003_box_038.png` in the same directory, the file is to be
-moved to the `speckles` directory mentioned above.
-Additionally it refers to the line
+*Actions for Line Speckle Identifiers (-l):
 
-    001 l 3 b 38;file:Augezdecki-01_PT08_402.djvu?djvuopts=&page=1&highlight=2178,571,2,115;Augezdecki-01_PT08_402 l 3 b 38; ※
+At first process it as a numerical speckle id, the difference is this
+time the regular expressions can fir more then one line or one file.
 
-in the file `Augezdecki-01_PT08_402.csv`. This line is to be appended to the `speckles.csv` file mentioned above.
+The next step is to modify the log file. If the log contained also
+numerical ids, the new log was already created; if not, create the new
+log file following the instruction above.  In the new log put the
+whole line speckle identifier in brackers and renumber the remining lines.
 
-Last but not least, a new log is be written with the speckle identifier place in brackets:
+Implementation Plan
 
-    3: 44 [-38]
+    Directory Traversal:
+        Locate .log files containing -.
 
-### Actions for a speckle line identifier ###
+    Log Parsing:
+        Extract numeric (-<number>) and line (-l) speckle identifiers.
+        Determine corresponding image and CSV files.
 
+    File Operations:
+        Move speckle image files to the speckles directory.
+        Update the .log file and write the new version.
+        Append data to speckles.csv.
 
-The note `-l` means the line is either just a speckle or contains only
-speckles. 
-
-For a line-level identifier (e.g., `-l`), the script should:
-1. Identify all rows in the original `.csv` file corresponding to the line number.
-2. Move all related image files (one for each box in the line) to the `speckles` directory.
-3. Copy all matching rows to `speckles.csv`.
-
-Let's illustrate it with an example of the following
-fragment of a log
-
-	Arguments: input_file=masks/m03.tiff, djvu_file=Augezdecki-01b_PT08_404.djvu, output_directory=03
-
-     1: 1 -l
-     2: 23
-     3: 1
-
-We move to the `speckles` directory all the files
-`m03.tiff_line_001_*.png` and we append to `speckles.csv` all the
-lines from `Augezdecki-01b_PT08_404.csv` starting with `003 l
-1`. Moreover we have to renumerate lines in the log placing old
-numbers in the brackets; we place also in brackets the whole line
-containg `-l`. So the new log will contain
-
-	Arguments: input_file=masks/m03.tiff, djvu_file=Augezdecki-01b_PT08_404.djvu, output_directory=03
-
-[1: 1 -l]
-    1 [2]: 23
-    2 [3]: 1
-
+    Error Handling:
+        Handle missing files gracefully with appropriate logging.
