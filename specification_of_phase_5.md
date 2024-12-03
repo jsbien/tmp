@@ -1,136 +1,223 @@
-# Introduction #
+# Phase 5 Specification: Processing Speckles from Logs
 
-I have reviewed the output of `segment-all` and noticed a lot of
-speckles recognized erroneusly as characters. I have marked them by
-hand in the log files and in this phase we will convert my notes to
-the form suitable for further processing. This is to be done by a
-Python script named `collect-speckles.py`.
+## Introduction
 
-I have made also some other notes in the log file which for the time
-being should be just preserved.
+During the review of `segment-all` outputs, I noticed many speckles
+were erroneously recognized as characters. These speckles have been
+marked manually in the log files. This phase involves converting these
+notes into a format suitable for further processing using a Python
+script named `collect-speckles.py`.
 
-# Script specification #
+The script should also preserve other notes made in the log files for potential use later.
 
-## Objective ##
- Process logs to identify speckles and handle them appropriately:
-            
-  * Update log files with modified content.
-  * Move speckle images to a new directory (`speckles`) for further inspection.
-  * Append speckle-related data to a new CSV file (`speckles.csv`),
-    called later speckle index+.
+---
 
-## Inputs #
-  *  A directory name is passed as an argument.
-  *  Subdirectories within this directory contain `.log` files to be
-     processed. They contain also the index files and so called
-     snippets graphic files, which are used by the script in the way
-     described below..
-	 
-## Outputs	 
-  *  The output of the script will be placed in the directory passed
-as the argument, in the subdirectory `speckles` and the file
-`speckles.csv`
-  *  Updated logs will be placed in the directory of the original log
-  .
-##  Processing ##
+## Objective
 
-*        Identify .log files containing speckle identifiers (indicated by "-").
+The script processes logs to:
+1. Create  new log files with modified content.
+2. Move speckle images to a new directory (`speckles`) for further inspection.
+3. Append the index entries referring to speckles to a new CSV index
+   (`speckles.csv`).
 
-	Search for "-" only in in the proper content of the logs,
-    i.e. ignoring the metadata, namely
-	* the first line (a header)
-    * the last line (a time stamp)
-	* optional lines after `Invalid strips (no letterboxes):`
-	
-	The syntax of the content line is the following: 
-	
-`	<line numer>:<space><letterboxes count><space><optional speckle idemtifiers and other comments>`
-	
-* Extract, if present, the speckle identifiers. 
+---
 
-The character `-` can preceed a number (we call it numerical identifier) or the
-letter `l` (we call it line identifier). The numerical identifiers may
-occur several times in a line with or without the spaces between them
-and be interspersed with some other notes. Here are some examples:
+## Inputs
 
-    1: 1 -l
-	1: 30 -22-24
-    3: 44 -38
+- **Directory Argument**: The script accepts a directory name as input.
+- **Subdirectory Contents**:
+  - `.log` files: Logs to be processed.
+  - Snippet graphic files: Image files storing characters and sometimes just speckles.
+  - Index files (`.csv`): The indexes can be treated as metadata for snippet graphic files.
 
-* Convert speckle identifiers to their index form.
+---
 
-For numerical identifiers it is
-`l <line numer> b <letterbox number>`
-For example "1: 30 -22-24" becomes "l 1 b 22" and "l 1 b 24".
+## Outputs
 
-The line identifiers are just missing the letterbox part, so "1: 1 -l"
-becomes "l 1".
+- **Directory Structure**:
+  - Processed data will be saved in a `speckles` subdirectory of the provided directory.
+- **File Outputs**:
+  - `speckles.csv`: An index of speckles.
+  - Snippet graphic files with speckles referenced in the index.
+  - Modified `.log` files: Stored in the original `.log` file's directory.
 
-* Convert speckle identifiers to their so called here snippet form.
+---
 
-The form is similar to the index form, but all numbers have 3 digits,
-insted of space there is underscore, instead of "l" there is "line"
-and instead of "b" there is ""box". So "1: 30 -22-24" becomes
-"`line_001 box_22`" and "`line_001 box_24`", and "1: 1 -l" becomes
-"`line_001`".
+## Processing Steps
 
-* Extract relevant metadata from the log file.
+### 1. Identify Relevant `.log` Files
 
-** The name of the log file has the form `<table-id>-<time
-stamp>.log`. Extract the `table-id` as it will be needed later.  **
-The first line of the log contains 3 fields, separated by comma, e.g.
-`Arguments: input_file=masks/m89.tiff,
-djvu_file=Wirzbięta-15_PT11_566.djvu, output_directory=89` Extract the
-base name of the "djvu_file", as it will be neede later; let's call it
-"table-name".
+- Look for `.log` files containing speckle identifiers (prefixed by
+  `-`) in the proper content.
+- During the search ignore metadata in logs, namely:
+  - The header (first line).
+  - The timestamp (last line).
+  - Lines after `Invalid strips (no letterboxes):`.
 
-* Locate the relevant index file.
+#### Log Content Syntax
 
-It in the same subdirectory as the log file and has the name `<table-name>.csv`.
-This is the only `csv` file in this directory.
+```
+<line number>: <letterboxes count> <optional speckle identifiers and other comments>
+```
 
-*Actions for Numeric Speckle Identifiers (-<number>): 
-
-For every speckle id found in the log file do the following:
-
-Move the corresponding image file. i.e. the file matching the regular
-expression `*<snippet form>*` to the `speckles` directory.
-Append the corresponding line from the relevant `.csv` file,
-i.e.the regular expression one matching `*<snippet form>*` to
-`speckles.csv`.  
-		
-There should be only one such line in the index and only such file in the directory.
-		
-
-Copy the .log file changing the time stamp in its name to the current
-one. Add the time stamp line above the existing one.  Change the
-content of the new log by placing the all relevant speckle ids in the
-brackets.
+#### Example of a full log:
 
 
-*Actions for Line Speckle Identifiers (-l):
+Arguments: input_file=masks/m89.tiff, djvu_file=Wirzbięta-15_PT11_566.djvu, output_directory=89  
+1: 7 V  
+2: 27 11:2 -14 17:5  
+3: 30 -29  
+4: 10  
+5: 1 -l  
 
-At first process it as a numerical speckle id, the difference is this
-time the regular expressions can fir more then one line or one file.
+Invalid strips (no letterboxes):  
+Timestamp: 2024-11-30T12:55:20.696302  
 
-The next step is to modify the log file. If the log contained also
-numerical ids, the new log was already created; if not, create the new
-log file following the instruction above.  In the new log put the
-whole line speckle identifier in brackers and renumber the remining lines.
 
-Implementation Plan
+---
 
-    Directory Traversal:
-        Locate .log files containing -.
+### 2. Extract Speckle Identifiers
 
-    Log Parsing:
-        Extract numeric (-<number>) and line (-l) speckle identifiers.
-        Determine corresponding image and CSV files.
+Speckle identifiers can be:
 
-    File Operations:
-        Move speckle image files to the speckles directory.
-        Update the .log file and write the new version.
-        Append data to speckles.csv.
+- **Numerical Identifiers** (`-<number>`):
+  - May appear multiple times in a line.
+  - Can be interspersed with other notes.
+- **Line Identifiers** (`-l`).
 
-    Error Handling:
-        Handle missing files gracefully with appropriate logging.
+#### Examples:
+
+```
+1: 1 -l
+```
+
+```
+1: 30 -22-24
+```
+
+```
+3: 44 -38
+
+---
+
+### 3. Convert Speckle Identifiers
+
+#### **Index Form**:
+- For numerical identifiers: `l <line number> b <letterbox number>`.
+- For line identifiers: `l <line number>`.
+
+**Examples**:
+- `1: 30 -22-24` → `l 1 b 22`, `l 1 b 24`.
+- `1: 1 -l` → `l 1`.
+
+#### **Snippet Form**:
+- Similar to the index form, but with:
+  - All numbers padded to 3 digits.
+  - Underscores (`_`) instead of spaces.
+  - `line` and `box` prefixes instead of `l` and `b`.
+
+**Examples**:
+- `1: 30 -22-24` → `line_001 box_22`, `line_001 box_24`.
+- `1: 1 -l` → `line_001`.
+
+---
+
+### 4. Extract Metadata from Logs
+
+#### Log File Name:
+- Format: `<table-id>-<timestamp>.log`
+- Extract `<table-id>` for processing.
+
+#### Header Line:
+- Example: `Arguments: input_file=masks/m89.tiff, djvu_file=Wirzbięta-15_PT11_566.djvu, output_directory=89`
+- Extract the base name of `djvu_file` (e.g., `Wirzbięta-15_PT11_566`) as the `table-name`.
+
+---
+
+### 5. Locate Relevant Index File
+
+- The `.csv` file corresponding to the log is:
+  - The only `.csv` file in the same directory.
+  - Named `<table-name>.csv`.
+
+---
+
+### 6. Actions for Speckle Identifiers
+
+#### **Numeric Speckle Identifiers (`-<number>`)**:
+
+1. **Move Image Files**:
+   - Match the snippet form using the regular expression `*<snippet form>*`.
+   - Move the file to the `speckles` directory.
+
+> **Note**: Only one matching file should exist in the directory.
+
+
+2. **Update `speckles.csv`**:
+   - In the appropriate index find the matching `*<snippet
+     form>*`. Appned it to the `speckles.csv`.
+
+   > **Note**: Only one matching line should exist in the index.
+
+3. **Update the Log File**:
+   - Copy the `.log` file and rename it with the current timestamp.
+   - Add a new timestamp line above the existing one.
+   - Place all relevant speckle IDs in brackets.
+
+   **Examples**:
+   - Original log entry: `1: 30 -22-24`
+   - Updated log entry: `1: 30 [-22][-24]`
+
+#### **Line Speckle Identifiers (`-l`)**:
+
+1. Process as a numeric speckle identifier, but:
+   - Multiple matching lines/files may exist for line identifiers.
+
+2. Update the Log File:
+   - If no numeric identifiers exist, create a new log file as
+     described above and add the actual time stamp line above the exisiting one..
+   - Put the entire line speckle identifier in brackets.
+   - Renumber remaining lines.
+
+### 5. Print some statistics.
+ 
+
+---
+
+### 7. Implementation Plan
+
+1. **Directory Traversal**:
+   - Locate `.log` files containing speckle identifiers (`-`).
+
+2. **Log Parsing**:
+   - Extract numeric (`-<number>`) and line (`-l`) speckle identifiers.
+   - Determine corresponding image and `.csv` files.
+
+3. **File Operations**:
+   - Move speckle image files to the `speckles` directory.
+   - Update `.log` files and save new versions.
+   - Append data to `speckles.csv`.
+
+4. **Error Handling**:
+   - Handle missing files gracefully with appropriate logging.
+
+---
+
+## Error Handling
+
+- **Missing Files**:
+  - Log missing `.csv` or image files with clear error messages.
+- **Unexpected Log Structure**:
+  - Skip processing and log an error if the log structure does not match expectations.
+
+## Progress reporting
+
+- Print some useful information like the name of the log file being
+  processed and the speckle identifier found.
+
+---
+
+## Notes
+
+- The script should preserve  all existing metadata in `.log` files.
+- Snippet forms and index forms should strictly follow the specified format.
