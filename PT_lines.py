@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.1"
+VERSION = "1.2"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -30,7 +30,9 @@ def split_into_lines(image, output_dir):
         elif value == 0 and in_line:
             in_line = False
             end = i
-            line_positions.append((start, end))
+            # Ignore lines shorter than 10 pixels
+            if (end - start) >= 10:
+                line_positions.append((start, end))
 
     line_number = 0
     for start, end in line_positions:
