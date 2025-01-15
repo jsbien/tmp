@@ -5,41 +5,41 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.0"
+VERSION = "1.1"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
     with open(log_file, 'a') as f:
         f.write(f"{datetime.now()} - {message}\n")
 
-def is_dewarping_needed(image):
-    """Determine if the image needs dewarping based on the straightness of lines."""
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    edges = cv2.Canny(gray, 50, 150, apertureSize=3)
-    lines = cv2.HoughLines(edges, 1, np.pi / 180, 200)
-    return lines is not None
-
 def split_into_lines(image, output_dir):
-    """Split the image into lines and save them to the output directory."""
+    """Split the image into horizontal lines and save them to the output directory."""
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)
 
-    # Find contours
-    contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    
-    # Sort contours by their vertical position (y-coordinate)
-    contours = sorted(contours, key=lambda c: cv2.boundingRect(c)[1])
+    # Sum along columns to find horizontal projections
+    horizontal_projection = np.sum(binary, axis=1)
+
+    # Detect line positions based on projection
+    line_positions = []
+    in_line = False
+    for i, value in enumerate(horizontal_projection):
+        if value > 0 and not in_line:
+            in_line = True
+            start = i
+        elif value == 0 and in_line:
+            in_line = False
+            end = i
+            line_positions.append((start, end))
 
     line_number = 0
-    for contour in contours:
-        x, y, w, h = cv2.boundingRect(contour)
-        if h > 10:  # Ignore very small lines
-            line_number += 1
-            line_image = image[y:y+h, x:x+w]
-            output_path = os.path.join(output_dir, f"{line_number:02d}_{os.path.basename(output_dir)}.tiff")
-            cv2.imwrite(output_path, line_image)
+    for start, end in line_positions:
+        line_number += 1
+        line_image = image[start:end, :]
+        output_path = os.path.join(output_dir, f"{line_number:02d}_{os.path.basename(output_dir)}.tiff")
+        cv2.imwrite(output_path, line_image)
 
-    return line_number
+    return len(line_positions)
 
 def process_directory(input_dir):
     """Main function to process all TIFF files in the input directory."""
@@ -53,10 +53,6 @@ def process_directory(input_dir):
 
             if image is None:
                 log_message(log_file, f"ERROR: Unable to read file {file_name}")
-                continue
-
-            if not is_dewarping_needed(image):
-                log_message(log_file, f"{file_name}: Dewarping not needed.")
                 continue
 
             output_dir = os.path.join(input_dir, f"{os.path.splitext(file_name)[0]}_lines")
