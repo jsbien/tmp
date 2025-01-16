@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "2.5"
+VERSION = "3.0"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -13,86 +13,77 @@ def log_message(log_file, message):
         f.write(f"{datetime.now()} - {message}\n")
     print(message)  # Immediate feedback
 
-def find_path(binary, start_col, log_file):
-    """Find a white pixel path from top to bottom starting in the given column."""
+def find_vertical_gaps(binary, log_file):
+    """Find vertical gaps composed of columns of white pixels."""
     height, width = binary.shape
-    path = []
+    gaps = []
 
-    # Start at the first row in the given column
-    x = start_col
-    for y in range(height):
-        if binary[y, x] == 255:  # Current column has a white pixel
-            path.append((y, x))
-        elif x > 0 and binary[y, x - 1] == 255:  # Check left neighbor
-            x -= 1
-            path.append((y, x))
-        elif x < width - 1 and binary[y, x + 1] == 255:  # Check right neighbor
-            x += 1
-            path.append((y, x))
+    in_gap = False
+    gap_start = 0
+
+    for x in range(width):
+        if np.all(binary[:, x] == 255):  # Column is fully white
+            if not in_gap:
+                gap_start = x
+                in_gap = True
         else:
-            log_message(log_file, f"Path terminated at row {y}, column {x}")
-            break  # Dead end, stop the path
+            if in_gap:
+                gaps.append((gap_start, x - 1))
+                log_message(log_file, f"Gap found: Columns [{gap_start}:{x - 1}]")
+                in_gap = False
 
-    log_message(log_file, f"Path found: {path[:10]}... (truncated for brevity)")
-    return path
+    if in_gap:  # Handle gap ending at the last column
+        gaps.append((gap_start, width - 1))
+        log_message(log_file, f"Gap found: Columns [{gap_start}:{width - 1}]")
 
-def split_into_glyphs(image, output_dir, file_basename, log_file):
-    """Split the image into glyphs using white pixel paths and save them."""
+    return gaps
+
+def split_into_chunks(image, output_dir, file_basename, log_file):
+    """Split the image into chunks using vertical gaps and save them."""
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)
 
-    glyph_number = 0
-    log_entries = []
+    gaps = find_vertical_gaps(binary, log_file)
 
-    x_start = 0
-    processed_columns = set()  # Track processed columns to prevent loops
+    chunk_number = 0
+    prev_gap_end = 0
 
-    while x_start < gray.shape[1]:
-        log_message(log_file, f"Starting at column {x_start}")
+    for gap_start, gap_end in gaps:
+        # Extract the chunk between the previous gap and the current gap
+        chunk_image = binary[:, prev_gap_end:gap_start]
+        if chunk_image.shape[1] > 0:  # Ignore empty chunks
+            padded_chunk = cv2.copyMakeBorder(chunk_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=255)
 
-        # Find the first column with non-white pixels
-        while x_start < gray.shape[1] and np.all(gray[:, x_start] == 255):
-            x_start += 1
+            chunk_number += 1
+            chunk_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + ".glyph")
+            os.makedirs(chunk_dir, exist_ok=True)
 
-        if x_start >= gray.shape[1]:
-            break
+            output_path = os.path.join(chunk_dir, f"chunk_{chunk_number:02d}_{os.path.splitext(file_basename)[0]}.tiff")
+            cv2.imwrite(output_path, padded_chunk)
 
-        # Prevent infinite loops by ensuring no column is processed twice
-        if x_start in processed_columns:
-            log_message(log_file, f"Column {x_start} already processed. Skipping.")
-            break
-        processed_columns.add(x_start)
+            log_message(log_file, f"Chunk {chunk_number}: Columns [{prev_gap_end}:{gap_start}] saved to {output_path}")
 
-        # Find the next path
-        path = find_path(gray, x_start, log_file)
+        prev_gap_end = gap_end + 1
 
-        if not path:
-            log_message(log_file, f"No path found starting at column {x_start}")
-            break
+    # Handle the last chunk after the final gap
+    if prev_gap_end < binary.shape[1]:
+        chunk_image = binary[:, prev_gap_end:]
+        padded_chunk = cv2.copyMakeBorder(chunk_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=255)
 
-        # Determine the cut position from the path
-        x_end = max(p[1] for p in path) + 1
+        chunk_number += 1
+        chunk_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + ".glyph")
+        os.makedirs(chunk_dir, exist_ok=True)
 
-        # Extract the glyph image
-        glyph_image = gray[:, x_start:x_end]
-        padded_glyph = cv2.copyMakeBorder(glyph_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=255)
+        output_path = os.path.join(chunk_dir, f"chunk_{chunk_number:02d}_{os.path.splitext(file_basename)[0]}.tiff")
+        cv2.imwrite(output_path, padded_chunk)
 
-        glyph_number += 1
-        glyph_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + ".glyph")
-        os.makedirs(glyph_dir, exist_ok=True)
+        log_message(log_file, f"Chunk {chunk_number}: Columns [{prev_gap_end}:{binary.shape[1]}] saved to {output_path}")
 
-        output_path = os.path.join(glyph_dir, f"{glyph_number:02d}_{os.path.splitext(file_basename)[0]}.tiff")
-        cv2.imwrite(output_path, padded_glyph)
-
-        log_entries.append(f"Glyph {glyph_number}: Columns [{x_start}:{x_end}]")
-        log_message(log_file, f"Glyph {glyph_number}: Columns [{x_start}:{x_end}]")
-
-        x_start = x_end
-
-    return glyph_number, log_entries
+    return chunk_number
 
 def process_directory(input_dir):
     """Main function to process all subdirectories and files."""
-    log_file = f"PT_glyphs_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+    log_file = f"PT_chunks_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
     log_message(log_file, f"Script version: {VERSION}")
 
     for subdir in sorted(os.listdir(input_dir)):  # Process subdirectories alphabetically
@@ -113,16 +104,14 @@ def process_directory(input_dir):
                         print(f"    ERROR: Unable to read file {file_name}")  # Progress report
                         continue
 
-                    glyphs_output_dir = subdir_path  # Save glyphs in the same *lines directory
-                    glyph_count, glyph_logs = split_into_glyphs(image, glyphs_output_dir, file_name, log_file)
-                    log_message(log_file, f"{file_name}: {glyph_count} glyphs detected.")
-                    print(f"    {glyph_count} glyphs detected.")  # Progress report
-                    for glyph_log in glyph_logs:
-                        log_message(log_file, glyph_log)
+                    chunks_output_dir = subdir_path  # Save chunks in the same *lines directory
+                    chunk_count = split_into_chunks(image, chunks_output_dir, file_name, log_file)
+                    log_message(log_file, f"{file_name}: {chunk_count} chunks detected.")
+                    print(f"    {chunk_count} chunks detected.")  # Progress report
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python PT_glyphs.py <input_directory>")
+        print("Usage: python PT_chunks.py <input_directory>")
         sys.exit(1)
 
     input_directory = sys.argv[1]
