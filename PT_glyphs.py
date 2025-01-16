@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "3.1"
+VERSION = "3.2"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -22,25 +22,18 @@ def find_vertical_gaps(binary, log_file):
     gap_start = 0
 
     for x in range(width):
-        column_values = binary[:, x]
-        log_message(log_file, f"Column {x}: Unique pixel values {np.unique(column_values)}")
-
-        if np.all(column_values == 255):  # Column is fully white
+        if np.all(binary[:, x] == 255):  # Column is fully white
             if not in_gap:
                 gap_start = x
                 in_gap = True
         else:
             if in_gap:
                 gaps.append((gap_start, x - 1))
-                log_message(log_file, f"Gap found: Columns [{gap_start}:{x - 1}]")
                 in_gap = False
 
     if in_gap:  # Handle gap ending at the last column
         gaps.append((gap_start, width - 1))
-        log_message(log_file, f"Gap found: Columns [{gap_start}:{width - 1}]")
 
-    if not gaps:
-        log_message(log_file, "No gaps found. The line might have no fully white columns.")
     return gaps
 
 def split_into_chunks(image, output_dir, file_basename, log_file):
@@ -68,10 +61,6 @@ def split_into_chunks(image, output_dir, file_basename, log_file):
             output_path = os.path.join(chunk_dir, f"chunk_{chunk_number:02d}_{os.path.splitext(file_basename)[0]}.tiff")
             cv2.imwrite(output_path, padded_chunk)
 
-            log_message(log_file, f"Chunk {chunk_number}: Columns [{prev_gap_end}:{gap_start}] saved to {output_path}")
-
-        prev_gap_end = gap_end + 1
-
     # Handle the last chunk after the final gap
     if prev_gap_end < binary.shape[1]:
         chunk_image = binary[:, prev_gap_end:]
@@ -84,15 +73,54 @@ def split_into_chunks(image, output_dir, file_basename, log_file):
         output_path = os.path.join(chunk_dir, f"chunk_{chunk_number:02d}_{os.path.splitext(file_basename)[0]}.tiff")
         cv2.imwrite(output_path, padded_chunk)
 
-        log_message(log_file, f"Chunk {chunk_number}: Columns [{prev_gap_end}:{binary.shape[1]}] saved to {output_path}")
-
-    if chunk_number == 0:
-        log_message(log_file, "No chunks created. The line might lack separable gaps.")
     return chunk_number
+
+def split_chunks_into_glyphs(chunk_dir, log_file):
+    """Split each chunk into finer glyphs and save them."""
+    for chunk_file in sorted(os.listdir(chunk_dir)):
+        if chunk_file.lower().endswith('.tiff'):
+            chunk_path = os.path.join(chunk_dir, chunk_file)
+            chunk_image = cv2.imread(chunk_path, cv2.IMREAD_GRAYSCALE)
+
+            # Logic to split chunk into glyphs
+            contours, _ = cv2.findContours(255 - chunk_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            glyph_number = 0
+
+            for contour in contours:
+                x, y, w, h = cv2.boundingRect(contour)
+                glyph = chunk_image[y:y+h, x:x+w]
+                padded_glyph = cv2.copyMakeBorder(glyph, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=255)
+
+                glyph_number += 1
+                glyph_path = os.path.join(chunk_dir, f"glyph_{glyph_number:02d}_{chunk_file}")
+                cv2.imwrite(glyph_path, padded_glyph)
+
+            if glyph_number > 0:
+                log_message(log_file, f"Chunk {chunk_file} split into {glyph_number} glyphs.")
+    """Split each chunk into finer glyphs and save them."""
+    for chunk_file in sorted(os.listdir(chunk_dir)):
+        if chunk_file.lower().endswith('.tiff'):
+            chunk_path = os.path.join(chunk_dir, chunk_file)
+            chunk_image = cv2.imread(chunk_path, cv2.IMREAD_GRAYSCALE)
+
+            # Logic to split chunk into glyphs
+            contours, _ = cv2.findContours(255 - chunk_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            glyph_number = 0
+
+            for contour in contours:
+                x, y, w, h = cv2.boundingRect(contour)
+                glyph = chunk_image[y:y+h, x:x+w]
+                padded_glyph = cv2.copyMakeBorder(glyph, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=255)
+
+                glyph_number += 1
+                glyph_path = os.path.join(chunk_dir, f"glyph_{glyph_number:02d}_{chunk_file}")
+                cv2.imwrite(glyph_path, padded_glyph)
+
+                log_message(log_file, f"Saved glyph {glyph_number} from chunk {chunk_file} to {glyph_path}")
 
 def process_directory(input_dir):
     """Main function to process all subdirectories and files."""
-    log_file = f"PT_chunks_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+    log_file = f"PT_glyphs_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
     log_message(log_file, f"Script version: {VERSION}")
 
     for subdir in sorted(os.listdir(input_dir)):  # Process subdirectories alphabetically
@@ -113,14 +141,19 @@ def process_directory(input_dir):
                         print(f"    ERROR: Unable to read file {file_name}")  # Progress report
                         continue
 
-                    chunks_output_dir = subdir_path  # Save chunks in the same *lines directory
+                    chunks_output_dir = os.path.join(subdir_path, os.path.splitext(file_name)[0] + ".glyph")
+                    os.makedirs(chunks_output_dir, exist_ok=True)
+
                     chunk_count = split_into_chunks(image, chunks_output_dir, file_name, log_file)
                     log_message(log_file, f"{file_name}: {chunk_count} chunks detected.")
                     print(f"    {chunk_count} chunks detected.")  # Progress report
 
+                    # Split chunks into glyphs
+                    split_chunks_into_glyphs(chunks_output_dir, log_file)
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python PT_chunks.py <input_directory>")
+        print("Usage: python PT_glyphs.py <input_directory>")
         sys.exit(1)
 
     input_directory = sys.argv[1]
