@@ -32,10 +32,18 @@ def find_vertical_gaps(binary, log_file):
                 log_message(log_file, f"Gap found: Columns [{gap_start}:{x - 1}]")
                 in_gap = False
 
+        # Log column classification for debugging
+        if np.all(binary[:, x] == 255):
+            log_message(log_file, f"Column {x}: Fully white")
+        else:
+            log_message(log_file, f"Column {x}: Contains black pixels")
+
     if in_gap:  # Handle gap ending at the last column
         gaps.append((gap_start, width - 1))
         log_message(log_file, f"Gap found: Columns [{gap_start}:{width - 1}]")
 
+    if not gaps:
+        log_message(log_file, "No gaps found. The line might have no fully white columns.")
     return gaps
 
 def split_into_chunks(image, output_dir, file_basename, log_file):
