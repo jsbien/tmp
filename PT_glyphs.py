@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.2"
+VERSION = "1.3"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -15,7 +15,7 @@ def log_message(log_file, message):
 def split_into_glyphs(image, output_dir, file_basename):
     """Split the image into glyphs and save them to the output directory."""
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+    _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)  # Revert to inverted binary
 
     # Find contours of potential glyphs
     contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -31,7 +31,7 @@ def split_into_glyphs(image, output_dir, file_basename):
         if w > 5 and h > 5:  # Ignore noise or very small artifacts
             glyph_number += 1
             glyph_image = binary[y:y+h, x:x+w]
-            padded_glyph = cv2.copyMakeBorder(glyph_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=255)
+            padded_glyph = cv2.copyMakeBorder(glyph_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=0)  # Ensure black background
 
             glyph_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + "_glyphs")
             os.makedirs(glyph_dir, exist_ok=True)  # Ensure the glyph directory is created
