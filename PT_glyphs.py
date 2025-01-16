@@ -5,41 +5,60 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.4"
+VERSION = "1.5"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
     with open(log_file, 'a') as f:
         f.write(f"{datetime.now()} - {message}\n")
 
-def find_cut_path(binary):
-    """Find the least-cost path of white pixels from top to bottom."""
+def find_cut_path(binary, log_file=None):
+    """Find the least-cost path of white pixels from top to bottom with logging."""
     height, width = binary.shape
+
+    # Precompute pixel costs (0 for black, 1 for white)
+    pixel_costs = np.where(binary == 255, 1, np.inf)
+
+    # Initialize cost matrix
     cost = np.full((height, width), np.inf)
-    path = np.zeros_like(binary, dtype=int)
+    path = np.zeros((height, width), dtype=int)
 
-    # Initialize the first row
-    for x in range(width):
-        cost[0, x] = 0 if binary[0, x] == 255 else np.inf
+    # Set up the first row
+    cost[0, :] = pixel_costs[0, :]
 
-    # Dynamic programming to calculate the cost
+    if log_file:
+        log_message(log_file, f"Image dimensions: {height}x{width}")
+        log_message(log_file, "Starting cost computation...")
+
+    # Dynamic programming for cost calculation
     for y in range(1, height):
         for x in range(width):
-            if binary[y, x] == 255:  # Only consider white pixels
-                min_cost = cost[y-1, max(0, x-1):min(width, x+2)].min()
+            if pixel_costs[y, x] == 1:  # Only process white pixels
+                left = cost[y - 1, x - 1] if x > 0 else np.inf
+                center = cost[y - 1, x]
+                right = cost[y - 1, x + 1] if x < width - 1 else np.inf
+
+                # Compute minimum cost and store it
+                min_cost = min(left, center, right)
                 cost[y, x] = min_cost + 1
-                path[y, x] = np.argmin(cost[y-1, max(0, x-1):min(width, x+2)]) + max(0, x-1)
+                path[y, x] = np.argmin([left, center, right]) - 1 + x if x > 0 else x
+
+        if log_file and y % 100 == 0:
+            log_message(log_file, f"Processed row {y}/{height}")
 
     # Backtrack to find the path
     cut_path = []
-    x = np.argmin(cost[-1])
-    for y in range(height-1, -1, -1):
+    x = np.argmin(cost[-1, :])
+    for y in range(height - 1, -1, -1):
         cut_path.append((y, x))
         x = path[y, x]
 
+    if log_file:
+        log_message(log_file, "Finished cost computation.")
+
     return cut_path
 
-def split_into_glyphs(image, output_dir, file_basename):
+def split_into_glyphs(image, output_dir, file_basename, log_file):
     """Split the image into glyphs using white pixel paths and save them."""
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)
@@ -50,7 +69,7 @@ def split_into_glyphs(image, output_dir, file_basename):
     x_start = 0
     while x_start < binary.shape[1]:
         # Find the next vertical cut path
-        cut_path = find_cut_path(binary[:, x_start:])
+        cut_path = find_cut_path(binary[:, x_start:], log_file)
         if not cut_path:
             break
 
@@ -67,6 +86,7 @@ def split_into_glyphs(image, output_dir, file_basename):
         cv2.imwrite(output_path, padded_glyph)
 
         log_entries.append(f"Glyph {glyph_number}: Columns [{x_start}:{x_end}]")
+        log_message(log_file, f"Glyph {glyph_number}: Columns [{x_start}:{x_end}]")
         x_start = x_end
 
     return glyph_number, log_entries
@@ -80,12 +100,14 @@ def process_directory(input_dir):
         subdir_path = os.path.join(input_dir, subdir)
         if os.path.isdir(subdir_path):
             print(f"Processing directory: {subdir}")  # Progress report
+            log_message(log_file, f"Processing directory: {subdir}")
             glyphs_dir = f"{subdir_path}_glyphs"
             os.makedirs(glyphs_dir, exist_ok=True)
 
             for file_name in os.listdir(subdir_path):
                 if file_name.lower().endswith('.tiff'):
                     print(f"  Processing file: {file_name}")  # Progress report
+                    log_message(log_file, f"Processing file: {file_name}")
                     file_path = os.path.join(subdir_path, file_name)
                     image = cv2.imread(file_path)
 
@@ -94,7 +116,7 @@ def process_directory(input_dir):
                         print(f"    ERROR: Unable to read file {file_name}")  # Progress report
                         continue
 
-                    glyph_count, glyph_logs = split_into_glyphs(image, glyphs_dir, file_name)
+                    glyph_count, glyph_logs = split_into_glyphs(image, glyphs_dir, file_name, log_file)
                     log_message(log_file, f"{file_name}: {glyph_count} glyphs detected.")
                     print(f"    {glyph_count} glyphs detected.")  # Progress report
                     for glyph_log in glyph_logs:
