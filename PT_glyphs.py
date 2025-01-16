@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "3.2"
+VERSION = "3.3"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -29,10 +29,12 @@ def find_vertical_gaps(binary, log_file):
         else:
             if in_gap:
                 gaps.append((gap_start, x - 1))
+                log_message(log_file, f"Gap found: Columns [{gap_start}:{x - 1}]")
                 in_gap = False
 
     if in_gap:  # Handle gap ending at the last column
         gaps.append((gap_start, width - 1))
+        log_message(log_file, f"Gap found: Columns [{gap_start}:{width - 1}]")
 
     return gaps
 
@@ -61,6 +63,10 @@ def split_into_chunks(image, output_dir, file_basename, log_file):
             output_path = os.path.join(chunk_dir, f"chunk_{chunk_number:02d}_{os.path.splitext(file_basename)[0]}.tiff")
             cv2.imwrite(output_path, padded_chunk)
 
+            log_message(log_file, f"Chunk {chunk_number}: Columns [{prev_gap_end}:{gap_start}] saved to {output_path}")
+
+        prev_gap_end = gap_end + 1
+
     # Handle the last chunk after the final gap
     if prev_gap_end < binary.shape[1]:
         chunk_image = binary[:, prev_gap_end:]
@@ -72,6 +78,8 @@ def split_into_chunks(image, output_dir, file_basename, log_file):
 
         output_path = os.path.join(chunk_dir, f"chunk_{chunk_number:02d}_{os.path.splitext(file_basename)[0]}.tiff")
         cv2.imwrite(output_path, padded_chunk)
+
+        log_message(log_file, f"Final chunk {chunk_number}: Columns [{prev_gap_end}:{binary.shape[1]}] saved to {output_path}")
 
     return chunk_number
 
@@ -97,26 +105,6 @@ def split_chunks_into_glyphs(chunk_dir, log_file):
 
             if glyph_number > 0:
                 log_message(log_file, f"Chunk {chunk_file} split into {glyph_number} glyphs.")
-    """Split each chunk into finer glyphs and save them."""
-    for chunk_file in sorted(os.listdir(chunk_dir)):
-        if chunk_file.lower().endswith('.tiff'):
-            chunk_path = os.path.join(chunk_dir, chunk_file)
-            chunk_image = cv2.imread(chunk_path, cv2.IMREAD_GRAYSCALE)
-
-            # Logic to split chunk into glyphs
-            contours, _ = cv2.findContours(255 - chunk_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-            glyph_number = 0
-
-            for contour in contours:
-                x, y, w, h = cv2.boundingRect(contour)
-                glyph = chunk_image[y:y+h, x:x+w]
-                padded_glyph = cv2.copyMakeBorder(glyph, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=255)
-
-                glyph_number += 1
-                glyph_path = os.path.join(chunk_dir, f"glyph_{glyph_number:02d}_{chunk_file}")
-                cv2.imwrite(glyph_path, padded_glyph)
-
-                log_message(log_file, f"Saved glyph {glyph_number} from chunk {chunk_file} to {glyph_path}")
 
 def process_directory(input_dir):
     """Main function to process all subdirectories and files."""
