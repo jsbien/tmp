@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "2.1"
+VERSION = "2.2"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -36,22 +36,21 @@ def find_path(binary, start_col):
 def split_into_glyphs(image, output_dir, file_basename, log_file):
     """Split the image into glyphs using white pixel paths and save them."""
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)
 
     glyph_number = 0
     log_entries = []
 
     x_start = 0
-    while x_start < binary.shape[1]:
+    while x_start < gray.shape[1]:
         # Find the first column with non-white pixels
-        while x_start < binary.shape[1] and np.all(binary[:, x_start] == 255):
+        while x_start < gray.shape[1] and np.all(gray[:, x_start] == 255):
             x_start += 1
 
-        if x_start >= binary.shape[1]:
+        if x_start >= gray.shape[1]:
             break
 
         # Find the next path
-        path = find_path(binary, x_start)
+        path = find_path(gray, x_start)
 
         if not path:
             log_message(log_file, f"No path found starting at column {x_start}")
@@ -61,8 +60,8 @@ def split_into_glyphs(image, output_dir, file_basename, log_file):
         x_end = max(p[1] for p in path) + 1
 
         # Extract the glyph image
-        glyph_image = binary[:, x_start:x_end]
-        padded_glyph = cv2.copyMakeBorder(glyph_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=0)
+        glyph_image = gray[:, x_start:x_end]
+        padded_glyph = cv2.copyMakeBorder(glyph_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=255)
 
         glyph_number += 1
         glyph_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + "_glyphs")
