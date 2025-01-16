@@ -5,58 +5,33 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.6"
+VERSION = "2.0"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
     with open(log_file, 'a') as f:
         f.write(f"{datetime.now()} - {message}\n")
 
-def find_cut_path(binary, log_file=None):
-    """Find the least-cost path of white pixels from top to bottom with optimizations and logging."""
+def find_path(binary, start_col):
+    """Find a white pixel path from top to bottom starting in the given column."""
     height, width = binary.shape
+    path = []
 
-    # Precompute pixel costs (0 for black, 1 for white)
-    pixel_costs = np.where(binary == 255, 1, np.inf)
+    # Start at the first row in the given column
+    x = start_col
+    for y in range(height):
+        if binary[y, x] == 255:  # Current column has a white pixel
+            path.append((y, x))
+        elif x > 0 and binary[y, x - 1] == 255:  # Check left neighbor
+            x -= 1
+            path.append((y, x))
+        elif x < width - 1 and binary[y, x + 1] == 255:  # Check right neighbor
+            x += 1
+            path.append((y, x))
+        else:
+            break  # Dead end, stop the path
 
-    # Initialize cost matrix
-    cost = np.full((height, width), np.inf)
-    path = np.zeros((height, width), dtype=int)
-
-    # Set up the first row
-    cost[0, :] = pixel_costs[0, :]
-
-    if log_file:
-        log_message(log_file, f"Image dimensions: {height}x{width}")
-        log_message(log_file, "Starting cost computation...")
-
-    # Dynamic programming for cost calculation
-    for y in range(1, height):
-        for x in range(width):
-            if pixel_costs[y, x] == 1:  # Only process white pixels
-                left = cost[y - 1, x - 1] if x > 0 else np.inf
-                center = cost[y - 1, x]
-                right = cost[y - 1, x + 1] if x < width - 1 else np.inf
-
-                # Compute minimum cost and store it
-                min_cost = min(left, center, right)
-                cost[y, x] = min_cost + 1
-                path[y, x] = np.argmin([left, center, right]) - 1 + x if x > 0 else x
-
-        if log_file and y % 50 == 0:  # Log progress every 50 rows
-            log_message(log_file, f"Processed row {y}/{height} ({(y/height)*100:.2f}%)")
-
-    # Backtrack to find the path
-    cut_path = []
-    x = np.argmin(cost[-1, :])
-    for y in range(height - 1, -1, -1):
-        cut_path.append((y, x))
-        x = path[y, x]
-
-    if log_file:
-        log_message(log_file, "Finished cost computation.")
-
-    return cut_path
+    return path
 
 def split_into_glyphs(image, output_dir, file_basename, log_file):
     """Split the image into glyphs using white pixel paths and save them."""
@@ -68,13 +43,23 @@ def split_into_glyphs(image, output_dir, file_basename, log_file):
 
     x_start = 0
     while x_start < binary.shape[1]:
-        # Find the next vertical cut path
-        cut_path = find_cut_path(binary[:, x_start:], log_file)
-        if not cut_path:
+        # Find the first white column to start the path
+        while x_start < binary.shape[1] and np.any(binary[:, x_start] == 0):
+            x_start += 1
+
+        if x_start >= binary.shape[1]:
             break
 
-        # Use the cut path to split the glyph
-        x_end = x_start + max(p[1] for p in cut_path)
+        # Find the next path
+        path = find_path(binary, x_start)
+
+        if not path:
+            break
+
+        # Determine the cut position from the path
+        x_end = max(p[1] for p in path) + 1
+
+        # Extract the glyph image
         glyph_image = binary[:, x_start:x_end]
         padded_glyph = cv2.copyMakeBorder(glyph_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=0)
 
@@ -87,6 +72,7 @@ def split_into_glyphs(image, output_dir, file_basename, log_file):
 
         log_entries.append(f"Glyph {glyph_number}: Columns [{x_start}:{x_end}]")
         log_message(log_file, f"Glyph {glyph_number}: Columns [{x_start}:{x_end}]")
+
         x_start = x_end
 
     return glyph_number, log_entries
