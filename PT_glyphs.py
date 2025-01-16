@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.1"
+VERSION = "1.2"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -33,7 +33,10 @@ def split_into_glyphs(image, output_dir, file_basename):
             glyph_image = binary[y:y+h, x:x+w]
             padded_glyph = cv2.copyMakeBorder(glyph_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=0)
 
-            output_path = os.path.join(output_dir, f"{glyph_number:02d}_{file_basename}")
+            glyph_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + "_glyphs")
+            os.makedirs(glyph_dir, exist_ok=True)  # Ensure the glyph directory is created
+
+            output_path = os.path.join(glyph_dir, f"{glyph_number:02d}_{os.path.splitext(file_basename)[0]}.tiff")
             cv2.imwrite(output_path, padded_glyph)
 
             log_entries.append(f"Glyph {glyph_number}: Bounding box [x={x}, y={y}, w={w}, h={h}]")
