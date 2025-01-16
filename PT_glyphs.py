@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.5"
+VERSION = "1.6"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -13,7 +13,7 @@ def log_message(log_file, message):
         f.write(f"{datetime.now()} - {message}\n")
 
 def find_cut_path(binary, log_file=None):
-    """Find the least-cost path of white pixels from top to bottom with logging."""
+    """Find the least-cost path of white pixels from top to bottom with optimizations and logging."""
     height, width = binary.shape
 
     # Precompute pixel costs (0 for black, 1 for white)
@@ -43,8 +43,8 @@ def find_cut_path(binary, log_file=None):
                 cost[y, x] = min_cost + 1
                 path[y, x] = np.argmin([left, center, right]) - 1 + x if x > 0 else x
 
-        if log_file and y % 100 == 0:
-            log_message(log_file, f"Processed row {y}/{height}")
+        if log_file and y % 50 == 0:  # Log progress every 50 rows
+            log_message(log_file, f"Processed row {y}/{height} ({(y/height)*100:.2f}%)")
 
     # Backtrack to find the path
     cut_path = []
