@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "3.0"
+VERSION = "3.1"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -22,7 +22,10 @@ def find_vertical_gaps(binary, log_file):
     gap_start = 0
 
     for x in range(width):
-        if np.all(binary[:, x] == 255):  # Column is fully white
+        column_values = binary[:, x]
+        log_message(log_file, f"Column {x}: Unique pixel values {np.unique(column_values)}")
+
+        if np.all(column_values == 255):  # Column is fully white
             if not in_gap:
                 gap_start = x
                 in_gap = True
@@ -31,12 +34,6 @@ def find_vertical_gaps(binary, log_file):
                 gaps.append((gap_start, x - 1))
                 log_message(log_file, f"Gap found: Columns [{gap_start}:{x - 1}]")
                 in_gap = False
-
-        # Log column classification for debugging
-        if np.all(binary[:, x] == 255):
-            log_message(log_file, f"Column {x}: Fully white")
-        else:
-            log_message(log_file, f"Column {x}: Contains black pixels")
 
     if in_gap:  # Handle gap ending at the last column
         gaps.append((gap_start, width - 1))
@@ -49,7 +46,9 @@ def find_vertical_gaps(binary, log_file):
 def split_into_chunks(image, output_dir, file_basename, log_file):
     """Split the image into chunks using vertical gaps and save them."""
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)
+
+    # Assuming input images are already binary
+    binary = gray
 
     gaps = find_vertical_gaps(binary, log_file)
 
@@ -87,6 +86,8 @@ def split_into_chunks(image, output_dir, file_basename, log_file):
 
         log_message(log_file, f"Chunk {chunk_number}: Columns [{prev_gap_end}:{binary.shape[1]}] saved to {output_path}")
 
+    if chunk_number == 0:
+        log_message(log_file, "No chunks created. The line might lack separable gaps.")
     return chunk_number
 
 def process_directory(input_dir):
