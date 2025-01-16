@@ -5,41 +5,69 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.3"
+VERSION = "1.4"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
     with open(log_file, 'a') as f:
         f.write(f"{datetime.now()} - {message}\n")
 
+def find_cut_path(binary):
+    """Find the least-cost path of white pixels from top to bottom."""
+    height, width = binary.shape
+    cost = np.full((height, width), np.inf)
+    path = np.zeros_like(binary, dtype=int)
+
+    # Initialize the first row
+    for x in range(width):
+        cost[0, x] = 0 if binary[0, x] == 255 else np.inf
+
+    # Dynamic programming to calculate the cost
+    for y in range(1, height):
+        for x in range(width):
+            if binary[y, x] == 255:  # Only consider white pixels
+                min_cost = cost[y-1, max(0, x-1):min(width, x+2)].min()
+                cost[y, x] = min_cost + 1
+                path[y, x] = np.argmin(cost[y-1, max(0, x-1):min(width, x+2)]) + max(0, x-1)
+
+    # Backtrack to find the path
+    cut_path = []
+    x = np.argmin(cost[-1])
+    for y in range(height-1, -1, -1):
+        cut_path.append((y, x))
+        x = path[y, x]
+
+    return cut_path
+
 def split_into_glyphs(image, output_dir, file_basename):
-    """Split the image into glyphs and save them to the output directory."""
+    """Split the image into glyphs using white pixel paths and save them."""
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)  # Revert to inverted binary
-
-    # Find contours of potential glyphs
-    contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-    # Sort contours by their x-coordinate for left-to-right glyph order
-    contours = sorted(contours, key=lambda c: cv2.boundingRect(c)[0])
+    _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)
 
     glyph_number = 0
     log_entries = []
 
-    for contour in contours:
-        x, y, w, h = cv2.boundingRect(contour)
-        if w > 5 and h > 5:  # Ignore noise or very small artifacts
-            glyph_number += 1
-            glyph_image = binary[y:y+h, x:x+w]
-            padded_glyph = cv2.copyMakeBorder(glyph_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=0)  # Ensure black background
+    x_start = 0
+    while x_start < binary.shape[1]:
+        # Find the next vertical cut path
+        cut_path = find_cut_path(binary[:, x_start:])
+        if not cut_path:
+            break
 
-            glyph_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + "_glyphs")
-            os.makedirs(glyph_dir, exist_ok=True)  # Ensure the glyph directory is created
+        # Use the cut path to split the glyph
+        x_end = x_start + max(p[1] for p in cut_path)
+        glyph_image = binary[:, x_start:x_end]
+        padded_glyph = cv2.copyMakeBorder(glyph_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=0)
 
-            output_path = os.path.join(glyph_dir, f"{glyph_number:02d}_{os.path.splitext(file_basename)[0]}.tiff")
-            cv2.imwrite(output_path, padded_glyph)
+        glyph_number += 1
+        glyph_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + "_glyphs")
+        os.makedirs(glyph_dir, exist_ok=True)
 
-            log_entries.append(f"Glyph {glyph_number}: Bounding box [x={x}, y={y}, w={w}, h={h}]")
+        output_path = os.path.join(glyph_dir, f"{glyph_number:02d}_{os.path.splitext(file_basename)[0]}.tiff")
+        cv2.imwrite(output_path, padded_glyph)
+
+        log_entries.append(f"Glyph {glyph_number}: Columns [{x_start}:{x_end}]")
+        x_start = x_end
 
     return glyph_number, log_entries
 
