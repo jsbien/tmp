@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "2.0"
+VERSION = "2.1"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -43,8 +43,8 @@ def split_into_glyphs(image, output_dir, file_basename, log_file):
 
     x_start = 0
     while x_start < binary.shape[1]:
-        # Find the first white column to start the path
-        while x_start < binary.shape[1] and np.any(binary[:, x_start] == 0):
+        # Find the first column with non-white pixels
+        while x_start < binary.shape[1] and np.all(binary[:, x_start] == 255):
             x_start += 1
 
         if x_start >= binary.shape[1]:
@@ -54,6 +54,7 @@ def split_into_glyphs(image, output_dir, file_basename, log_file):
         path = find_path(binary, x_start)
 
         if not path:
+            log_message(log_file, f"No path found starting at column {x_start}")
             break
 
         # Determine the cut position from the path
