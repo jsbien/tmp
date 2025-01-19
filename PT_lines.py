@@ -38,7 +38,7 @@ def split_into_lines(image, output_dir):
     for start, end in line_positions:
         line_number += 1
         line_image = image[start:end, :]
-        output_path = os.path.join(output_dir, f"{line_number:02d}_{os.path.basename(output_dir)}.tiff")
+        output_path = os.path.join(output_dir, f"{line_number:02d}_{os.path.basename(output_dir)}.png")
         cv2.imwrite(output_path, line_image)
 
     return len(line_positions)
@@ -49,7 +49,7 @@ def process_directory(input_dir):
     log_message(log_file, f"Script version: {VERSION}")
 
     for file_name in os.listdir(input_dir):
-        if file_name.lower().endswith('.tiff'):
+        if file_name.lower().endswith('.png'):
             file_path = os.path.join(input_dir, file_name)
             image = cv2.imread(file_path)
 
