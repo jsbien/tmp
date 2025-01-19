@@ -1,269 +1,178 @@
 jsbien@JSBbookworm:~/git/tmp/masks-edited$ bash masks_deskew10.sh 
-convert-im6.q16: unable to open image `*.tiff': No such file or directory @ error/blob.c/OpenBlob/2924.
-convert-im6.q16: no images defined `' @ error/convert.c/ConvertImageCommand/3229.
-jsbien@JSBbookworm:~/git/tmp/masks-edited$ bash masks_deskew10.sh 
-2025-01-19T14:04:52+00:00 0:00.184 0.460u 6.9.11 Transform convert-im6.q16[1673982]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:43+00:00 0:00.186 0.460u 6.9.11 Transform convert-im6.q16[1677918]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.587485
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-ucN1aVoOTL9lVJS9YCp4fbhJmVXZtaNs' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:53+00:00 0:00.032 0.120u 6.9.11 Transform convert-im6.q16[1674006]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:44+00:00 0:00.031 0.120u 6.9.11 Transform convert-im6.q16[1677961]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.279762
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-W805pqXHzevN8wM12cXsGqGxxThGerQj' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:53+00:00 0:00.027 0.070u 6.9.11 Transform convert-im6.q16[1674013]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:44+00:00 0:00.029 0.080u 6.9.11 Transform convert-im6.q16[1677968]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.503563
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-xyneKC6p6vyeMueHHZzkN8cvI2ILJfc4' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:53+00:00 0:00.153 0.420u 6.9.11 Transform convert-im6.q16[1674018]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:44+00:00 0:00.172 0.600u 6.9.11 Transform convert-im6.q16[1677974]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.139882
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-Xg7WSwZTgseGmeQL9dzE_34FxM0xi4jA' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:53+00:00 0:00.014 0.020u 6.9.11 Transform convert-im6.q16[1674043]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:45+00:00 0:00.015 0.020u 6.9.11 Transform convert-im6.q16[1678018]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-L3MuhdSbyCSSPaXLI-zUKbTaSkcpqVEo' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:53+00:00 0:00.063 0.270u 6.9.11 Transform convert-im6.q16[1674049]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:45+00:00 0:00.066 0.280u 6.9.11 Transform convert-im6.q16[1678024]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-eCy2KmzzeRSieQuLeG2sht9K8RPmWGNP' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:54+00:00 0:00.188 0.480u 6.9.11 Transform convert-im6.q16[1674074]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:45+00:00 0:00.208 0.650u 6.9.11 Transform convert-im6.q16[1678066]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.601472
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-QHb0Mv87f2B6sAno9aBhKq2ydZiFrS8c' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:54+00:00 0:00.154 0.430u 6.9.11 Transform convert-im6.q16[1674098]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:46+00:00 0:00.157 0.430u 6.9.11 Transform convert-im6.q16[1678107]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.363689
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-N79wShgSR5-UIpohzoQfhmAfskulFmOz' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:55+00:00 0:00.099 0.270u 6.9.11 Transform convert-im6.q16[1674123]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:47+00:00 0:00.102 0.270u 6.9.11 Transform convert-im6.q16[1678150]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-hcvPCjgQIoa7q8OZ4azTZTumc1kdIctr' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:55+00:00 0:00.105 0.270u 6.9.11 Transform convert-im6.q16[1674137]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:47+00:00 0:00.107 0.280u 6.9.11 Transform convert-im6.q16[1678178]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.195834
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-RCANSFI_rOxGgjC7V6hMcSrG1-XNpWiF' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:55+00:00 0:00.101 0.270u 6.9.11 Transform convert-im6.q16[1674152]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:48+00:00 0:00.103 0.270u 6.9.11 Transform convert-im6.q16[1678207]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.181846
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-oUBYhuCbWac87f5hsnuM-ZI5x0LkE6kG' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:55+00:00 0:00.050 0.120u 6.9.11 Transform convert-im6.q16[1674166]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:48+00:00 0:00.051 0.120u 6.9.11 Transform convert-im6.q16[1678233]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.531537
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-25LMgXDj8gtQ1K8-bDc8YFI8wQNQ5BM8' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:56+00:00 0:00.087 0.230u 6.9.11 Transform convert-im6.q16[1674178]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:48+00:00 0:00.088 0.230u 6.9.11 Transform convert-im6.q16[1678245]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.0139882
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-OktW6v46xgEyIGQoizJ5JETjXKbuRIgs' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:56+00:00 0:00.008 0.000u 6.9.11 Transform convert-im6.q16[1674187]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:49+00:00 0:00.008 0.010u 6.9.11 Transform convert-im6.q16[1678254]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-JVOqlcho66eMzJt3B9Qp3X5So5j3tjWo' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:56+00:00 0:00.123 0.350u 6.9.11 Transform convert-im6.q16[1674189]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:49+00:00 0:00.125 0.350u 6.9.11 Transform convert-im6.q16[1678256]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.363689
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-3fy4Ug7JDiIHAm431SU-dXrLTZcemIPq' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:56+00:00 0:00.219 0.520u 6.9.11 Transform convert-im6.q16[1674209]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:50+00:00 0:00.235 0.640u 6.9.11 Transform convert-im6.q16[1678292]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.139882
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-SHSpkepUOVazBniZ5knPdA_5S4j0fdcw' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:57+00:00 0:00.354 0.700u 6.9.11 Transform convert-im6.q16[1674233]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:51+00:00 0:00.362 0.720u 6.9.11 Transform convert-im6.q16[1678334]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-ml-tGBKgBkRFZoU3A2vAEURj6j5Tg1j6' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:58+00:00 0:00.091 0.230u 6.9.11 Transform convert-im6.q16[1674253]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:52+00:00 0:00.091 0.230u 6.9.11 Transform convert-im6.q16[1678375]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.475589
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-Jbsd5iGviedTrlDDM65bt02EtB4uU1b3' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:58+00:00 0:00.239 0.540u 6.9.11 Transform convert-im6.q16[1674268]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:53+00:00 0:00.246 0.550u 6.9.11 Transform convert-im6.q16[1678403]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-iE-7KOP6neD6kwoAPjSqlXZ9ALEaZ6I8' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:04:59+00:00 0:00.175 0.460u 6.9.11 Transform convert-im6.q16[1674291]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:54+00:00 0:00.201 0.690u 6.9.11 Transform convert-im6.q16[1678462]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-r88DdeyTh-ksTyRMNKUoKG5r0k207g1s' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:00+00:00 0:00.113 0.310u 6.9.11 Transform convert-im6.q16[1674316]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:54+00:00 0:00.117 0.310u 6.9.11 Transform convert-im6.q16[1678506]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.125894
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-RzDh_0BDeqF5awqQeDgOiy_0u2rCrsQO' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:00+00:00 0:00.117 0.340u 6.9.11 Transform convert-im6.q16[1674333]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:55+00:00 0:00.120 0.340u 6.9.11 Transform convert-im6.q16[1678538]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.0979175
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-E0KMbLaUu577L2lUHpQcenjs4reAB6R5' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:00+00:00 0:00.103 0.270u 6.9.11 Transform convert-im6.q16[1674353]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:56+00:00 0:00.106 0.280u 6.9.11 Transform convert-im6.q16[1678575]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-2dTSzOowVanyqbXsMS8DJrrl_k1572p1' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:01+00:00 0:00.036 0.150u 6.9.11 Transform convert-im6.q16[1674368]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:56+00:00 0:00.040 0.150u 6.9.11 Transform convert-im6.q16[1678601]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-Lq7eEeATo9dQkV19lfp7PGKA6rbRG1rf' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:01+00:00 0:00.032 0.120u 6.9.11 Transform convert-im6.q16[1674380]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:56+00:00 0:00.051 0.140u 6.9.11 Transform convert-im6.q16[1678611]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.307738
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-u-lFkni1XrhAy2lQ2QRBQtvRuVXnoGzW' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:01+00:00 0:00.064 0.270u 6.9.11 Transform convert-im6.q16[1674387]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:56+00:00 0:00.074 0.280u 6.9.11 Transform convert-im6.q16[1678620]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.419639
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-wVU6F3-QIPQJrYuIHinVymyvZtP8Gzm9' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:01+00:00 0:00.049 0.180u 6.9.11 Transform convert-im6.q16[1674411]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:57+00:00 0:00.052 0.200u 6.9.11 Transform convert-im6.q16[1678660]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.475589
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-7iYkLTpeY9vDpwS5A8VFSfHbbdjel0qk' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:01+00:00 0:00.044 0.180u 6.9.11 Transform convert-im6.q16[1674424]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:57+00:00 0:00.046 0.180u 6.9.11 Transform convert-im6.q16[1678673]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.223811
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-ON7_iFMWt02Ei1occ2JJnspG2PBBqwEA' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:01+00:00 0:00.026 0.080u 6.9.11 Transform convert-im6.q16[1674437]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:57+00:00 0:00.037 0.100u 6.9.11 Transform convert-im6.q16[1678686]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.251786
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-RKVrMx6KjAE0tRndmnU-iE-IZrLdII0f' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:02+00:00 0:00.057 0.240u 6.9.11 Transform convert-im6.q16[1674442]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:58+00:00 0:00.061 0.250u 6.9.11 Transform convert-im6.q16[1678691]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.727349
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-XVJXBQhEliRubv7iH7Qxef-6LSKC2ROe' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:02+00:00 0:00.152 0.420u 6.9.11 Transform convert-im6.q16[1674463]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:58+00:00 0:00.163 0.480u 6.9.11 Transform convert-im6.q16[1678726]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-6Q7KMPtfszIS_4tAZ5kBoqiHZpsjfF0S' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:02+00:00 0:00.046 0.180u 6.9.11 Transform convert-im6.q16[1674488]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:59+00:00 0:00.047 0.190u 6.9.11 Transform convert-im6.q16[1678770]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-M9m5zxucK7jvnPcJaVAHBrC4CmHobFmC' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:03+00:00 0:00.164 0.440u 6.9.11 Transform convert-im6.q16[1674501]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:22:59+00:00 0:00.182 0.510u 6.9.11 Transform convert-im6.q16[1678783]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.657418
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-ryj6HUr42tM2IJQ-w3vRoXM94FGWOI5f' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:03+00:00 0:00.122 0.340u 6.9.11 Transform convert-im6.q16[1674526]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:00+00:00 0:00.123 0.340u 6.9.11 Transform convert-im6.q16[1678880]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.223811
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-dKXWJx17zmyl7Kj_sEFMApB048An0Bc1' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:03+00:00 0:00.051 0.210u 6.9.11 Transform convert-im6.q16[1674546]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:00+00:00 0:00.052 0.210u 6.9.11 Transform convert-im6.q16[1678916]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.615458
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-zwHLjDYDmS_6LG4rODT3q1gvBQNLBJGg' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:04+00:00 0:00.114 0.310u 6.9.11 Transform convert-im6.q16[1674564]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:01+00:00 0:00.117 0.320u 6.9.11 Transform convert-im6.q16[1678946]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.573498
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-rkLYZNGKlO7z1_ViMWSYySQJR132skqf' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:04+00:00 0:00.072 0.190u 6.9.11 Transform convert-im6.q16[1674581]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:01+00:00 0:00.078 0.200u 6.9.11 Transform convert-im6.q16[1678980]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.699377
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-p3RJo5P1fa1aldh-KYGiJtlPevCpVjit' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:04+00:00 0:00.124 0.350u 6.9.11 Transform convert-im6.q16[1674591]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:02+00:00 0:00.128 0.360u 6.9.11 Transform convert-im6.q16[1678990]: shear.c/DeskewImage/626/Transform
     Deskew angle: 1.55231
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-vEOHNwFlIppUQzsCpsS-UaMZkB3k2FZp' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:05+00:00 0:00.182 0.470u 6.9.11 Transform convert-im6.q16[1674612]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:02+00:00 0:00.197 0.620u 6.9.11 Transform convert-im6.q16[1679029]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.643431
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-3Uv0mYW12K2Uem2OIJlBlvdmZTJSn2Ch' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:05+00:00 0:00.137 0.390u 6.9.11 Transform convert-im6.q16[1674637]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:03+00:00 0:00.160 0.410u 6.9.11 Transform convert-im6.q16[1679073]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.0279765
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-35gKDla2bSxGA_NgvgbyLXf86FljEBLz' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:06+00:00 0:00.060 0.240u 6.9.11 Transform convert-im6.q16[1674660]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:04+00:00 0:00.061 0.250u 6.9.11 Transform convert-im6.q16[1679115]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.223811
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-ZN-hfXfOHU98ojME5uVMen2n6kLANQ7W' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:06+00:00 0:00.031 0.120u 6.9.11 Transform convert-im6.q16[1674682]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:04+00:00 0:00.038 0.130u 6.9.11 Transform convert-im6.q16[1679153]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-TPI9V7_swrCKDrXr1IdZGQcIvWE8pg2n' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:06+00:00 0:00.057 0.240u 6.9.11 Transform convert-im6.q16[1674689]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:04+00:00 0:00.058 0.240u 6.9.11 Transform convert-im6.q16[1679162]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.503563
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-cblDF_7exv8Wy4xov3ueY4FhqeUOdJnv' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:06+00:00 0:00.064 0.160u 6.9.11 Transform convert-im6.q16[1674710]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:05+00:00 0:00.093 0.190u 6.9.11 Transform convert-im6.q16[1679197]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.713363
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-B_ZLyTCaruSJPWmoolTD5bgcWzsRdRFc' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:06+00:00 0:00.027 0.100u 6.9.11 Transform convert-im6.q16[1674721]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:05+00:00 0:00.040 0.120u 6.9.11 Transform convert-im6.q16[1679208]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.251786
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-sxYGKRl_FUnVv3atGym6mHyUVUzr7sGu' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:07+00:00 0:00.089 0.240u 6.9.11 Transform convert-im6.q16[1674728]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:05+00:00 0:00.093 0.240u 6.9.11 Transform convert-im6.q16[1679215]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.223811
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-ifTGzbDFrHQ5IzrhOJ3CS70kOzsNVSnT' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:07+00:00 0:00.094 0.260u 6.9.11 Transform convert-im6.q16[1674737]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:06+00:00 0:00.100 0.280u 6.9.11 Transform convert-im6.q16[1679224]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.51755
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-3DFAiKRGw3Ts3PlQs9tCeIWWqIVxPytu' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:07+00:00 0:00.048 0.180u 6.9.11 Transform convert-im6.q16[1674751]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:06+00:00 0:00.049 0.190u 6.9.11 Transform convert-im6.q16[1679250]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.391664
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-Q6JJTr38rB-lA2wqREdknoln61NllCiD' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:07+00:00 0:00.038 0.150u 6.9.11 Transform convert-im6.q16[1674764]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:07+00:00 0:00.046 0.160u 6.9.11 Transform convert-im6.q16[1679263]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.531537
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-eWleVSEhkBuzZHln11yOIYbWBB3gk2r0' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:08+00:00 0:00.062 0.270u 6.9.11 Transform convert-im6.q16[1674775]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:07+00:00 0:00.064 0.270u 6.9.11 Transform convert-im6.q16[1679279]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.223811
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-8qm0ENhEbwBZA3Kt-Wgz9mf2NdSSgQPE' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:08+00:00 0:00.155 0.430u 6.9.11 Transform convert-im6.q16[1674799]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:07+00:00 0:00.169 0.510u 6.9.11 Transform convert-im6.q16[1679319]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.0139882
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-5Og5QuDANZseD9YdyVVAPm-qRH7nU75A' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:08+00:00 0:00.047 0.180u 6.9.11 Transform convert-im6.q16[1674824]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:08+00:00 0:00.052 0.190u 6.9.11 Transform convert-im6.q16[1679363]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.195834
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-YxBIryRbIMzASeEUDiMLquEJ9bX3yidq' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:08+00:00 0:00.050 0.200u 6.9.11 Transform convert-im6.q16[1674837]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:08+00:00 0:00.053 0.210u 6.9.11 Transform convert-im6.q16[1679376]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.307738
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-kcS4OmCgHU3_E_qajb4zROJ_iZjMrqDt' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:09+00:00 0:00.051 0.180u 6.9.11 Transform convert-im6.q16[1674855]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:09+00:00 0:00.052 0.190u 6.9.11 Transform convert-im6.q16[1679408]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.587485
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-AmFhp759AeMLzmWGtfLNTyvnB4Js11Co' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:09+00:00 0:00.033 0.120u 6.9.11 Transform convert-im6.q16[1674871]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:09+00:00 0:00.034 0.120u 6.9.11 Transform convert-im6.q16[1679436]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.279762
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-mD9409MJjw5hh85MlDlKQogjyE6g2Ahi' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:09+00:00 0:00.044 0.170u 6.9.11 Transform convert-im6.q16[1674879]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:09+00:00 0:00.046 0.190u 6.9.11 Transform convert-im6.q16[1679444]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.363689
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-6hhFhLD1gi0TMWENwtdDwesUvEIJJU49' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:09+00:00 0:00.085 0.230u 6.9.11 Transform convert-im6.q16[1674892]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:09+00:00 0:00.087 0.230u 6.9.11 Transform convert-im6.q16[1679457]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.475589
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-uZskNx9ZUmJHaRaKzIGVL2720XPy7Nhe' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:09+00:00 0:00.038 0.150u 6.9.11 Transform convert-im6.q16[1674901]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:10+00:00 0:00.046 0.160u 6.9.11 Transform convert-im6.q16[1679466]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.839234
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-mrnlZrlyYO8aoEV2h0jVsb8cRKUwZYVM' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:09+00:00 0:00.009 0.010u 6.9.11 Transform convert-im6.q16[1674912]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:10+00:00 0:00.009 0.010u 6.9.11 Transform convert-im6.q16[1679477]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.391664
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-_j5-fxtBEjU26MTxETwnnU966oFjYZw3' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:10+00:00 0:00.059 0.160u 6.9.11 Transform convert-im6.q16[1674914]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:10+00:00 0:00.071 0.170u 6.9.11 Transform convert-im6.q16[1679481]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.419639
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-DWCrX9qzBroOFECnWyrScbY6oGt0xBOt' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:10+00:00 0:00.090 0.240u 6.9.11 Transform convert-im6.q16[1674925]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:11+00:00 0:00.100 0.250u 6.9.11 Transform convert-im6.q16[1679494]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.363689
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-ztslj0RilurDSVhInqCVNvVUQyKT8FEW' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:10+00:00 0:00.033 0.120u 6.9.11 Transform convert-im6.q16[1674934]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:11+00:00 0:00.037 0.130u 6.9.11 Transform convert-im6.q16[1679503]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.0559529
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-azzmPxUAqA3BsZY3SmZXxMn8jyapIuIH' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:10+00:00 0:00.050 0.210u 6.9.11 Transform convert-im6.q16[1674942]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:11+00:00 0:00.055 0.230u 6.9.11 Transform convert-im6.q16[1679513]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.195834
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-twoXNGOJAudst26o7Rok6MYdVnfuCoZY' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:10+00:00 0:00.055 0.230u 6.9.11 Transform convert-im6.q16[1674960]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:12+00:00 0:00.060 0.250u 6.9.11 Transform convert-im6.q16[1679543]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.195834
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-4YAv3FOtz20r8aM2DyXTmbkzBIQLnUgd' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:11+00:00 0:00.181 0.470u 6.9.11 Transform convert-im6.q16[1674981]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:12+00:00 0:00.212 0.630u 6.9.11 Transform convert-im6.q16[1679578]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-LuWqdVLv6iBsO4aFnVrroPqDxwKmIzz7' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:11+00:00 0:00.039 0.150u 6.9.11 Transform convert-im6.q16[1675008]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:13+00:00 0:00.041 0.160u 6.9.11 Transform convert-im6.q16[1679622]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-yJCEVIkvEDqebR0f7XsIOBaD1Z4I5oA3' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:11+00:00 0:00.113 0.300u 6.9.11 Transform convert-im6.q16[1675018]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:13+00:00 0:00.131 0.350u 6.9.11 Transform convert-im6.q16[1679632]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.167858
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-0X2F91APiSUitD6CWDUKLvTwVbK3pYAn' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:11+00:00 0:00.048 0.190u 6.9.11 Transform convert-im6.q16[1675035]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:14+00:00 0:00.051 0.190u 6.9.11 Transform convert-im6.q16[1679666]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.139882
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-GOhMwQPZk72TBKO5PiL-zBqTYsEB30Be' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:12+00:00 0:00.032 0.140u 6.9.11 Transform convert-im6.q16[1675048]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:14+00:00 0:00.041 0.150u 6.9.11 Transform convert-im6.q16[1679679]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-GAO73xdD2LXMQE-m2WWkSGeHjYNkP2sF' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:12+00:00 0:00.052 0.210u 6.9.11 Transform convert-im6.q16[1675058]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:14+00:00 0:00.055 0.220u 6.9.11 Transform convert-im6.q16[1679689]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.279762
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-8MVVhva61AI0IIzioZMN-fwA7vufRttO' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:12+00:00 0:00.145 0.420u 6.9.11 Transform convert-im6.q16[1675076]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:15+00:00 0:00.194 0.820u 6.9.11 Transform convert-im6.q16[1679719]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.895174
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-vmIPdynHyWvz3Ec7-1vIBVEk605wP1V0' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:12+00:00 0:00.013 0.040u 6.9.11 Transform convert-im6.q16[1675101]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:15+00:00 0:00.014 0.040u 6.9.11 Transform convert-im6.q16[1679763]: shear.c/DeskewImage/626/Transform
     Deskew angle: 3.74351
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-qtf56kDloj9D5eNlKhj9gS87SAQBVFwb' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:13+00:00 0:00.085 0.230u 6.9.11 Transform convert-im6.q16[1675110]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:15+00:00 0:00.095 0.250u 6.9.11 Transform convert-im6.q16[1679772]: shear.c/DeskewImage/626/Transform
     Deskew angle: 1.56629
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-VHHHeE7neZpONFvTJvHh5hyDyO4DtAk7' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:13+00:00 0:00.020 0.040u 6.9.11 Transform convert-im6.q16[1675125]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:16+00:00 0:00.021 0.050u 6.9.11 Transform convert-im6.q16[1679801]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.867204
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-kklaUNvjr6EHM7QU-ZZ1-tbWxTpO0TML' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:13+00:00 0:00.047 0.190u 6.9.11 Transform convert-im6.q16[1675130]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:16+00:00 0:00.053 0.210u 6.9.11 Transform convert-im6.q16[1679806]: shear.c/DeskewImage/626/Transform
     Deskew angle: 1.70606
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-g7kG-aDIM_yBUgBhHSYCtZBkowDhPUdZ' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:13+00:00 0:00.003 0.000u 6.9.11 Transform convert-im6.q16[1675146]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:16+00:00 0:00.002 0.000u 6.9.11 Transform convert-im6.q16[1679834]: shear.c/DeskewImage/626/Transform
     Deskew angle: 3.35334
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-tl9L45xS_VeGbObZhG9XnTC4yI25dm2z' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:13+00:00 0:00.002 0.000u 6.9.11 Transform convert-im6.q16[1675148]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:16+00:00 0:00.002 0.000u 6.9.11 Transform convert-im6.q16[1679836]: shear.c/DeskewImage/626/Transform
     Deskew angle: 2.46041
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-rk0lslVlQH4NrFIM7C0v3qok4Dv5VHJG' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:13+00:00 0:00.033 0.120u 6.9.11 Transform convert-im6.q16[1675149]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:16+00:00 0:00.039 0.140u 6.9.11 Transform convert-im6.q16[1679839]: shear.c/DeskewImage/626/Transform
     Deskew angle: 1.6222
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-ukUVuqm3kZRA6vRyHnq4jSdp4ftB7iWG' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:13+00:00 0:00.004 0.010u 6.9.11 Transform convert-im6.q16[1675157]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:17+00:00 0:00.004 0.000u 6.9.11 Transform convert-im6.q16[1679848]: shear.c/DeskewImage/626/Transform
     Deskew angle: 5.13388
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-AQeb-XtMZgb19zRgaY3FjKyFIbH5J7Wx' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:13+00:00 0:00.021 0.050u 6.9.11 Transform convert-im6.q16[1675160]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:17+00:00 0:00.028 0.070u 6.9.11 Transform convert-im6.q16[1679851]: shear.c/DeskewImage/626/Transform
     Deskew angle: 1.65015
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-l8R4ds1oKFh3Ur4hNN_zzw2SCmGHqtTs' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:13+00:00 0:00.003 0.000u 6.9.11 Transform convert-im6.q16[1675165]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:17+00:00 0:00.003 0.000u 6.9.11 Transform convert-im6.q16[1679856]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.559511
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-MaVBI5iAWcd7nmGODoJ32JN8hl0andu3' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:13+00:00 0:00.051 0.210u 6.9.11 Transform convert-im6.q16[1675166]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:17+00:00 0:00.050 0.210u 6.9.11 Transform convert-im6.q16[1679857]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.475589
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-jD3yACPx0cchqbLq9QL5FRqC6hK8FF5D' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:14+00:00 0:00.048 0.190u 6.9.11 Transform convert-im6.q16[1675184]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:17+00:00 0:00.050 0.190u 6.9.11 Transform convert-im6.q16[1679887]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.363689
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-gQsteefBRNHcAIOEnHETS8pXVuCbSrGJ' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:14+00:00 0:00.087 0.230u 6.9.11 Transform convert-im6.q16[1675197]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:18+00:00 0:00.093 0.240u 6.9.11 Transform convert-im6.q16[1679900]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.741335
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-CTcYhJ-1Ab_05RJTAdtB3OWoSuZamjJo' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:14+00:00 0:00.188 0.480u 6.9.11 Transform convert-im6.q16[1675206]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:18+00:00 0:00.211 0.520u 6.9.11 Transform convert-im6.q16[1679909]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.573498
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-0ZQXgTTbUYshz5hjiim9Jk5mg14Ndj8j' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:15+00:00 0:00.036 0.150u 6.9.11 Transform convert-im6.q16[1675230]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:19+00:00 0:00.035 0.150u 6.9.11 Transform convert-im6.q16[1679949]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.811263
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-m0fPT5pyIdf-z51fasQQ0e8ypsF8FU2b' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:15+00:00 0:00.046 0.180u 6.9.11 Transform convert-im6.q16[1675240]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:19+00:00 0:00.049 0.200u 6.9.11 Transform convert-im6.q16[1679959]: shear.c/DeskewImage/626/Transform
     Deskew angle: 0.111906
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-kcOnh5JpLvR50ZNPOlugu8KszVuagLNm' @ warning/png.c/MagickPNGWarningHandler/1668.
-2025-01-19T14:05:15+00:00 0:00.062 0.270u 6.9.11 Transform convert-im6.q16[1675253]: shear.c/DeskewImage/626/Transform
+2025-01-19T14:23:20+00:00 0:00.063 0.280u 6.9.11 Transform convert-im6.q16[1679972]: shear.c/DeskewImage/626/Transform
     Deskew angle: -0.335714
-convert-im6.q16: profile 'icc': 'RGB ': RGB color space not permitted on grayscale PNG `/tmp/magick-f3-35geQZwjQi1u8rrSgT7W594AbUXFO' @ warning/png.c/MagickPNGWarningHandler/1668.
 jsbien@JSBbookworm:~/git/tmp/masks-edited$ 
