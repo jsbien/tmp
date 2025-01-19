@@ -38,7 +38,8 @@ def split_into_lines(image, output_dir):
     for start, end in line_positions:
         line_number += 1
         line_image = image[start:end, :]
-        output_path = os.path.join(output_dir, f"{line_number:02d}_{os.path.basename(output_dir)}.png")
+#        output_path = os.path.join(output_dir, f"{line_number:02d}_{os.path.basename(output_dir)}.png")
+        output_path = os.path.join(output_dir, f"{os.path.basename(output_dir)}_{line_number:02d}.png")
         cv2.imwrite(output_path, line_image)
 
     return len(line_positions)
