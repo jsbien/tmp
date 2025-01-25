@@ -4,9 +4,14 @@ geeqie call:
 Metadata in sidecars
 Separate sidecar directory
 
-OSD Title Printer's name and font number
-OSD a glyph displayed with Junicode font
-OSD file name
+OSD Printer
+OSD font description
+OSD file name (implicit essential information)
+OSD Unicode
+OSD MUFI
+OSD Related Unicode
+OSD Related MUFI
+OSD Junicode slot
 
 labels:
 default red
