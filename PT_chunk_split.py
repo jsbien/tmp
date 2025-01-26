@@ -4,7 +4,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.1"
+VERSION = "1.2"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -28,30 +28,37 @@ def process_image(file_path, output_dir, log_file):
     contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
     log_message(log_file, f"Number of contours found: {len(contours)}")
 
-    # Analyze hierarchy and process top-level contours
+    # Print hierarchy information for debugging
+    log_message(log_file, f"Hierarchy: {hierarchy}")
+
+    # Analyze hierarchy and process next-level contours if the whole image is detected
     base_name = os.path.splitext(os.path.basename(file_path))[0]
     glyph_count = 0
 
     for i, contour in enumerate(contours):
-        # Check if the contour is a top-level contour (no parent)
-        if hierarchy[0, i, 3] == -1:
-            x, y, w, h = cv2.boundingRect(contour)
+        # If the contour is the outermost (whole image), skip and check its children
+        if hierarchy[0, i, 3] == -1 and cv2.boundingRect(contour) == (0, 0, binary.shape[1], binary.shape[0]):
+            log_message(log_file, f"Skipping contour #{i} (entire image detected)")
+            continue
 
-            # Add padding with white pixels
-            pad = 2  # Padding size
-            x_start = max(0, x - pad)
-            y_start = max(0, y - pad)
-            x_end = min(binary.shape[1], x + w + pad)
-            y_end = min(binary.shape[0], y + h + pad)
+        # Process only valid contours (e.g., children of the outermost contour)
+        x, y, w, h = cv2.boundingRect(contour)
 
-            # Extract the glyph with padding
-            glyph = binary[y_start:y_end, x_start:x_end]
+        # Add padding with white pixels
+        pad = 2  # Padding size
+        x_start = max(0, x - pad)
+        y_start = max(0, y - pad)
+        x_end = min(binary.shape[1], x + w + pad)
+        y_end = min(binary.shape[0], y + h + pad)
 
-            # Save the glyph
-            glyph_count += 1
-            output_file = os.path.join(output_dir, f"{base_name}-{glyph_count}.png")
-            cv2.imwrite(output_file, glyph)
-            log_message(log_file, f"Saved glyph to {output_file}")
+        # Extract the glyph with padding
+        glyph = binary[y_start:y_end, x_start:x_end]
+
+        # Save the glyph
+        glyph_count += 1
+        output_file = os.path.join(output_dir, f"{base_name}-{glyph_count}.png")
+        cv2.imwrite(output_file, glyph)
+        log_message(log_file, f"Saved glyph to {output_file}")
 
     # Visualize contours
     contour_image = cv2.cvtColor(binary, cv2.COLOR_GRAY2BGR)
