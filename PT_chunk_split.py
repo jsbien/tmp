@@ -4,7 +4,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.0"
+VERSION = "1.1"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -24,36 +24,39 @@ def process_image(file_path, output_dir, log_file):
     # Add a white border to prevent edge detection
     binary = cv2.copyMakeBorder(binary, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=255)
 
-    # Find contours
-#    contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    contours, _ = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-    log_message(log_file, f"Number of contours found before filtering: {len(contours)}")
+    # Find contours and hierarchy
+    contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+    log_message(log_file, f"Number of contours found: {len(contours)}")
 
-    # Filter out contours that span the entire image
-    filtered_contours = []
-    for contour in contours:
-        x, y, w, h = cv2.boundingRect(contour)
-        log_message(log_file, f"Contour bounding box: x={x}, y={y}, w={w}, h={h}")
-        if w < binary.shape[1] and h < binary.shape[0]:  # Exclude full-image contours
-            filtered_contours.append(contour)
-
-    log_message(log_file, f"Number of contours after filtering: {len(filtered_contours)}")
-
-    # Save filtered contours as images
+    # Analyze hierarchy and process top-level contours
     base_name = os.path.splitext(os.path.basename(file_path))[0]
-    for i, contour in enumerate(filtered_contours):
-        x, y, w, h = cv2.boundingRect(contour)
-        glyph = binary[y:y + h, x:x + w]
+    glyph_count = 0
 
-        # Save the glyph
-        output_file = os.path.join(output_dir, f"{base_name}-{i + 1}.png")
-        cv2.imwrite(output_file, glyph)
-        log_message(log_file, f"Saved glyph to {output_file}")
+    for i, contour in enumerate(contours):
+        # Check if the contour is a top-level contour (no parent)
+        if hierarchy[0, i, 3] == -1:
+            x, y, w, h = cv2.boundingRect(contour)
 
-    # Visualize filtered contours
+            # Add padding with white pixels
+            pad = 2  # Padding size
+            x_start = max(0, x - pad)
+            y_start = max(0, y - pad)
+            x_end = min(binary.shape[1], x + w + pad)
+            y_end = min(binary.shape[0], y + h + pad)
+
+            # Extract the glyph with padding
+            glyph = binary[y_start:y_end, x_start:x_end]
+
+            # Save the glyph
+            glyph_count += 1
+            output_file = os.path.join(output_dir, f"{base_name}-{glyph_count}.png")
+            cv2.imwrite(output_file, glyph)
+            log_message(log_file, f"Saved glyph to {output_file}")
+
+    # Visualize contours
     contour_image = cv2.cvtColor(binary, cv2.COLOR_GRAY2BGR)
-    cv2.drawContours(contour_image, filtered_contours, -1, (0, 255, 0), 2)
-    debug_path = os.path.join(output_dir, f"{base_name}_filtered_contours.png")
+    cv2.drawContours(contour_image, contours, -1, (0, 255, 0), 2)
+    debug_path = os.path.join(output_dir, f"{base_name}_contours.png")
     cv2.imwrite(debug_path, contour_image)
     log_message(log_file, f"Saved contour visualization to {debug_path}")
 
