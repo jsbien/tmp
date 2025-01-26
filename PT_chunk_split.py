@@ -4,7 +4,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.3"
+VERSION = "1.8"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -48,20 +48,25 @@ def process_image(file_path, output_dir, log_file):
         if parent == 0 or parent == -1:  # Top-level or child of the outermost contour
             log_message(log_file, f"Processing contour #{i} (Parent: {parent})")
 
-            # Add padding with white pixels
-            pad = 2  # Padding size
-            x_start = max(0, x - pad)
-            y_start = max(0, y - pad)
-            x_end = min(binary.shape[1], x + w + pad)
-            y_end = min(binary.shape[0], y + h + pad)
+            # Create a mask for the contour
+            mask = np.zeros(binary.shape, dtype=np.uint8)
+            cv2.drawContours(mask, [contour], -1, 255, thickness=cv2.FILLED)
 
-            # Extract the glyph with padding
-            glyph = binary[y_start:y_end, x_start:x_end]
+            # Apply the mask to retain only the region inside the contour
+            glyph_region = cv2.bitwise_and(binary, binary, mask=mask)[y:y + h, x:x + w]
+
+            # Create a white canvas for padding on the left and right
+            pad = 2  # Padding size
+            padded_width = w + 2 * pad
+            padded_glyph = np.full((h, padded_width), 255, dtype=np.uint8)
+
+            # Place the glyph onto the padded canvas
+            padded_glyph[:, pad:pad + w] = glyph_region
 
             # Save the glyph
             glyph_count += 1
             output_file = os.path.join(output_dir, f"{base_name}-{glyph_count}.png")
-            cv2.imwrite(output_file, glyph)
+            cv2.imwrite(output_file, padded_glyph)
             log_message(log_file, f"Saved glyph to {output_file} (Contour #{i}, Parent: {parent})")
 
     # Visualize contours
