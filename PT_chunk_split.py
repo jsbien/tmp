@@ -52,16 +52,22 @@ def process_image(file_path, output_dir, log_file):
             mask = np.zeros(binary.shape, dtype=np.uint8)
             cv2.drawContours(mask, [contour], -1, 255, thickness=cv2.FILLED)
 
-            # Apply the mask to retain only the region inside the contour
-            glyph_region = cv2.bitwise_and(binary, binary, mask=mask)[y:y + h, x:x + w]
+            # Retain only the region inside the contour
+            glyph_region = cv2.bitwise_and(binary, binary, mask=mask)
 
-            # Invert the glyph region to ensure black glyph on white background
-            glyph_region = cv2.bitwise_not(glyph_region)
+            # Ensure the background is entirely white
+            glyph_region[mask == 0] = 255
+
+            # Crop the region to the bounding box
+            glyph_cropped = glyph_region[y:y + h, x:x + w]
+
+            # Invert the cropped region to ensure black glyph on white background
+            glyph_cropped = cv2.bitwise_not(glyph_cropped)
 
             # Save the glyph
             glyph_count += 1
             output_file = os.path.join(output_dir, f"{base_name}-{glyph_count}.png")
-            cv2.imwrite(output_file, glyph_region)
+            cv2.imwrite(output_file, glyph_cropped)
             log_message(log_file, f"Saved glyph to {output_file} (Contour #{i}, Parent: {parent})")
 
     # Visualize contours
@@ -70,6 +76,7 @@ def process_image(file_path, output_dir, log_file):
     debug_path = os.path.join(output_dir, f"{base_name}_contours.png")
     cv2.imwrite(debug_path, contour_image)
     log_message(log_file, f"Saved contour visualization to {debug_path}")
+
 
 def process_directory(input_dir):
     """Process all binary images in the input directory."""
