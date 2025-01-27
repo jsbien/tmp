@@ -4,7 +4,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.8"
+VERSION = "1.9"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -55,18 +55,13 @@ def process_image(file_path, output_dir, log_file):
             # Apply the mask to retain only the region inside the contour
             glyph_region = cv2.bitwise_and(binary, binary, mask=mask)[y:y + h, x:x + w]
 
-            # Create a white canvas for padding on the left and right
-            pad = 2  # Padding size
-            padded_width = w + 2 * pad
-            padded_glyph = np.full((h, padded_width), 255, dtype=np.uint8)
-
-            # Place the glyph onto the padded canvas
-            padded_glyph[:, pad:pad + w] = glyph_region
+            # Invert the glyph region to ensure black glyph on white background
+            glyph_region = cv2.bitwise_not(glyph_region)
 
             # Save the glyph
             glyph_count += 1
             output_file = os.path.join(output_dir, f"{base_name}-{glyph_count}.png")
-            cv2.imwrite(output_file, padded_glyph)
+            cv2.imwrite(output_file, glyph_region)
             log_message(log_file, f"Saved glyph to {output_file} (Contour #{i}, Parent: {parent})")
 
     # Visualize contours
