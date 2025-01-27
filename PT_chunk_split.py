@@ -4,7 +4,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "1.9"
+VERSION = "2.0"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -64,6 +64,9 @@ def process_image(file_path, output_dir, log_file):
             # Invert the cropped region to ensure black glyph on white background
             glyph_cropped = cv2.bitwise_not(glyph_cropped)
 
+            # Invert the final output to make the background white and the glyph black
+            glyph_cropped = cv2.bitwise_not(glyph_cropped)
+
             # Save the glyph
             glyph_count += 1
             output_file = os.path.join(output_dir, f"{base_name}-{glyph_count}.png")
@@ -76,7 +79,6 @@ def process_image(file_path, output_dir, log_file):
     debug_path = os.path.join(output_dir, f"{base_name}_contours.png")
     cv2.imwrite(debug_path, contour_image)
     log_message(log_file, f"Saved contour visualization to {debug_path}")
-
 
 def process_directory(input_dir):
     """Process all binary images in the input directory."""
