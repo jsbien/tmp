@@ -73,12 +73,12 @@ def process_image(file_path, output_dir, log_file):
             cv2.imwrite(output_file, glyph_cropped)
             log_message(log_file, f"Saved glyph to {output_file} (Contour #{i}, Parent: {parent})")
 
-    # Visualize contours
-    contour_image = cv2.cvtColor(binary, cv2.COLOR_GRAY2BGR)
-    cv2.drawContours(contour_image, contours, -1, (0, 255, 0), 2)
-    debug_path = os.path.join(output_dir, f"{base_name}_contours.png")
-    cv2.imwrite(debug_path, contour_image)
-    log_message(log_file, f"Saved contour visualization to {debug_path}")
+    # # Visualize contours
+    # contour_image = cv2.cvtColor(binary, cv2.COLOR_GRAY2BGR)
+    # cv2.drawContours(contour_image, contours, -1, (0, 255, 0), 2)
+    # debug_path = os.path.join(output_dir, f"{base_name}_contours.png")
+    # cv2.imwrite(debug_path, contour_image)
+    # log_message(log_file, f"Saved contour visualization to {debug_path}")
 
 def process_directory(input_dir):
     """Process all binary images in the input directory."""
