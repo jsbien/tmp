@@ -4,7 +4,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "2.0"
+VERSION = "2.1"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -33,20 +33,23 @@ def process_image(file_path, output_dir, log_file):
 
     # Analyze hierarchy and process next-level contours if the whole image is detected
     base_name = os.path.splitext(os.path.basename(file_path))[0]
-    glyph_count = 0
 
-    for i, contour in enumerate(contours):
+    # Sort contours from left to right based on their bounding box x-coordinate
+    sorted_contours = sorted(enumerate(contours), key=lambda c: cv2.boundingRect(c[1])[0])
+
+    glyph_count = 0
+    for index, contour in sorted_contours:
         x, y, w, h = cv2.boundingRect(contour)
 
         # Skip the whole-image contour
         if w == binary.shape[1] and h == binary.shape[0]:
-            log_message(log_file, f"Skipping whole-image contour #{i}")
+            log_message(log_file, f"Skipping whole-image contour #{index}")
             continue
 
         # Process only valid contours (e.g., children of the outermost contour)
-        parent = hierarchy[0, i, 3]
+        parent = hierarchy[0, index, 3]
         if parent == 0 or parent == -1:  # Top-level or child of the outermost contour
-            log_message(log_file, f"Processing contour #{i} (Parent: {parent})")
+            log_message(log_file, f"Processing contour #{index} (Parent: {parent})")
 
             # Create a mask for the contour
             mask = np.zeros(binary.shape, dtype=np.uint8)
@@ -71,14 +74,14 @@ def process_image(file_path, output_dir, log_file):
             glyph_count += 1
             output_file = os.path.join(output_dir, f"{base_name}-{glyph_count}.png")
             cv2.imwrite(output_file, glyph_cropped)
-            log_message(log_file, f"Saved glyph to {output_file} (Contour #{i}, Parent: {parent})")
+            log_message(log_file, f"Saved glyph to {output_file} (Contour #{index}, Parent: {parent})")
 
-    # # Visualize contours
-    # contour_image = cv2.cvtColor(binary, cv2.COLOR_GRAY2BGR)
-    # cv2.drawContours(contour_image, contours, -1, (0, 255, 0), 2)
-    # debug_path = os.path.join(output_dir, f"{base_name}_contours.png")
-    # cv2.imwrite(debug_path, contour_image)
-    # log_message(log_file, f"Saved contour visualization to {debug_path}")
+    # Visualize contours
+    contour_image = cv2.cvtColor(binary, cv2.COLOR_GRAY2BGR)
+    cv2.drawContours(contour_image, contours, -1, (0, 255, 0), 2)
+    debug_path = os.path.join(output_dir, f"{base_name}_contours.png")
+    cv2.imwrite(debug_path, contour_image)
+    log_message(log_file, f"Saved contour visualization to {debug_path}")
 
 def process_directory(input_dir):
     """Process all binary images in the input directory."""
