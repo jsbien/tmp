@@ -2,6 +2,19 @@ import os
 import csv
 import re
 
+# The script processes filenames in the 'DjVu' directory, which follow the pattern:
+# <printer>-<font>_PT<fascicule>_<plate>. The extracted components are stored in 'names.csv'.
+#
+# - <printer>: An alphabetic string (may contain non-ASCII characters)
+# - <font>: Starts with a two-digit number, possibly with additional postfixes
+# - <fascicule>: A two-digit number
+# - <plate>: A three-digit number
+#
+# The output CSV will have the following columns:
+# number,file_name,printer,font,fascicule,plate
+#
+# The 'number' column will contain sequential two-digit numbers starting from 01.
+
 # Define the directory containing the files
 DJVU_DIR = "DjVu"
 OUTPUT_CSV = "names.csv"
@@ -25,7 +38,13 @@ def parse_filenames(directory):
     return results
 
 def sort_parsed_data(data):
-    """Sorts the parsed data in a logical order."""
+    """Sorts the parsed data in a logical order:
+    1. Alphabetically by printer name
+    2. Numerically by the two-digit font prefix
+    3. By full font string (for secondary ordering)
+    4. Numerically by fascicule
+    5. Numerically by plate
+    """
     return sorted(
         data,
         key=lambda x: (
@@ -38,7 +57,7 @@ def sort_parsed_data(data):
     )
 
 def write_to_csv(output_path, data):
-    """Writes the parsed data to a CSV file."""
+    """Writes the parsed data to a CSV file with a sequential 'number' field."""
     with open(output_path, mode="w", newline="", encoding="utf-8") as csv_file:
         writer = csv.writer(csv_file)
         # Write header
