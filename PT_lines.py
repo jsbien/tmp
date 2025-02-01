@@ -45,7 +45,7 @@ def split_into_lines(image, output_dir):
     return len(line_positions)
 
 def process_directory(input_dir):
-    """Main function to process all TIFF files in the input directory."""
+    """Main function to process all PNG files in the input directory."""
     log_file = f"PT_lines_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
     log_message(log_file, f"Script version: {VERSION}")
 
