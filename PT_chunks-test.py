@@ -15,10 +15,11 @@ def log_message(log_file, message):
 
 def split_into_chunks(image, output_dir, file_basename, log_file):
     """Split the image into chunks using vertical gaps and save them."""
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+#    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Assuming input images are already binary
-    binary = gray
+#    binary = gray
+    binary = image
 
     # Log the shape and pixel values of the binary image
     log_message(log_file, f"Binary image shape: {binary.shape}")
@@ -132,3 +133,4 @@ if __name__ == "__main__":
         sys.exit(1)
 
     process_directory(input_directory)
+    
