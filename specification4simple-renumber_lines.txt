@@ -1,0 +1,28 @@
+Two arguments: input and output directories
+
+The input direcory contains the files named according to the schema
+
+m<number1>_R_lines_<numer2>_chunk_<number3>.png
+
+The script should rename the files in such a way that their
+alphabetical order is preserved and number2 are continuous (starting
+with 01).
+
+Moreover "m" should be changed to "t", "_R_lines_" to "_l" and "_chunk_" to "g".
+
+So the names
+
+m01_R_lines_05_chunk_20.png
+m01_R_lines_05_chunk_22.png
+m01_R_lines_05_chunk_23.png
+
+should be changed to
+
+m19_R_lines_02.png
+m19_R_lines_03.png
+m19_R_lines_04.png
+
+Moreover a statistic should be printed, which shows
+- for every number1 the maximal value of number2
+- for every number2 the maximal value of number3
+- the total number of files.
