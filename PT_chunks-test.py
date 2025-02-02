@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "4.0"
+VERSION = "5.0"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -22,11 +22,11 @@ def split_into_chunks(image, output_dir, file_basename, log_file):
     binary = image
 
     # Log the shape and pixel values of the binary image
-    log_message(log_file, f"Binary image shape: {binary.shape}")
-    log_message(log_file, f"Unique pixel values in binary image: {np.unique(binary)}")
+#    log_message(log_file, f"Binary image shape: {binary.shape}")
+#    log_message(log_file, f"Unique pixel values in binary image: {np.unique(binary)}")
 
     gaps = find_vertical_gaps(binary, log_file)
-    log_message(log_file, f"Detected gaps: {gaps}")
+#    log_message(log_file, f"Detected gaps: {gaps}")
 
     chunk_number = 0
     prev_gap_end = 0
@@ -38,7 +38,7 @@ def split_into_chunks(image, output_dir, file_basename, log_file):
             padded_chunk = cv2.copyMakeBorder(chunk_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=255)
 
             chunk_number += 1
-            chunk_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + ".glyph")
+            chunk_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + "_chunks")
             os.makedirs(chunk_dir, exist_ok=True)
 
             output_path = os.path.join(chunk_dir, f"chunk_{chunk_number:02d}_{os.path.splitext(file_basename)[0]}.png")
@@ -54,7 +54,7 @@ def split_into_chunks(image, output_dir, file_basename, log_file):
         padded_chunk = cv2.copyMakeBorder(chunk_image, 2, 2, 2, 2, cv2.BORDER_CONSTANT, value=255)
 
         chunk_number += 1
-        chunk_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + ".glyph")
+        chunk_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + "_chunks")
         os.makedirs(chunk_dir, exist_ok=True)
 
         output_path = os.path.join(chunk_dir, f"chunk_{chunk_number:02d}_{os.path.splitext(file_basename)[0]}.png")
@@ -83,12 +83,12 @@ def find_vertical_gaps(binary, log_file):
         else:
             if in_gap:
                 gaps.append((gap_start, x - 1))
-                log_message(log_file, f"Gap found: Columns [{gap_start}:{x - 1}]")
+#                log_message(log_file, f"Gap found: Columns [{gap_start}:{x - 1}]")
                 in_gap = False
 
     if in_gap:  # Handle gap ending at the last column
         gaps.append((gap_start, width - 1))
-        log_message(log_file, f"Gap found: Columns [{gap_start}:{width - 1}]")
+#        log_message(log_file, f"Gap found: Columns [{gap_start}:{width - 1}]")
 
     if not gaps:
         log_message(log_file, "No gaps detected; the entire line might be one chunk.")
@@ -96,7 +96,7 @@ def find_vertical_gaps(binary, log_file):
     return gaps
 
 def process_image(file_path, output_dir, log_file):
-    """Process a single image to extract glyphs and save them with padded bounding boxes."""
+    """Process a single image to extract chunks and save them with padded bounding boxes."""
     image = cv2.imread(file_path, cv2.IMREAD_GRAYSCALE)
 
     if image is None:
@@ -108,11 +108,11 @@ def process_image(file_path, output_dir, log_file):
 
 def process_directory(input_dir):
     """Process all PNG files in the input directory."""
-    log_file = f"glyph_extraction_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+    log_file = f"chunk_extraction_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
     log_message(log_file, f"Script version: {VERSION}")
     log_message(log_file, f"Processing input directory: {input_dir}")
 
-    output_dir = os.path.join(input_dir, "glyphs")
+    output_dir = os.path.join(input_dir, "chunks")
     os.makedirs(output_dir, exist_ok=True)
 
     for file_name in sorted(os.listdir(input_dir)):
@@ -123,7 +123,7 @@ def process_directory(input_dir):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python glyph_extraction.py <input_directory>")
+        print("Usage: python PT_chunks.py <input_directory>")
         sys.exit(1)
 
     input_directory = sys.argv[1]
