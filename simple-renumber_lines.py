@@ -2,6 +2,13 @@ import os
 import re
 import shutil
 from collections import defaultdict
+from datetime import datetime
+
+def log_message(log_file, message):
+    """Helper function to write messages to the log file and print to console."""
+    with open(log_file, 'a') as f:
+        f.write(f"{datetime.now()} - {message}\n")
+    print(message)
 
 def parse_filename(filename):
     """Extract number1, number2, number3 from filename."""
@@ -15,6 +22,9 @@ def rename_files(input_dir, output_dir):
     
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
+
+    log_file = os.path.join(output_dir, "rename_log.txt")
+    log_message(log_file, "Starting renaming process...")
 
     # Step 1: Read and parse all valid filenames
     file_data = []
@@ -44,22 +54,25 @@ def rename_files(input_dir, output_dir):
                 new_number2_counter += 1
 
             new_number2 = new_number2_map[number2]
-            new_name = f"t{number1}_l{new_number2:02d}g{number3}.png"
+            new_name = f"t{number1:02d}_l{new_number2:02d}g{number3:02d}.png"
             shutil.copy(os.path.join(input_dir, filename), os.path.join(output_dir, new_name))
+
+            # Log renaming action
+            log_message(log_file, f"Renamed: {filename} -> {new_name}")
 
             # Update statistics
             stats_max_number2[number1] = max(stats_max_number2.get(number1, 0), new_number2)
             stats_max_number3[new_number2] = max(stats_max_number3[new_number2], number3)
 
-    # Step 4: Print statistics
-    print("\nStatistics:")
+    # Step 4: Print and log statistics
+    log_message(log_file, "\nStatistics:")
     for number1, max_n2 in stats_max_number2.items():
-        print(f"Max number2 for {number1}: {max_n2}")
+        log_message(log_file, f"Max number2 for {number1:02d}: {max_n2:02d}")
 
     for number2, max_n3 in stats_max_number3.items():
-        print(f"Max number3 for {number2}: {max_n3}")
+        log_message(log_file, f"Max number3 for {number2:02d}: {max_n3:02d}")
 
-    print(f"Total number of files: {total_files}")
+    log_message(log_file, f"Total number of files: {total_files}")
 
 if __name__ == "__main__":
     import sys
