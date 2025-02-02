@@ -41,7 +41,7 @@ def split_into_chunks(image, output_dir, file_basename, log_file):
             chunk_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + "_chunks")
             os.makedirs(chunk_dir, exist_ok=True)
 
-            output_path = os.path.join(chunk_dir, f"chunk_{chunk_number:02d}_{os.path.splitext(file_basename)[0]}.png")
+            output_path = os.path.join(chunk_dir, f"{os.path.splitext(file_basename)[0]}_chunk_{chunk_number:02d}.png")
             cv2.imwrite(output_path, padded_chunk)
 
             log_message(log_file, f"Chunk {chunk_number}: Columns [{prev_gap_end}:{gap_start}] saved to {output_path}")
@@ -57,7 +57,7 @@ def split_into_chunks(image, output_dir, file_basename, log_file):
         chunk_dir = os.path.join(output_dir, os.path.splitext(file_basename)[0] + "_chunks")
         os.makedirs(chunk_dir, exist_ok=True)
 
-        output_path = os.path.join(chunk_dir, f"chunk_{chunk_number:02d}_{os.path.splitext(file_basename)[0]}.png")
+        output_path = os.path.join(chunk_dir, f"{os.path.splitext(file_basename)[0]}_chunk_{chunk_number:02d}.png")
         cv2.imwrite(output_path, padded_chunk)
 
         log_message(log_file, f"Final chunk {chunk_number}: Columns [{prev_gap_end}:{binary.shape[1]}] saved to {output_path}")
