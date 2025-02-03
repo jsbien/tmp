@@ -1,3 +1,6 @@
+% TO DO:
+% number tabular also in superscripts
+% line the baseline of images
 \documentclass{article}
 \usepackage[a4paper,margin=1.5cm]{geometry}
 \usepackage{fontspec}
@@ -51,7 +54,7 @@
 
 
 %\usepackage{draftwatermark}
-\usepackage[doublespacing]{setspace}
+% \usepackage[doublespacing]{setspace}
 
 \usepackage[draft]{fixme}
 
@@ -81,11 +84,10 @@
 \defineglwlevels{pismo,nr}
 \newcommand{\bg}{\begingl}
 
-% 1 number
-% 2 height
-% 3 image
+% 1 height
+% 2 image
 
-\newcommand{\PTglyph}[3]{\includegraphics[height=#2ex]{glyphs/#3}}
+\newcommand{\PTglyph}[2]{\includegraphics[height=#1ex]{glyphs/#2}}
 
 
 \begin{document}
@@ -123,15 +125,23 @@
   Original font table prepared by Paulina Buchwald-Pelcowa
 %
   \begin{flushleft}
-\exdisplay \bg \gla
-Test%\PTglyph{1}{5}{snippet_Augezdecki-03_page001x00289y00324}
-//
+%\exdisplay \bg \gla
+\input {t01_glyphs}
+% % 1
+% \PTglyph{5}{t01_l01g02.png}
+% % 2
+% \PTglyph{5}{t01_l01g01.png}
+%//
 \glpismo
-{A-03}
+% \input {t01_glyphs-ids}
+% 1
+\texttt{A-01_01-01}
+% 2
+\texttt{A-01_01-02}
 //
 \glnr
-%{\tiny 1}
 {\small 1}
+{\small 2}
 //
 \endgl \xe
   \captionof{figure}{\Junicode Aleksander Augezdecki, font 1. Schwabacher text
@@ -141,8 +151,6 @@ Test%\PTglyph{1}{5}{snippet_Augezdecki-03_page001x00289y00324}
     \label{fig:t01}
 
 \end{flushleft}
-\end{enumerate}
-\end{document}
 % 01,Augezdecki-01_PT08_402.djvu,Augezdecki,01,08,402
 
 % Author "Paulina Buchwald-Pelcowa"
@@ -163,11 +171,12 @@ Test%\PTglyph{1}{5}{snippet_Augezdecki-03_page001x00289y00324}
 
   \textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
     swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
-    Polski przelozeni i wykladem krotkiem obiasnieni}, 1551,
-  \url{https://www.dbc.wroc.pl/publication/33779}
+    Polski przelozeni i wykladem krotkiem obiasnieni}, 1551, page
+  LXXXIIIb [\textit{sic}?].  Digitization
+  \url{https://www.dbc.wroc.pl/publication/33779} page 202.
 
-  Page ???
-
+\end{enumerate}
+\end{document}
   
   
 %   *[TESTAMENTUM NOVUM. Evangelium secundum Matthaeum. Trad. polon. Stanislaus Murzynowski]: Ewangelia św. Mateusza. 4�. K. 104.
