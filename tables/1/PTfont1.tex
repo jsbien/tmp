@@ -17,7 +17,9 @@
 
 \usepackage{relsize}
 
-\usepackage{float}
+%\usepackage{float}
+
+\usepackage{caption}
 
 \usepackage[verbose]{hyperref}
 
@@ -71,11 +73,18 @@
 % requested;
 % \usepackage{zref-abspage}
 
+\usepackage{expex}
+
+
+\lingset{glhangstyle=none}
+\defineglwlevels{pismo,nr}
+\newcommand{\bg}{\begingl}
+
 % 1 number
-% 2 width fraction
+% 2 height
 % 3 image
-% \newcommand{\PTfont}[3]{\includegraphics[width=#2\textwidth]{/home/jsbien/git/early_fonts_inventory/font_tables/PNG/#3}}
-\newcommand{\PTfont}[3]{\includegraphics[width=#2\textwidth]{~/git/early_fonts_inventory/font_tables/PNG/#3}}
+
+\newcommand{\PTglyph}[3]{\includegraphics[height=#2ex]{glyphs/#3}}
 
 
 \begin{document}
@@ -110,7 +119,26 @@
 
 \begin{enumerate}
 \item
-  % 01,Augezdecki-01_PT08_402.djvu,Augezdecki,01,08,402
+  Original character set table prepared by Paulina Buchwald-Pelcowa
+%
+  \begin{center}
+\exdisplay \bg \gla
+Test%\PTglyph{1}{5}{snippet_Augezdecki-03_page001x00289y00324}
+//
+\glpismo
+{A-03}
+//
+\glnr
+%{\tiny 1}
+{\small 1}
+//
+\endgl \xe
+  \captionof{figure}{Imagen}
+  \label{fig:VanGogh}
+\end{center}
+\end{enumerate}
+\end{document}
+% 01,Augezdecki-01_PT08_402.djvu,Augezdecki,01,08,402
 
 % Author "Paulina Buchwald-Pelcowa"
 % Title "Aleksander Augezdecki 1549-1561"
@@ -126,22 +154,28 @@
 % URL "https://github.com/jsbien/early_fonts_inventory/"
 
 
-  \begin{figure}[H]
-    \centering
-%    \PTfont{1}{0.9}{Hochfeder-03_PT01_021.png}
-    \caption{\Junicode Hochfeder: 3. Gothic text script [Pismo
-      tekstowe gotyckie]. Typeface [Krój] M⁸⁸. Type size [Stopień] 20
-      lines = 76/77 mm - Plate 20, 26. (Occurs in Haller's inventory
-      as font 7. Plate. 170)}
-    \label{fig:Hochfeder-03_PT01_021.png}
-  \end{figure}
+  % \begin{figure}[H]
+  %   \centering
+%\caption{\Junicode
+  Aleksander Augezdecki, font 1. Schwabacher text
+      script [Pismo tekstowe, szwabacha]. Typeface [Krój] M⁸¹. Type
+      size [Stopień] 20 lines = 102—103 mm (tertia [tercja]) - Plate
+      402-404 [402]
+    \label{fig:t01}
+%  \end{figure}
+
+  Original character set table prepared by Paulina Buchwald-Pelcowa
+  
   \textbf{Primary example:}
 
-\textit{Testamentu Nowego Czesc Pierwsza Czterzei
-    Euangelistowie swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego
-    ięzyka na Polski przelozeni i wykladem krotkiem obiasnieni},   1551, \url{https://www.dbc.wroc.pl/publication/33779}
+  \textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
+    swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
+    Polski przelozeni i wykladem krotkiem obiasnieni}, 1551,
+  \url{https://www.dbc.wroc.pl/publication/33779}
 
-Page ???
+  Page ???
+
+  
   
 %   *[TESTAMENTUM NOVUM. Evangelium secundum Matthaeum. Trad. polon. Stanislaus Murzynowski]: Ewangelia św. Mateusza. 4�. K. 104.
 % (Arkusze A—B A—B A—Y). Druk czarno-czerwony. — Estr. XIII 26. Wierzb. 135. Arkusze
@@ -169,7 +203,120 @@ Page ???
 % .
 
 B1a
+
+  \begin{center}
+%  \includegraphics[scale=0.5]{van_gogh.jpg}
+  \captionof{figure}{Imagen}
+  \label{fig:VanGogh}
+\end{center}
+
+\end{enumerate}
+\end{document}
+\end{document}
+
+\begin{description}
+\item[3]
+  \begin{figure}[H]
+    \centering
+%    \PTfont{1}{0.9}{Hochfeder-03_PT01_021.png}
+    \caption{\Junicode Hochfeder: 3. Gothic text script [Pismo
+      tekstowe gotyckie]. Typeface [Krój] M⁸⁸. Type size [Stopień] 20
+      lines = 76/77 mm - Plate 20, 26. (Occurs in Haller's inventory
+      as font 7. Plate. 170)}
+    \label{fig:Hochfeder-03_PT01_021.png}
+  \end{figure}
+
+Glyphs: 123.
+
+\end{description}
+
+\begin{figure}[ht]
+        \centering
+      \input brevigraphs_b.tex \lessabovecaptionspace
+        \caption{Modified \textit{b}}
+        \label{fig:b}
+      \end{figure}
+
+      %\begin{figure}
+
+% \includegraphics[scale=0.5]{van_gogh.jpg}
+  \captionof{figure}{Imagen}
+  \label{fig:VanGogh}
+\end{center}
+
   
+  % 01,Augezdecki-01_PT08_402.djvu,Augezdecki,01,08,402
+
+% Author "Paulina Buchwald-Pelcowa"
+% Title "Aleksander Augezdecki 1549-1561"
+% Editor "Alodia Kawecka Gryczowa"
+% Series "Polonia Typographica Saeculi Sedecimi: zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia"
+% Fascicule "VIII"
+% Publisher "Zakład Narodowy imienia Ossolińskich — Wydawnictwo"
+% Addres "Kraków  Wrocław Warszawa"
+% Year "1972"
+% Note "1. Pisma tekstowe, szwabacha M⁸¹. Stopień 20 ww. = 102—103 mm (tercja). — Tabl. 402—404. [402]"
+% Note1 "Character set table prepared by Paulina Buchwald-Pelcowa"
+% Note2 "Scan (prepared by Biblioteka Uniwersytecka w Warszawie from their own copy) converted to DjVu with didjvu by Janusz S. Bień"
+% URL "https://github.com/jsbien/early_fonts_inventory/"
+
+
+  % \begin{figure}[H]
+  %   \centering
+%\caption{\Junicode
+  Aleksander Augezdecki, font 1. Schwabacher text
+      script [Pismo tekstowe, szwabacha]. Typeface [Krój] M⁸¹. Type
+      size [Stopień] 20 lines = 102—103 mm (tertia [tercja]) - Plate
+      402-404 [402]
+    \label{fig:t01}
+%  \end{figure}
+
+  Original character set table prepared by Paulina Buchwald-Pelcowa
+  
+  \textbf{Primary example:}
+
+  \textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
+    swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
+    Polski przelozeni i wykladem krotkiem obiasnieni}, 1551,
+  \url{https://www.dbc.wroc.pl/publication/33779}
+
+  Page ???
+
+  
+  
+%   *[TESTAMENTUM NOVUM. Evangelium secundum Matthaeum. Trad. polon. Stanislaus Murzynowski]: Ewangelia św. Mateusza. 4�. K. 104.
+% (Arkusze A—B A—B A—Y). Druk czarno-czerwony. — Estr. XIII 26. Wierzb. 135. Arkusze
+% Z aa—kk zob. poz. 4.
+% W egz. B. Nar. XVI Qu. 6471 w pierwszym marginalium na lewym
+% marginesie w. 4, zamiast majuskuły A wydrukowano minuskułę a.
+% Pisma 1—3, 5—7, 10—12. — Cyfry 1—3, 5. — Przerywnik I, 5. —
+% Inicjały 1, 3—8, 28.
+% Warsz. B. U. 28.2.4.4. z notatkami J. Maleckiego. [4�
+
+
+\item
+  % Author "Paulina Buchwald-Pelcowa"
+% Title "Aleksander Augezdecki 1549-1561"
+% Editor "Alodia Kawecka Gryczowa"
+% Series "Polonia Typographica Saeculi Sedecimi: zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia"
+% Fascicule "VIII"
+% Publisher "Zakład Narodowy imienia Ossolińskich — Wydawnictwo"
+% Addres "Kraków  Wrocław Warszawa"
+% Year "1972"
+% Note "2 Pismo tekstowe, szwabacha M⁸¹. Stopień 20 ww. = 86—87 mm (cycero). — Tabl. 405, 406. [405]"
+% Note1 "Character set table prepared by Paulina Buchwald-Pelcowa"
+% Note2 "Scan (prepared by Biblioteka Uniwersytecka w Warszawie from their own copy) converted to DjVu with didjvu by Janusz S. Bień"
+% URL "https://github.com/jsbien/early_fonts_inventory/"
+% .
+
+B1a
+
+  \begin{center}
+%  \includegraphics[scale=0.5]{van_gogh.jpg}
+  \captionof{figure}{Imagen}
+  \label{fig:VanGogh}
+\end{center}
+
 \end{enumerate}
 
 \end{document}
