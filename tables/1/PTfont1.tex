@@ -1,7 +1,8 @@
 \documentclass{article}
 \usepackage[a4paper,margin=1.5cm]{geometry}
 \usepackage{fontspec}
-\newfontfamily{\Junicode}{Junicode}
+\newfontfamily{\Junicode}{Junicode}[Numbers=Lining]
+%\fontspec[Numbers=Lining]{Junicode}
 \newcommand{\J}[1]{{\Junicode #1}}
 % \usepackage{polyglossia}
 % \setmainlanguage{polish}
@@ -119,9 +120,9 @@
 
 \begin{enumerate}
 \item
-  Original character set table prepared by Paulina Buchwald-Pelcowa
+  Original font table prepared by Paulina Buchwald-Pelcowa
 %
-  \begin{center}
+  \begin{flushleft}
 \exdisplay \bg \gla
 Test%\PTglyph{1}{5}{snippet_Augezdecki-03_page001x00289y00324}
 //
@@ -133,9 +134,13 @@ Test%\PTglyph{1}{5}{snippet_Augezdecki-03_page001x00289y00324}
 {\small 1}
 //
 \endgl \xe
-  \captionof{figure}{Imagen}
-  \label{fig:VanGogh}
-\end{center}
+  \captionof{figure}{\Junicode Aleksander Augezdecki, font 1. Schwabacher text
+      script [Pismo tekstowe, szwabacha]. Typeface [Krój] M⁸¹. Type
+      size [Stopień] 20 lines = 102—103 mm (tertia [tercja]) - Plate
+      402-404 [402]}
+    \label{fig:t01}
+
+\end{flushleft}
 \end{enumerate}
 \end{document}
 % 01,Augezdecki-01_PT08_402.djvu,Augezdecki,01,08,402
@@ -154,18 +159,6 @@ Test%\PTglyph{1}{5}{snippet_Augezdecki-03_page001x00289y00324}
 % URL "https://github.com/jsbien/early_fonts_inventory/"
 
 
-  % \begin{figure}[H]
-  %   \centering
-%\caption{\Junicode
-  Aleksander Augezdecki, font 1. Schwabacher text
-      script [Pismo tekstowe, szwabacha]. Typeface [Krój] M⁸¹. Type
-      size [Stopień] 20 lines = 102—103 mm (tertia [tercja]) - Plate
-      402-404 [402]
-    \label{fig:t01}
-%  \end{figure}
-
-  Original character set table prepared by Paulina Buchwald-Pelcowa
-  
   \textbf{Primary example:}
 
   \textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
@@ -204,14 +197,9 @@ Test%\PTglyph{1}{5}{snippet_Augezdecki-03_page001x00289y00324}
 
 B1a
 
-  \begin{center}
-%  \includegraphics[scale=0.5]{van_gogh.jpg}
-  \captionof{figure}{Imagen}
-  \label{fig:VanGogh}
-\end{center}
 
 \end{enumerate}
-\end{document}
+
 \end{document}
 
 \begin{description}
