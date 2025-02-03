@@ -78,38 +78,6 @@
 \newcommand{\PTfont}[3]{\includegraphics[width=#2\textwidth]{~/git/early_fonts_inventory/font_tables/PNG/#3}}
 
 
-% \makeatletter
-% \newcounter{lnkpg}
-% \renewcommand*{\thelnkpg}{lnkpg\the\value{lnkpg}}
-% \newcommand*{\org@hyper@link@}{}
-% \let\org@hyper@link@\hyper@link@
-% \protected\def\hyper@link@[#1]#2#3#4{%
-%   \def\lnkpg@callorg{%
-%     \org@hyper@link@[{#1}]{#2}{#3}{#4}%
-%   }%
-%   \stepcounter{lnkpg}%
-%   \zref@labelbyprops{\thelnkpg a}{abspage}%
-%   \zref@refused{\thelnkpg a}%
-%   \zref@ifrefundefined{\thelnkpg a}{%
-%     \lnkpg@callorg
-%     \zref@labelbyprops{\thelnkpg b}{abspage}%
-%   }{%
-%     \zref@ifrefundefined{\thelnkpg b}{%
-%       \mbox{\lnkpg@callorg}%
-%     }{%
-%       \edef\lnkpg@a{\zref@extractdefault{\thelnkpg a}{abspage}{0}}%
-%       \edef\lnkpg@b{\zref@extractdefault{\thelnkpg b}{abspage}{0}}%
-%       \ifx\lnkpg@a\lnkpg@b
-%         \lnkpg@callorg
-%         \zref@labelbyprops{\thelnkpg b}{abspage}%
-%       \else
-%         \mbox{\lnkpg@callorg}%
-%       \fi
-%     }%
-%   }%
-% }
-% \makeatother
-
 \begin{document}
 %\gappto\captionslingua{\renewcommand{\chaptername}{Caput}}
 %\gappto\captionspolish{\renewcommand{\figurename}{Ilustracja}}
@@ -138,9 +106,6 @@
 \catcode`\`=\active
 \def`#1{\fbox{{\znak#1}}}
 
-\section{Fascicule I: Hochfeder}
-\label{sec:zeszyt-i}
-
 % Font tables: 9. Glyphs: 953.
 
 \begin{enumerate}
@@ -160,8 +125,7 @@
 % Note2 "Scan (prepared by Biblioteka Uniwersytecka w Warszawie from their own copy) converted to DjVu with didjvu by Janusz S. Bień"
 % URL "https://github.com/jsbien/early_fonts_inventory/"
 
-  OCR PolTyp08broszura.djvu
-  
+
   \begin{figure}[H]
     \centering
 %    \PTfont{1}{0.9}{Hochfeder-03_PT01_021.png}
@@ -171,7 +135,24 @@
       as font 7. Plate. 170)}
     \label{fig:Hochfeder-03_PT01_021.png}
   \end{figure}
-Primary example: 4a???
+  \textbf{Primary example:}
+
+\textit{Testamentu Nowego Czesc Pierwsza Czterzei
+    Euangelistowie swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego
+    ięzyka na Polski przelozeni i wykladem krotkiem obiasnieni},   1551, \url{https://www.dbc.wroc.pl/publication/33779}
+
+Page ???
+  
+%   *[TESTAMENTUM NOVUM. Evangelium secundum Matthaeum. Trad. polon. Stanislaus Murzynowski]: Ewangelia św. Mateusza. 4�. K. 104.
+% (Arkusze A—B A—B A—Y). Druk czarno-czerwony. — Estr. XIII 26. Wierzb. 135. Arkusze
+% Z aa—kk zob. poz. 4.
+% W egz. B. Nar. XVI Qu. 6471 w pierwszym marginalium na lewym
+% marginesie w. 4, zamiast majuskuły A wydrukowano minuskułę a.
+% Pisma 1—3, 5—7, 10—12. — Cyfry 1—3, 5. — Przerywnik I, 5. —
+% Inicjały 1, 3—8, 28.
+% Warsz. B. U. 28.2.4.4. z notatkami J. Maleckiego. [4�
+
+
 \item
   % Author "Paulina Buchwald-Pelcowa"
 % Title "Aleksander Augezdecki 1549-1561"
