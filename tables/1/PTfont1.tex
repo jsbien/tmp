@@ -87,8 +87,11 @@
 % 1 height
 % 2 image
 
-\newcommand{\PTglyph}[2]{\includegraphics[height=#1ex]{glyphs/#2}}
+%\newcommand{\PTglyph}[2]{\includegraphics[height=#1ex]{glyphs/#2}}
+\newcommand{\PTglyph}[2]{\includegraphics[height=2ex]{glyphs/#2}}
+\newcommand{\PTglyphid}[1]{#1}
 
+\parindent0pt
 
 \begin{document}
 %\gappto\captionslingua{\renewcommand{\chaptername}{Caput}}
@@ -170,13 +173,24 @@ Cf. also \url{https://tw.staatsbibliothek-berlin.de/}.
   \captionof{figure}{\Junicode Aleksander Augezdecki, font 1. Schwabacher text
       script [Pismo tekstowe, szwabacha]. Typeface [Krój] M⁸¹. Type
       size [Stopień] 20 lines = 102—103 mm (tertia [tercja]) - Plate
-      402-404 [402]}
+      402-404 [402].}
     \label{fig:t01}
 
     \medskip
     
-      Original font table prepared by Paulina Buchwald-Pelcowa
+      Original font table prepared by Paulina Buchwald-Pelcowa.
 
+      \bigskip
+
+        \textsc{Primary example:}
+
+  \textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
+    swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
+    Polski przelozeni i wykladem krotkiem obiasnieni}, 1551, page
+  LXXXIIIb [to be verified---JSB].  Digitization
+  \url{https://www.dbc.wroc.pl/publication/33779} page 202.
+
+      
     % \exdisplay \bg \gla
 \input {t01_glyphs}
 % % 1
@@ -184,13 +198,17 @@ Cf. also \url{https://tw.staatsbibliothek-berlin.de/}.
 % % 2
 % \PTglyph{5}{t01_l01g01.png}
 %//
-\glpismo
-% \input {t01_glyphs-ids}
-% 1
-\texttt{Au-010101}
-% 2
-\texttt{Au-010102}
-//
+%\glpismo
+ \input {t01_glyphids.tex}
+% % 1
+% \texttt{Au-010101}
+% % 2
+% \texttt{Au-010102}
+% % 1
+% \texttt{Au-010101}
+% % 2
+% \texttt{Au-010102}
+% //
 \glnr
 {\small 1}
 {\small 2}
@@ -214,13 +232,6 @@ Cf. also \url{https://tw.staatsbibliothek-berlin.de/}.
 % URL "https://github.com/jsbien/early_fonts_inventory/"
 
 
-  \textbf{Primary example:}
-
-  \textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
-    swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
-    Polski przelozeni i wykladem krotkiem obiasnieni}, 1551, page
-  LXXXIIIb [to be verified---JSB].  Digitization
-  \url{https://www.dbc.wroc.pl/publication/33779} page 202.
 
 %\end{enumerate}
 \end{document}
