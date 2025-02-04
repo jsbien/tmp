@@ -1,7 +1,7 @@
 % TO DO:
 % number tabular also in superscripts
 % line the baseline of images
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage[a3paper,margin=1.5cm]{geometry}
 \usepackage{fontspec}
 \newfontfamily{\Junicode}{Junicode}[Numbers=Lining]
@@ -87,8 +87,8 @@
 % 1 height
 % 2 image
 
-\newcommand{\PTglyph}[2]{\includegraphics[height=#1ex]{glyphs/#2}}
-%\newcommand{\PTglyph}[2]{\includegraphics[height=2ex]{glyphs/#2}}
+%\newcommand{\PTglyph}[2]{\includegraphics[height=#1ex]{glyphs/#2}}
+\newcommand{\PTglyph}[2]{\includegraphics[height=8ex]{glyphs/#2}}
 \newcommand{\PTglyphid}[1]{#1}
 
 \parindent0pt
@@ -209,10 +209,10 @@ Cf. also \url{https://tw.staatsbibliothek-berlin.de/}.
 % % 2
 % \texttt{Au-010102}
 % //
-\glnr
-{\small 1}
-{\small 2}
-//
+% \glnr
+% {\small 1}
+% {\small 2}
+% //
 \endgl \xe
 
 \end{flushleft}
@@ -231,24 +231,39 @@ Cf. also \url{https://tw.staatsbibliothek-berlin.de/}.
 % Note2 "Scan (prepared by Biblioteka Uniwersytecka w Warszawie from their own copy) converted to DjVu with didjvu by Janusz S. Bień"
 % URL "https://github.com/jsbien/early_fonts_inventory/"
 
+\newpage
+  \begin{flushleft}
+  \captionof{figure}{\Junicode Aleksander Augezdecki, font 2. Schwabacher text
+      script [Pismo tekstowe, szwabacha]. Typeface [Krój] M⁸¹. Type
+      size [Stopień] 20 lines = 86—87 mm (cicero [cycero]) - Plate
+      405-406 [405].}
+    \label{fig:t02}
+    % https://en.wikipedia.org/wiki/Traditional_point-size_names
+    
+    \medskip
+    
+      Original font table prepared by Paulina Buchwald-Pelcowa.
 
+      \bigskip
 
-%\end{enumerate}
-\end{document}
-  
-  
-%   *[TESTAMENTUM NOVUM. Evangelium secundum Matthaeum. Trad. polon. Stanislaus Murzynowski]: Ewangelia św. Mateusza. 4�. K. 104.
-% (Arkusze A—B A—B A—Y). Druk czarno-czerwony. — Estr. XIII 26. Wierzb. 135. Arkusze
-% Z aa—kk zob. poz. 4.
-% W egz. B. Nar. XVI Qu. 6471 w pierwszym marginalium na lewym
-% marginesie w. 4, zamiast majuskuły A wydrukowano minuskułę a.
-% Pisma 1—3, 5—7, 10—12. — Cyfry 1—3, 5. — Przerywnik I, 5. —
-% Inicjały 1, 3—8, 28.
-% Warsz. B. U. 28.2.4.4. z notatkami J. Maleckiego. [4�
+        \textsc{Primary example:}
 
+  \textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
+    swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
+    Polski przelozeni i wykladem krotkiem obiasnieni}, 1551, page
+  {\Junicode B₁a} [to be verified---JSB].  Digitization
+  \url{https://www.dbc.wroc.pl/publication/33779} page 13.
+% \exdisplay \bg \gla
+\input {t02_glyphs.tex}
+%//
+%\glpismo
+\input {t02_glyphids.tex}
+% //
+\endgl \xe
 
-\item
-  % Author "Paulina Buchwald-Pelcowa"
+\end{flushleft}
+
+ % Author "Paulina Buchwald-Pelcowa"
 % Title "Aleksander Augezdecki 1549-1561"
 % Editor "Alodia Kawecka Gryczowa"
 % Series "Polonia Typographica Saeculi Sedecimi: zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia"
@@ -262,12 +277,20 @@ Cf. also \url{https://tw.staatsbibliothek-berlin.de/}.
 % URL "https://github.com/jsbien/early_fonts_inventory/"
 % .
 
-B1a
-
-
-\end{enumerate}
 
 \end{document}
+  
+  
+%   *[TESTAMENTUM NOVUM. Evangelium secundum Matthaeum. Trad. polon. Stanislaus Murzynowski]: Ewangelia św. Mateusza. 4�. K. 104.
+% (Arkusze A—B A—B A—Y). Druk czarno-czerwony. — Estr. XIII 26. Wierzb. 135. Arkusze
+% Z aa—kk zob. poz. 4.
+% W egz. B. Nar. XVI Qu. 6471 w pierwszym marginalium na lewym
+% marginesie w. 4, zamiast majuskuły A wydrukowano minuskułę a.
+% Pisma 1—3, 5—7, 10—12. — Cyfry 1—3, 5. — Przerywnik I, 5. —
+% Inicjały 1, 3—8, 28.
+% Warsz. B. U. 28.2.4.4. z notatkami J. Maleckiego. [4�
+
+
 
 \begin{description}
 \item[3]
@@ -285,58 +308,6 @@ Glyphs: 123.
 
 \end{description}
 
-\begin{figure}[ht]
-        \centering
-      \input brevigraphs_b.tex \lessabovecaptionspace
-        \caption{Modified \textit{b}}
-        \label{fig:b}
-      \end{figure}
-
-      %\begin{figure}
-
-% \includegraphics[scale=0.5]{van_gogh.jpg}
-  \captionof{figure}{Imagen}
-  \label{fig:VanGogh}
-\end{center}
-
-  
-  % 01,Augezdecki-01_PT08_402.djvu,Augezdecki,01,08,402
-
-% Author "Paulina Buchwald-Pelcowa"
-% Title "Aleksander Augezdecki 1549-1561"
-% Editor "Alodia Kawecka Gryczowa"
-% Series "Polonia Typographica Saeculi Sedecimi: zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia"
-% Fascicule "VIII"
-% Publisher "Zakład Narodowy imienia Ossolińskich — Wydawnictwo"
-% Addres "Kraków  Wrocław Warszawa"
-% Year "1972"
-% Note "1. Pisma tekstowe, szwabacha M⁸¹. Stopień 20 ww. = 102—103 mm (tercja). — Tabl. 402—404. [402]"
-% Note1 "Character set table prepared by Paulina Buchwald-Pelcowa"
-% Note2 "Scan (prepared by Biblioteka Uniwersytecka w Warszawie from their own copy) converted to DjVu with didjvu by Janusz S. Bień"
-% URL "https://github.com/jsbien/early_fonts_inventory/"
-
-
-  % \begin{figure}[H]
-  %   \centering
-%\caption{\Junicode
-  Aleksander Augezdecki, font 1. Schwabacher text
-      script [Pismo tekstowe, szwabacha]. Typeface [Krój] M⁸¹. Type
-      size [Stopień] 20 lines = 102—103 mm (tertia [tercja]) - Plate
-      402-404 [402]
-    \label{fig:t01}
-%  \end{figure}
-
-  Original character set table prepared by Paulina Buchwald-Pelcowa
-  
-  \textbf{Primary example:}
-
-  \textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
-    swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
-    Polski przelozeni i wykladem krotkiem obiasnieni}, 1551,
-  \url{https://www.dbc.wroc.pl/publication/33779}
-
-  Page ???
-
   
   
 %   *[TESTAMENTUM NOVUM. Evangelium secundum Matthaeum. Trad. polon. Stanislaus Murzynowski]: Ewangelia św. Mateusza. 4�. K. 104.
@@ -349,20 +320,7 @@ Glyphs: 123.
 % Warsz. B. U. 28.2.4.4. z notatkami J. Maleckiego. [4�
 
 
-\item
-  % Author "Paulina Buchwald-Pelcowa"
-% Title "Aleksander Augezdecki 1549-1561"
-% Editor "Alodia Kawecka Gryczowa"
-% Series "Polonia Typographica Saeculi Sedecimi: zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia"
-% Fascicule "VIII"
-% Publisher "Zakład Narodowy imienia Ossolińskich — Wydawnictwo"
-% Addres "Kraków  Wrocław Warszawa"
-% Year "1972"
-% Note "2 Pismo tekstowe, szwabacha M⁸¹. Stopień 20 ww. = 86—87 mm (cycero). — Tabl. 405, 406. [405]"
-% Note1 "Character set table prepared by Paulina Buchwald-Pelcowa"
-% Note2 "Scan (prepared by Biblioteka Uniwersytecka w Warszawie from their own copy) converted to DjVu with didjvu by Janusz S. Bień"
-% URL "https://github.com/jsbien/early_fonts_inventory/"
-% .
+
 
 B1a
 
