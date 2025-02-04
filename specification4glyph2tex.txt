@@ -1,0 +1,51 @@
+Two arguments: input and output directories
+
+The input direcory contains the files named according to the schema
+
+t<number1>_l<numer2>g<number3>.png
+
+For example
+
+t01_l01g01.png
+t01_l06g10.png
+
+For every prefix t<number1> please create a Python script named
+t<number1>_glyphs.tex with the content described below.
+
+1. Preamble
+
+\exdisplay \bg \gla
+
+2. Postamble
+
+//
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: shared
+%%% End:
+
+3. The proper content
+
+For every file created two lines
+
+% <running number of the file staring with 1>
+{\PTglyph{5}{<file name>}}
+
+Here is a fragment of t01_glyphs.tex file
+
+------- cut here -----
+\exdisplay \bg \gla
+% 1
+{\PTglyph{5}{t01_l01g01.png}}
+% 2
+{\PTglyph{5}{t01_l01g02.png}}
+//
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: shared
+%%% End:
+------- cut here -----
+
+The alphabetic order of file should be preserved.
