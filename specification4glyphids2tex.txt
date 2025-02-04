@@ -1,0 +1,68 @@
+Three arguments: input and output directories, metadata file 
+
+The input direcory contains the files named according to the schema
+
+t<number1>_l<numer2>g<number3>.png
+
+For example
+
+t01_l01g01.png
+t01_l06g10.png
+
+For every file construct so called glyph identifier in the following
+way:
+
+1. In the metadata CSV file find the row <number1>, eg.
+
+01,Augezdecki-01_PT08_402.djvu,Augezdecki,01,08,402
+42,Ungler1-01_PT03_112.djvu,Ungler1,01,03,112
+53,Ungler2-02_PT05_240.djvu,Ungler2,02,05,240
+
+Create a two letter symbol based on the column 3: for `Ungler1' it is
+`U1', for `Ungler2' it is `U21', for all values the symbol is just the
+first 2 leeter, e.g for `Augezdecki' it is `Au'. Next concatenate the
+symbol with `-<numer1><number2><number3>'.
+
+The result is references later as the glyph id.
+
+For every prefix t<number1> please create a Python script named
+t<number1>_glyphids.tex with the content described below.
+
+1. Preamble
+
+\glpismo
+
+
+2. Postamble
+
+//
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: shared
+%%% End:
+
+3. The proper content
+
+For every file created two lines
+
+% <running number of the file staring with 1>
+{\PTglyphid{<glyph id>}}
+
+Here is a fragment of t01_glyphids.tex file
+
+------- cut here -----
+\glpismo
+% 1
+{\PTglyphid{A-010101}
+% 2
+{\PTglyphid{{A-010102}
+//
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: shared
+%%% End:
+------- cut here -----
+
+The alphabetic order of file should be preserved.
