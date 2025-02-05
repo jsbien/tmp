@@ -9,21 +9,44 @@ For example
 t01_l01g01.png
 t01_l06g10.png
 
-For every file construct so called glyph identifier in the following
-way:
+For every file construct so called glyph identifier which is composed
+of three parts: printer part, font part and table part.  way:
 
-1. In the metadata CSV file find the row <number1>, eg.
+1.  Printer part
+
+In the metadata CSV file find the row which has <number1> in the first
+column, eg.
 
 01,Augezdecki-01_PT08_402.djvu,Augezdecki,01,08,402
+02,Augezdecki-01a_PT08_403.djvu,Augezdecki,01a,08,403
 42,Ungler1-01_PT03_112.djvu,Ungler1,01,03,112
 53,Ungler2-02_PT05_240.djvu,Ungler2,02,05,240
 
-Create a two letter symbol based on the column 3: for `Ungler1' it is
-`U1', for `Ungler2' it is `U21', for all values the symbol is just the
-first 2 leeter, e.g for `Augezdecki' it is `Au'. Next concatenate the
-symbol with `-<numer1><number2><number3>'.
+Create a two letter symbol based on the strings in column 3: for
+`Ungler1' it is `U1', for `Ungler2' it is `U21' (you can code it
+explicitely as these are all the strings containing a digit), for all
+other values the symbol is just the first 2 letter, e.g for
+`Augezdecki' it is `Au'.
+
+2. Font part
+
+In the row look at column 4. If the content is identical with
+<number1>, the font part is <number1> followed by an underscore.
+Otherwise it is just the 3 characters string from column 4.
+
+3. Table part.
+
+It is just <numer2><number3>.
 
 The result is references later as the glyph id.
+
+So for the rows quoted above the glyph identifiers look like
+
+Au-01_0101
+Au-01a0101
+U1-01_0101
+U2-01_0101
+
 
 For every prefix t<number1> please create a Python script named
 t<number1>_glyphids.tex with the content described below.
@@ -36,6 +59,8 @@ t<number1>_glyphids.tex with the content described below.
 2. Postamble
 
 //
+\endgl \xe
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-engine: luatex
@@ -54,9 +79,9 @@ Here is a fragment of t01_glyphids.tex file
 ------- cut here -----
 \glpismo
 % 1
-{\PTglyphid{A-010101}
+{\PTglyphid{Au-01_0101}
 % 2
-{\PTglyphid{{A-010102}
+{\PTglyphid{{Au-01a0102}
 //
 %%% Local Variables:
 %%% mode: latex
