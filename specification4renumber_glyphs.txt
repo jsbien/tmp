@@ -1,0 +1,51 @@
+The name of the script is renumber_glyphs.py
+
+Two arguments: input and output directories
+
+The input direcory contains the files named according to the schema
+
+m<number1>_R_lines_<numer2>_chunk_<number3>.png
+m<number1>_R_lines_<numer2>_chunk_<number3>+<number4>.png
+m<number1>_R_lines_<numer2>_chunk_<number3>-<number4>.png
+
+The script should rename the files in such a way that their
+alphabetical order is preserved and <number2> are continuous (starting
+with 01).
+
+Moreover "m" should be changed to "t", "_R_lines_" to "_l" and "_chunk_" to "g".
+
+So the names
+
+m01_R_lines_05_chunk_20.png
+m01_R_lines_05_chunk_22.png
+m01_R_lines_05_chunk_23.png
+
+m04_R_lines_03_chunk_10.png
+m04_R_lines_03_chunk_12+13.png
+m04_R_lines_03_chunk_14.png
+
+m04_R_lines_04_chunk_01-01.png
+m04_R_lines_04_chunk_01-02.png
+m04_R_lines_04_chunk_01-03.png
+m04_R_lines_04_chunk_07.png
+
+should be changed to
+
+t01_l05g20.png
+t01_l05g21.png
+t01_l05g22.png
+
+t04_l03g10.png
+t04_l03g11.png
+t04_l03g12.png
+
+t04_l04g01.png
+t04_l04g02.png
+t04_l04g03.png
+t04_l04g04.png
+
+The log should be created with the script invocation and the
+statistics, which show
+- for every number1 the maximal value of number2
+- for every number2 the maximal value of number3
+- the total number of files.
