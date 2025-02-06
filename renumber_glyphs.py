@@ -21,7 +21,7 @@ def parse_filename(filename):
     return None
 
 def rename_files(input_dir, output_dir):
-    """Rename files while keeping order and continuity in number2."""
+    """Rename files while keeping order and continuity in number2 and number3."""
     
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -41,36 +41,57 @@ def rename_files(input_dir, output_dir):
     for filename, number1, number2, number3, extra_number in file_data:
         grouped_files[number1].append((filename, number2, number3, extra_number))
 
-    # Step 3: Rename files with continuous number2 values
+    # Step 3: Rename files with continuous number2 and number3 values
     stats_max_number2 = {}  # Max number2 per number1
     stats_max_number3 = defaultdict(int)  # Max number3 per number2
     total_files = len(file_data)
 
     for number1, files in grouped_files.items():
         files.sort(key=lambda x: (x[1], x[2], x[3] if x[3] else 0))  # Sort by number2, then number3, then extra
+        
         new_number2_map = {}  # Old number2 -> New number2
         new_number2_counter = 1
 
-        for filename, number2, number3, extra_number in files:
-            if number2 not in new_number2_map:
-                new_number2_map[number2] = new_number2_counter
-                new_number2_counter += 1
+        number2_groups = defaultdict(list)  # To process each number2 separately
+        for f in files:
+            number2_groups[f[1]].append(f)
 
-            new_number2 = new_number2_map[number2]
-            new_name = f"t{number1:02d}_l{new_number2:02d}g{number3:02d}"
-            
-            if extra_number is not None:
-                new_name += f"+{extra_number:02d}"
-            
-            new_name += ".png"
-            shutil.copy(os.path.join(input_dir, filename), os.path.join(output_dir, new_name))
+        for old_number2, grouped_files in sorted(number2_groups.items()):  
+            new_number2_map[old_number2] = new_number2_counter
+            new_number2 = new_number2_counter
+            new_number2_counter += 1
 
-            # Log renaming action
-            log_message(log_file, f"Renamed: {filename} -> {new_name}")
+            # Now, renumber number3 within this number2 group
+            new_number3_counter = 1  # Reset for each number2
+            new_number3_map = {}  # Track new numbering for number3
+            extra_map = {}  # Track extra chunk numbering
 
-            # Update statistics
-            stats_max_number2[number1] = max(stats_max_number2.get(number1, 0), new_number2)
-            stats_max_number3[new_number2] = max(stats_max_number3[new_number2], number3)
+            for filename, number2, number3, extra_number in grouped_files:
+                if number3 not in new_number3_map:
+                    new_number3_map[number3] = new_number3_counter
+                    new_number3_counter += 1
+
+                new_number3 = new_number3_map[number3]
+
+                new_name = f"t{number1:02d}_l{new_number2:02d}g{new_number3:02d}"
+
+                if extra_number is not None:
+                    # Ensure extra numbers follow their base chunk, always using `-`
+                    if (number3, extra_number) not in extra_map:
+                        extra_map[(number3, extra_number)] = new_number3_counter
+                        new_number3_counter += 1
+                    new_extra_number = extra_map[(number3, extra_number)]
+                    new_name += f"-{new_extra_number:02d}"
+
+                new_name += ".png"
+                shutil.copy(os.path.join(input_dir, filename), os.path.join(output_dir, new_name))
+
+                # Log renaming action
+                log_message(log_file, f"Renamed: {filename} -> {new_name}")
+
+                # Update statistics
+                stats_max_number2[number1] = max(stats_max_number2.get(number1, 0), new_number2)
+                stats_max_number3[new_number2] = max(stats_max_number3[new_number2], new_number3)
 
     # Step 4: Print and log statistics
     log_message(log_file, "\nStatistics:")
