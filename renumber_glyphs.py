@@ -43,7 +43,6 @@ def rename_files(input_dir, output_dir):
 
     # Step 3: Rename files with continuous number2 and number3 values
     stats_max_number2 = {}  # Max number2 per number1
-    stats_max_number3 = defaultdict(int)  # Max number3 per number2
     total_files = len(file_data)
 
     for number1, files in grouped_files.items():
@@ -61,27 +60,12 @@ def rename_files(input_dir, output_dir):
             new_number2 = new_number2_counter
             new_number2_counter += 1
 
-            # Now, renumber number3 within this number2 group
-            new_number3_counter = 1  # Reset for each number2
-            new_number3_map = {}  # Track new numbering for number3
-            extra_map = {}  # Track extra chunk numbering
+            # Now, renumber number3 fully sequentially
+            new_number3_counter = 1  # Start at g01
 
-            for filename, number2, number3, extra_number in grouped_files:
-                if number3 not in new_number3_map:
-                    new_number3_map[number3] = new_number3_counter
-                    new_number3_counter += 1
-
-                new_number3 = new_number3_map[number3]
-
-                new_name = f"t{number1:02d}_l{new_number2:02d}g{new_number3:02d}"
-
-                if extra_number is not None:
-                    # Ensure extra numbers follow their base chunk, always using `-`
-                    if (number3, extra_number) not in extra_map:
-                        extra_map[(number3, extra_number)] = new_number3_counter
-                        new_number3_counter += 1
-                    new_extra_number = extra_map[(number3, extra_number)]
-                    new_name += f"-{new_extra_number:02d}"
+            for filename, number2, number3, extra_number in sorted(grouped_files, key=lambda x: (x[2], x[3] if x[3] else 0)):
+                new_name = f"t{number1:02d}_l{new_number2:02d}g{new_number3_counter:02d}"
+                new_number3_counter += 1  # Ensure next file gets a new number
 
                 new_name += ".png"
                 shutil.copy(os.path.join(input_dir, filename), os.path.join(output_dir, new_name))
@@ -91,15 +75,11 @@ def rename_files(input_dir, output_dir):
 
                 # Update statistics
                 stats_max_number2[number1] = max(stats_max_number2.get(number1, 0), new_number2)
-                stats_max_number3[new_number2] = max(stats_max_number3[new_number2], new_number3)
 
     # Step 4: Print and log statistics
     log_message(log_file, "\nStatistics:")
     for number1, max_n2 in stats_max_number2.items():
         log_message(log_file, f"Max number2 for {number1:02d}: {max_n2:02d}")
-
-    for number2, max_n3 in stats_max_number3.items():
-        log_message(log_file, f"Max number3 for {number2:02d}: {max_n3:02d}")
 
     log_message(log_file, f"Total number of files: {total_files}")
 
