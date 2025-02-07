@@ -11,50 +11,36 @@ def parse_filename(filename):
     return None
 
 def load_metadata(metadata_file):
-    """Load metadata CSV into a dictionary mapping number1 to its symbol."""
+    """Load metadata CSV into a dictionary mapping number1 to its glyph ID components."""
     metadata = {}
     with open(metadata_file, newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         next(reader, None)  # Skip header row
         for row in reader:
-            if len(row) < 3:
+            if len(row) < 5:
                 continue
-            number1, _, name = row[:3]
+            number1, _, name, font, *_ = row
             try:
                 number1 = int(number1)  # Convert to int for consistency
             except ValueError:
                 continue  # Skip malformed rows
 
-            # Generate 2-letter symbol
-            symbol = name[:2]  # Default to first 2 letters
-            match = re.match(r"([A-Za-z]+)(\d+)?", name)
-            if match:
-                letters, digits = match.groups()
-                symbol = letters[:2] + (digits if digits else "")
+            # Generate printer part
+            if "Ungler1" in name:
+                printer_symbol = "U1"
+            elif "Ungler2" in name:
+                printer_symbol = "U2"
+            else:
+                printer_symbol = name[:2]  # First two letters for other names
 
-            metadata[number1] = symbol
+            # Generate font part
+#            font_part = f"{font}_" if font == str(number1) else font
+#            font_part = f"{font}_" if font == str(number1) else font[:3]
+#            font_part = f"{font}_" if font == str(number1).zfill(2) else font[:3]
+            font_part = f"{font}_" if font.isdigit() and len(font) == 2 else font
+
+            metadata[number1] = (printer_symbol, font_part)
     return metadata
-
-# def load_metadata(metadata_file):
-#     """Load metadata CSV into a dictionary mapping number1 to its symbol."""
-#     metadata = {}
-#     with open(metadata_file, newline='', encoding='utf-8') as csvfile:
-#         reader = csv.reader(csvfile)
-#         for row in reader:
-#             if len(row) < 3:
-#                 continue
-#             number1, _, name = row[:3]
-#             number1 = int(number1)  # Convert to int for consistency
-
-#             # Generate 2-letter symbol
-#             symbol = name[:2]  # Default to first 2 letters
-#             match = re.match(r"([A-Za-z]+)(\d+)?", name)
-#             if match:
-#                 letters, digits = match.groups()
-#                 symbol = letters[:2] + (digits if digits else "")
-
-#             metadata[number1] = symbol
-#     return metadata
 
 def generate_tex_files(input_dir, output_dir, metadata_file):
     """Generate LaTeX files based on grouped image filenames and metadata."""
@@ -66,7 +52,7 @@ def generate_tex_files(input_dir, output_dir, metadata_file):
 
     # Group files by t<number1>
     grouped_files = defaultdict(list)
-    
+
     for filename in sorted(os.listdir(input_dir)):  # Ensure alphabetical order
         parsed = parse_filename(filename)
         if parsed:
@@ -78,7 +64,7 @@ def generate_tex_files(input_dir, output_dir, metadata_file):
         tex_filename = f"t{number1:02d}_glyphids.tex"
         tex_path = os.path.join(output_dir, tex_filename)
 
-        symbol = metadata.get(number1, f"X{number1}")  # Default if missing
+        printer_symbol, font_part = metadata.get(number1, (f"X{number1}", f"{number1}_"))  # Default if missing
 
         with open(tex_path, "w") as tex_file:
             # Write preamble
@@ -86,11 +72,12 @@ def generate_tex_files(input_dir, output_dir, metadata_file):
 
             # Write file references
             for i, (number2, number3, file_name) in enumerate(sorted(files), start=1):
-                glyph_id = f"{symbol}-{number1:02d}{number2:02d}{number3:02d}"
+                glyph_id = f"{printer_symbol}-{font_part}{number2:02d}{number3:02d}"
                 tex_file.write(f"% {i}\n{{\\PTglyphid{{{glyph_id}}}}}\n")
 
             # Write postamble
             tex_file.write("//\n")
+            tex_file.write("\\endgl \\xe\n")
             tex_file.write("%%% Local Variables:\n")
             tex_file.write("%%% mode: latex\n")
             tex_file.write("%%% TeX-engine: luatex\n")
