@@ -186,20 +186,28 @@ require verification.
 % Note2 "Scan (prepared by Biblioteka Uniwersytecka w Warszawie from their own copy) converted to DjVu with didjvu by Janusz S. Bień"
 % URL "https://github.com/jsbien/early_fonts_inventory/"
 
+\newcommand{\pismoPL}[1]{{\relsize{2}\Junicode\textbf{#1}}}
+%\textbf{1. Pisma tekstowe, szwabacha M⁸¹. Stopień 20 ww. = 102—103 mm (tercja). — Tabl. 402—404.}
 
-\textbf{1. Pisma tekstowe, szwabacha M⁸¹. Stopień 20 ww. = 102—103 mm (tercja). — Tabl. 402—404.}
+\pismoPL{Augezdecki 1. Pisma tekstowe, szwabacha M⁸¹. Stopień 20 ww. = 102—103 mm (tercja). — Tabl. 402—404.}
 
+\newcommand{\pismoEN}[1]{{\relsize{1}\Junicode\begin{quote}#1\end{quote}}}
 
-\begin{quote}
-  1. Schwabacher text script. Typeface M⁸¹. Type size 20 lines = 102—103
-  mm (tertia]) - Plate 402-404.
-\end{quote}
+% \begin{quote}
+%   1. Schwabacher text script. Typeface M⁸¹. Type size 20 lines = 102—103
+%   mm (tertia) - Plate 402-404.
+% \end{quote}
 
+\pismoEN{Augezdecki 1. Schwabacher text script. Typeface M⁸¹. Type size 20 lines = 102—103 mm (tertia) - Plate 402-404.}
 
   
     \medskip
 
-    \textbf{Plate 402} 
+    \newcommand{\plate}[3]{\textbf{Plate #1} (fasc. #2, #3)}
+    
+%    \textbf{Plate 402} 
+
+\plate{402}{VIII}{1972}
     
 %     Original font table
     Prepared by Paulina Buchwald-Pelcowa.
@@ -222,25 +230,43 @@ require verification.
 
       \textbf{The example}
 
-      Pismo 1: tekst i zestaw wraz z zestawem liter ze znakami diakrytycznymi polskimi.
+      \newcommand{\examplePL}[1]{{\relsize{0}\Junicode#1}}
 
-      \meskip
+%      Pismo 1: tekst i zestaw wraz z zestawem liter ze znakami diakrytycznymi polskimi.
 
-      \begin{quote}
-        Font 1. The text and the table including letters with Polish diacritical marks.
-      \end{quote}
+      \examplePL{Pismo 1: tekst i zestaw wraz z zestawem liter ze znakami diakrytycznymi polskimi.}
       
-  \textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
+      \medskip
+
+      % \begin{quote}
+      %   Font 1. The text and the table including letters with Polish diacritical marks.
+      % \end{quote}
+
+\newcommand{\exampleEN}[1]{{\relsize{0}\Junicode\begin{quote}#1\end{quote}}}
+
+\exampleEN{Font 1. The text and the table including letters with Polish diacritical marks.}
+
+\newcommand{\exampleRef}[1]{{\relsize{0}\Junicode#1}}
+      
+  % \textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
+  %   swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
+  %   Polski przelozeni i wykladem krotkiem obiasnieni}, 1551, page
+  % LXXXIIIb.  Digitization
+  % \url{https://www.dbc.wroc.pl/publication/33779} page 202.
+
+\exampleRef{\textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
     swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
     Polski przelozeni i wykladem krotkiem obiasnieni}, 1551, page
   LXXXIIIb.  Digitization
-  \url{https://www.dbc.wroc.pl/publication/33779} page 202.
-
+  \url{https://www.dbc.wroc.pl/publication/33779} page 202.}
+  
   \bigskip
   
+\newcommand{\fontID}[2]{{\relsize{1}\Junicode\textbf{Font identifier} (JSB): #1 (table #2)}}
 
-    \textbf{Font identifier} (JSB): Au-01 (table 01)
-  
+%    \textbf{Font identifier} (JSB): Au-01 (table 01)
+
+    \fontID{Au-01}{01}
 % \exdisplay \bg \gla
 \input {t01_glyphs}
 %//
