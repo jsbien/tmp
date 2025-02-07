@@ -1,0 +1,143 @@
+% TO DO:
+% number tabular also in superscripts
+% line the baseline of images
+\documentclass[12pt]{article}
+\usepackage[a3paper,margin=1.5cm]{geometry}
+\usepackage{fontspec}
+\newfontfamily{\Junicode}{Junicode}[Numbers=Lining]
+%\fontspec[Numbers=Lining]{Junicode}
+\newcommand{\J}[1]{{\Junicode #1}}
+% \usepackage{polyglossia}
+% \setmainlanguage{polish}
+% \setotherlanguage{english}
+%\usepackage{csquotes}
+
+\usepackage{metalogo}
+% \usepackage[polish]{varioref}
+% % dla varioref!
+% \def\eob{ę}
+\usepackage{xcolor}
+
+
+\usepackage{relsize}
+
+%\usepackage{float}
+
+\usepackage{caption}
+
+\usepackage[verbose]{hyperref}
+
+\usepackage{graphicx}
+% [hyphens]: options clash
+\usepackage{url}
+%\usepackage{natbib}
+
+% program name
+\newcommand{\pname}[1]{\textsf{#1}}
+
+
+% file name
+\newcommand{\fname}[1]{\texttt{#1}}
+
+\newcommand{\uname}[1]{\texttt{'#1'}}
+\newcommand{\ucode}[1]{\texttt{U+#1}}
+\newcommand{\usi}[1]{\texttt{#1}}
+
+% Aletheia
+\newcommand{\aname}[1]{\texttt{#1}}
+\newcommand{\acode}[1]{\texttt{#1}}
+
+% MUFI
+\newcommand{\mname}[1]{\texttt{'#1 \textsc{<mufi>'}}}
+\newcommand{\mcode}[1]{\texttt{M+#1}}
+
+
+
+%\usepackage{draftwatermark}
+% \usepackage[doublespacing]{setspace}
+
+\usepackage[draft]{fixme}
+
+% nie działa:?
+%\renewcommand{\topfraction}{0.9}
+\renewcommand{\floatpagefraction}{0.9}	% require fuller float pages
+\renewcommand{\topfraction}{0.9}	% max fraction of floats at top
+\setcounter{topnumber}{5}
+\setcounter{totalnumber}{5}  
+
+\renewcommand{\labelenumii}{\arabic{enumii}.}
+
+% \vrefwarning
+
+% https://tex.stackexchange.com/questions/54136/hyperref-link-spans-a-pagebreak-looks-ugly
+% nie zawsze działa!!!
+
+% retrieve absolute page numbers (physical pages, as opposed to the
+% ‘logical’ page number that is normally typeset when a page number is
+% requested;
+% \usepackage{zref-abspage}
+
+\usepackage{expex}
+
+
+\lingset{glhangstyle=none}
+\defineglwlevels{pismo,nr}
+\newcommand{\bg}{\begingl}
+
+% 1 height
+% 2 image
+
+%\newcommand{\PTglyph}[2]{\includegraphics[height=#1ex]{glyphs/#2}}
+\newcommand{\PTglyph}[2]{\includegraphics[height=8ex]{glyphs/#2}}
+\newcommand{\PTglyphid}[1]{#1}
+
+\parindent0pt
+
+\begin{document}
+%\gappto\captionslingua{\renewcommand{\chaptername}{Caput}}
+%\gappto\captionspolish{\renewcommand{\figurename}{Ilustracja}}
+
+
+\title{POLONIA TYPOGRAPHICA
+  SAECULI SEDECIMI\\
+  {\relsize{-2} TŁOCZNIE POLSKIE XVI STULECIA\\ MONOGRAFIE I PODOBIZNY
+    ZASOBÓW DRUKARSKICH}\\Summary: Reconstructed font tables --- the index\\
+  (draft)}
+
+\author{Janusz S. Bień (editor)}
+
+\date{\today}
+
+\maketitle
+
+\catcode`\&=11
+\catcode`\|=11
+\catcode`\_=11
+
+\def\apostrof{`}
+
+
+% dodac indeks!:
+\catcode`\`=\active
+\def`#1{\fbox{{\znak#1}}}
+
+\def\Hb#1{{\fontspec{Junicode}#1}}
+
+\section{Introduction}
+\label{sec:introduction}
+
+For more information about \textsc{POLONIA TYPOGRAPHICA SAECULI
+  SEDECIMI} please consult
+e.g. \url{https://github.com/jsbien/early_fonts_inventory}.
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% coding: utf-8-unix
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-PDF-mode: t
+%%% TeX-engine: xetex
+%%% End: 
