@@ -135,6 +135,8 @@ e.g. \url{https://github.com/jsbien/early_fonts_inventory}.
 \bigskip \textbf{Please remember this is a draft!} Some details still
 require verification.
 
+CATALOGUS LIBRORUM!!!
+
 
 \subsection{Haebler's font classification}
 \label{sec:haebl-font-class}
@@ -303,14 +305,41 @@ The abbreviation ``K.'' occuring in some descriptions stands for
 
 %        \textsc{Primary example:}
 
-      \newcommand{\exampleBib}[1]{{\relsize{2}\Junicode\textbf{The example:} bibliography item \textbf{#1}}}
+      \newcommand{\exampleBib}[1]{{\relsize{2}\Junicode\textbf{The example:}\\[2ex] CATALOGUS LIBRORUM item \textbf{#1}}}
 
       \exampleBib{4a}
       \bigskip
 
-      \newcommand{\examplePL}[1]{{\relsize{0}\Junicode#1}}
+\newcommand{\exampleDesc}[1]{{\relsize{0}\Junicode#1}}
+\newcommand{\exampleDig}[1]{{\relsize{0}\Junicode \textbf{Digitization(s) [JSB]:} #1}}
+
+
+\exampleDesc{[TESTAMENTUM NOVUM. Evangelium secundum Matthaeum. Trad. polon. Stanislaus Murzynowski]:
+Ewangelia Sw. Mateusza. Królewiec, [Aleksander Augezdeckij, 1551. 4°.}
+
+\newcommand{\examplePage}[1]{{\relsize{0}\Junicode#1}}
+
+\medskip
+\examplePage{\textit{Karta LXXXIIIb.}}
+
+\newcommand{\exampleLib}[1]{{\relsize{0}\Junicode \textbf{Library:} #1}}
+
+\bigskip
+\exampleLib{Biblioteka Czartoryskich. Kraków.}
+
+\bigskip
+\newcommand{\exampleRef}[1]{{\relsize{0}\Junicode \textbf{References:} #1}}
+
+\exampleRef{\textit{Estreicher XIII 26. Wierzbowski 135.}}
+
+\bigskip
+\exampleDig{\url{https://www.dbc.wroc.pl/publication/33779} page 202.}
+
+\newcommand{\examplePL}[1]{{\relsize{0}\Junicode#1}}
 
 %      Pismo 1: tekst i zestaw wraz z zestawem liter ze znakami diakrytycznymi polskimi.
+
+\bigskip
 
       \examplePL{Pismo 1: tekst i zestaw wraz z zestawem liter ze znakami diakrytycznymi polskimi.}
       
@@ -324,19 +353,13 @@ The abbreviation ``K.'' occuring in some descriptions stands for
 
 \exampleEN{Font 1. The text and the table including letters with Polish diacritical marks.}
 
-\newcommand{\exampleRef}[1]{{\relsize{0}\Junicode#1}}
-      
+
   % \textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
   %   swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
   %   Polski przelozeni i wykladem krotkiem obiasnieni}, 1551, page
   % LXXXIIIb.  Digitization
   % \url{https://www.dbc.wroc.pl/publication/33779} page 202.
 
-\exampleRef{\textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
-    swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
-    Polski przelozeni i wykladem krotkiem obiasnieni}, 1551, page
-  LXXXIIIb.  Digitization
-  \url{https://www.dbc.wroc.pl/publication/33779} page 202.}
   
   \bigskip
   
