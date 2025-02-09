@@ -118,8 +118,8 @@
 
 
 % dodac indeks!:
-\catcode`\`=\active
-\def`#1{\fbox{{\znak#1}}}
+% \catcode`\`=\active
+% \def`#1{\fbox{{\znak#1}}}
 
 \def\Hb#1{{\fontspec{Junicode}#1}}
 
@@ -132,7 +132,14 @@ e.g. \url{https://github.com/jsbien/early_fonts_inventory}.
 
 \bigskip
 
-\noindent
+\bigskip \textbf{Please remember this is a draft!} Some details still
+require verification.
+
+
+\subsection{Haebler's font classification}
+\label{sec:haebl-font-class}
+
+
 Symbols such as \Hb{M¹⁶}, \Hb{M¹⁸}, \Hb{M⁴⁸}, \Hb{M⁶⁰}, \Hb{M⁹¹},
 \Hb{Q|u}, \Hb{C}, \Hb{F7}, \Hb{G}, \Hb{K5} are explained in the
 publication:
@@ -160,8 +167,76 @@ Reprinted in 1968, digitized in 2020 by Kujawsko-Pomorska Biblioteka
 \noindent
 Cf. also \url{https://tw.staatsbibliothek-berlin.de/}.
 
-\bigskip \textbf{Please remember this is a draft!} Some details still
-require verification.
+\subsection{Wierzbowski's bibliography}
+\label{sec:wierzb-bibl}
+
+The abbreviations in the form ``Wierzb. 891,'' refer to items (not
+page numbers) in the bibliography \textit{Bibliographia Polonica XV ac
+  XVII ss. quae in bibliotheca Universitatis Caesareare Varsoviensis
+  asservantur} by Teodor Wierzbowski, published in 1889 and available
+in the Polona digital library as
+\url{https://polona.pl/item/96996417}.
+
+\subsection{Estreicher's bibliography}
+\label{sec:estr-bibl}
+
+The abbreviations ``Estr.,'' refer Estreichers' bibliography, called
+"most outstanding bibliography of Polish books, and probably one of
+the most famous bibliographies in the
+world".\footnote{\url{https://en.wikipedia.org/wiki/Karol_Estreicher_(senior)}}. It
+was started by Karol Estrecher (1827--1908), continued by his son
+Stanisław Estreicher (1869--1939) and finished by his grandson Karol
+Estrecher(1906--1984).For most of the volumes the copyright has
+expired, so they were reprinted, they are also (original or reprints)
+available in several digital librarries,
+e.g. \url{https://kpbc.umk.pl/dlibra/publication/13947} .
+Additionally there is also \textit{ELEKTRONICZNA BAZA BIBLIOGRAFII
+  ESTREICHERA} (EBBE), an electronic version of the
+bibliographies\footnote{\url{https://www.estreicher.uj.edu.pl/}}; the
+database includes also the scan of all the volumes, but there are some
+restrictions on their usage.
+
+The bibliography by Karol Estreicher (senior) consists of several
+parts. The volumes have two numbers: the number in the whole
+bibliography and in the specific part.
+  \begin{itemize}
+  \item Bibliografia polska. Cz. 1, Stólecie [!] XIX., volumes 7
+  \item 
+    Bibliografia polska. Cz. 2, Stólecie [!] XV-XIX spis chronologiczny. : volumes 3, one in
+    two volumes (global volume numbers 8--11)
+      \item 
+    Bibliografia polska. Cz. 3, Stólecie [!] XV-XVIII w układzie
+    abecadłowym: volumes 22 (global volume numbers 12--33)
+  \item 
+    Bibliografia polska. Cz. 4, Bibliografia polska XIX. stólecia [!] :
+    lata 1881-1900: volumes 4
+  \end{itemize}
+  There are  also two unnumbered volume
+  \begin{itemize}
+  \item Bibliografia polska XV.-XVI. stólecia : zestawienie chronologiczne
+    7200 druków w kształcie rejestru do Bibliografii, tudzież spis
+    abecadłowy tych dzieł, które dochowały się w bibliotekach polskich
+  \item 
+    Bibliografia polska XIX. stulecia. Zeszyt dodatkowy, 1871-1873
+  \end{itemize}
+
+  The volumes authored by Stanisław Estreicher (with some use of his
+  father manuscripts) include volumes 34--36 suplementing the part 3.
+
+  The references to the bibliography contains the global volume number
+  and the page number, e.g.  the reference ``Estr. XV. 242;
+  XXXIV. 55'' refer to the mentions of Zaborowski's \textit{Tractatus
+    contra malos divites et usurarios} which can be seen on page 242
+  of volume 15\footnote{See e.g.
+    \url{https://www.estreicher.uj.edu.pl/_skany/Bibliografia_Staropolska/15_Tom_XV/0257_0242.jpg}}
+  and page 55 of volume 34\footnote{See e.g.
+    \url{https://www.estreicher.uj.edu.pl/_skany/Bibliografia_Staropolska/34_Tom_XXXIV/0057_0055.jpg}}.
+
+\subsection{Other abbreviations}
+\label{sec:other-abbreviations}
+
+The abbreviation ``K.'' occuring in some descriptions stands for
+\textit{Karty}, i.e. \textit{sheets}.
 
 \newpage
 \section{Font tables}
@@ -228,7 +303,10 @@ require verification.
 
 %        \textsc{Primary example:}
 
-      \textbf{The example}
+      \newcommand{\exampleBib}[1]{{\relsize{2}\Junicode\textbf{The example:} bibliography item \textbf{#1}}}
+
+      \exampleBib{4a}
+      \bigskip
 
       \newcommand{\examplePL}[1]{{\relsize{0}\Junicode#1}}
 
@@ -306,7 +384,7 @@ Prepared by Paulina Buchwald-Pelcowa.
 
 \bigskip
 
-\textbf{The example}
+\exampleBib{25}
 
 \medskip
 
@@ -360,7 +438,8 @@ Prepared by Paulina Buchwald-Pelcowa.
 
 \bigskip
 
-\textbf{The example}
+\exampleBib{12}
+
 
 \medskip
 
@@ -449,7 +528,8 @@ Prepared by Paulina Buchwald-Pelcowa.
 
 \bigskip
 
-\textbf{The example}
+\exampleBib{6}
+
 
 \medskip
 
@@ -461,6 +541,8 @@ Prepared by Paulina Buchwald-Pelcowa.
 
 
 
+BAD
+    
   \exampleRef{\textit{Testamentu Nowego Czesc Pierwsza Czterzei Euangelistowie
     swieći, Mattheusz, Marek, Lukasz I Ian, Z Greckiego ięzyka na
     Polski przelozeni i wykladem krotkiem obiasnieni}, 1551, page
@@ -521,7 +603,8 @@ Prepared by Paulina Buchwald-Pelcowa.
 
 \bigskip
 
-\textbf{The example}
+\exampleBib{25}
+
 
 \medskip
 
@@ -561,7 +644,15 @@ Digitization %%%%%which variant????
 \end{document}
   
   
-
+*ITESTAMENTUM NOVUM. Trad. polon. Stanisłaus Murzynowski]: Testamentu Nowego część
+pierwsza. 4. K. 184. (Arkusze A—B A—B Z aa—zz
+aaa—rrr A). Druk czarno-czerwony. — Estr. XIII 26.
+Wierzb. 1288. Piek. Kórn. 103. Boh. Ossol. 173.
+Arkusze A—Y w poz. 4. |
+Pisma 1—3, 5, 6, 8, 10, 12 (sporadycznie majuskuły). — Cyfry 1,
+2, 5. — Przerywniki 1, 5. — Inicjały 1, 3—12, 28. — Drzeworyty
+2—5. [6.
+https://wbc.poznan.pl/dlibra/publication/516957/edition/472068?language=pl
 
 
 \begin{description}
