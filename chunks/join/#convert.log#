@@ -1,0 +1,131 @@
+jsbien@JSBbookworm:~/git/tmp/chunks/join$ convert +append m05_R_lines_01_chunk_07.png m05_R_lines_01_chunk_08.png  m05_R_lines_01_chunk_07+08.png
+jsbien@JSBbookworm:~/git/tmp/chunks/join$ convert +append m06_R_lines_02_chunk_08.png m06_R_lines_02_chunk_09.png m06_R_lines_02_chunk_08+09.png
+jsbien@JSBbookworm:~/git/tmp/chunks/join$ cd
+jsbien@JSBbookworm:~$ python3 renumber_glyphs.py glyphs-edited/m06 glyph-test
+python3: can't open file '/home/jsbien/renumber_glyphs.py': [Errno 2] No such file or directory
+jsbien@JSBbookworm:~$ cd git/tmp
+jsbien@JSBbookworm:~/git/tmp$ python3 renumber_glyphs.py glyphs-edited/m06 glyph-test
+Script invoked: renumber_glyphs.py glyphs-edited/m06 glyph-test
+Renamed: m06_R_lines_01_chunk_01.png -> t06_l01g01.png
+Renamed: m06_R_lines_01_chunk_02.png -> t06_l01g02.png
+Renamed: m06_R_lines_01_chunk_03.png -> t06_l01g03.png
+Renamed: m06_R_lines_01_chunk_04.png -> t06_l01g04.png
+Renamed: m06_R_lines_01_chunk_05.png -> t06_l01g05.png
+Renamed: m06_R_lines_01_chunk_06.png -> t06_l01g06.png
+Renamed: m06_R_lines_01_chunk_07.png -> t06_l01g07.png
+Renamed: m06_R_lines_01_chunk_08.png -> t06_l01g08.png
+Renamed: m06_R_lines_01_chunk_09.png -> t06_l01g09.png
+Renamed: m06_R_lines_01_chunk_10.png -> t06_l01g10.png
+Renamed: m06_R_lines_01_chunk_11.png -> t06_l01g11.png
+Renamed: m06_R_lines_01_chunk_12.png -> t06_l01g12.png
+Renamed: m06_R_lines_01_chunk_13.png -> t06_l01g13.png
+Renamed: m06_R_lines_01_chunk_14.png -> t06_l01g14.png
+Renamed: m06_R_lines_01_chunk_15.png -> t06_l01g15.png
+Renamed: m06_R_lines_01_chunk_16.png -> t06_l01g16.png
+Renamed: m06_R_lines_02_chunk_01.png -> t06_l02g01.png
+Renamed: m06_R_lines_02_chunk_02.png -> t06_l02g02.png
+Renamed: m06_R_lines_02_chunk_03.png -> t06_l02g03.png
+Renamed: m06_R_lines_02_chunk_04.png -> t06_l02g04.png
+Renamed: m06_R_lines_02_chunk_05.png -> t06_l02g05.png
+Renamed: m06_R_lines_02_chunk_06.png -> t06_l02g06.png
+Renamed: m06_R_lines_02_chunk_07.png -> t06_l02g07.png
+Renamed: m06_R_lines_02_chunk_08+09.png -> t06_l02g08.png
+Renamed: m06_R_lines_02_chunk_10.png -> t06_l02g09.png
+Renamed: m06_R_lines_02_chunk_11.png -> t06_l02g10.png
+Renamed: m06_R_lines_02_chunk_12.png -> t06_l02g11.png
+Renamed: m06_R_lines_02_chunk_13.png -> t06_l02g12.png
+Renamed: m06_R_lines_02_chunk_14.png -> t06_l02g13.png
+Renamed: m06_R_lines_02_chunk_15.png -> t06_l02g14.png
+Renamed: m06_R_lines_02_chunk_16.png -> t06_l02g15.png
+Renamed: m06_R_lines_02_chunk_17.png -> t06_l02g16.png
+Renamed: m06_R_lines_02_chunk_18.png -> t06_l02g17.png
+Renamed: m06_R_lines_02_chunk_19.png -> t06_l02g18.png
+Renamed: m06_R_lines_03_chunk_01.png -> t06_l03g01.png
+Renamed: m06_R_lines_03_chunk_02.png -> t06_l03g02.png
+Renamed: m06_R_lines_03_chunk_03.png -> t06_l03g03.png
+Renamed: m06_R_lines_03_chunk_04.png -> t06_l03g04.png
+Renamed: m06_R_lines_03_chunk_05.png -> t06_l03g05.png
+Renamed: m06_R_lines_03_chunk_06.png -> t06_l03g06.png
+Renamed: m06_R_lines_03_chunk_07.png -> t06_l03g07.png
+Renamed: m06_R_lines_03_chunk_08.png -> t06_l03g08.png
+Renamed: m06_R_lines_03_chunk_09.png -> t06_l03g09.png
+Renamed: m06_R_lines_03_chunk_10.png -> t06_l03g10.png
+Renamed: m06_R_lines_03_chunk_11.png -> t06_l03g11.png
+Renamed: m06_R_lines_03_chunk_12.png -> t06_l03g12.png
+Renamed: m06_R_lines_03_chunk_13.png -> t06_l03g13.png
+Renamed: m06_R_lines_03_chunk_14.png -> t06_l03g14.png
+Renamed: m06_R_lines_03_chunk_15.png -> t06_l03g15.png
+Renamed: m06_R_lines_03_chunk_16.png -> t06_l03g16.png
+Renamed: m06_R_lines_03_chunk_17.png -> t06_l03g17.png
+Renamed: m06_R_lines_03_chunk_18.png -> t06_l03g18.png
+Renamed: m06_R_lines_03_chunk_19.png -> t06_l03g19.png
+Renamed: m06_R_lines_03_chunk_20.png -> t06_l03g20.png
+Renamed: m06_R_lines_03_chunk_21.png -> t06_l03g21.png
+Renamed: m06_R_lines_03_chunk_22.png -> t06_l03g22.png
+Renamed: m06_R_lines_03_chunk_23.png -> t06_l03g23.png
+Renamed: m06_R_lines_03_chunk_24.png -> t06_l03g24.png
+Renamed: m06_R_lines_03_chunk_25+26.png -> t06_l03g25.png
+Renamed: m06_R_lines_03_chunk_28.png -> t06_l03g26.png
+Renamed: m06_R_lines_03_chunk_29.png -> t06_l03g27.png
+Renamed: m06_R_lines_03_chunk_30.png -> t06_l03g28.png
+Renamed: m06_R_lines_03_chunk_31.png -> t06_l03g29.png
+Renamed: m06_R_lines_03_chunk_32.png -> t06_l03g30.png
+Renamed: m06_R_lines_04_chunk_01.png -> t06_l04g01.png
+Renamed: m06_R_lines_04_chunk_02.png -> t06_l04g02.png
+Renamed: m06_R_lines_04_chunk_03.png -> t06_l04g03.png
+Renamed: m06_R_lines_04_chunk_04.png -> t06_l04g04.png
+Renamed: m06_R_lines_04_chunk_05.png -> t06_l04g05.png
+Renamed: m06_R_lines_04_chunk_06.png -> t06_l04g06.png
+Renamed: m06_R_lines_04_chunk_07.png -> t06_l04g07.png
+Renamed: m06_R_lines_04_chunk_08.png -> t06_l04g08.png
+Renamed: m06_R_lines_04_chunk_09.png -> t06_l04g09.png
+Renamed: m06_R_lines_04_chunk_10.png -> t06_l04g10.png
+Renamed: m06_R_lines_04_chunk_11.png -> t06_l04g11.png
+Renamed: m06_R_lines_04_chunk_12.png -> t06_l04g12.png
+Renamed: m06_R_lines_04_chunk_13.png -> t06_l04g13.png
+Renamed: m06_R_lines_04_chunk_14.png -> t06_l04g14.png
+Renamed: m06_R_lines_04_chunk_15.png -> t06_l04g15.png
+Renamed: m06_R_lines_04_chunk_16.png -> t06_l04g16.png
+Renamed: m06_R_lines_04_chunk_17.png -> t06_l04g17.png
+Renamed: m06_R_lines_04_chunk_18.png -> t06_l04g18.png
+Renamed: m06_R_lines_04_chunk_19+20.png -> t06_l04g19.png
+Renamed: m06_R_lines_04_chunk_21.png -> t06_l04g20.png
+Renamed: m06_R_lines_04_chunk_22.png -> t06_l04g21.png
+Renamed: m06_R_lines_04_chunk_23.png -> t06_l04g22.png
+Renamed: m06_R_lines_04_chunk_24.png -> t06_l04g23.png
+Renamed: m06_R_lines_04_chunk_25.png -> t06_l04g24.png
+Renamed: m06_R_lines_04_chunk_26.png -> t06_l04g25.png
+Renamed: m06_R_lines_04_chunk_27.png -> t06_l04g26.png
+Renamed: m06_R_lines_04_chunk_29.png -> t06_l04g27.png
+Renamed: m06_R_lines_04_chunk_30.png -> t06_l04g28.png
+Renamed: m06_R_lines_04_chunk_31.png -> t06_l04g29.png
+Renamed: m06_R_lines_04_chunk_32.png -> t06_l04g30.png
+Renamed: m06_R_lines_05_chunk_01.png -> t06_l05g01.png
+Renamed: m06_R_lines_05_chunk_02.png -> t06_l05g02.png
+Renamed: m06_R_lines_05_chunk_03.png -> t06_l05g03.png
+Renamed: m06_R_lines_05_chunk_04.png -> t06_l05g04.png
+Renamed: m06_R_lines_05_chunk_05.png -> t06_l05g05.png
+Renamed: m06_R_lines_05_chunk_06.png -> t06_l05g06.png
+Renamed: m06_R_lines_05_chunk_07.png -> t06_l05g07.png
+Renamed: m06_R_lines_05_chunk_08.png -> t06_l05g08.png
+Renamed: m06_R_lines_05_chunk_09.png -> t06_l05g09.png
+Renamed: m06_R_lines_05_chunk_10.png -> t06_l05g10.png
+Renamed: m06_R_lines_05_chunk_11.png -> t06_l05g11.png
+Renamed: m06_R_lines_05_chunk_12.png -> t06_l05g12.png
+Renamed: m06_R_lines_05_chunk_13.png -> t06_l05g13.png
+Renamed: m06_R_lines_05_chunk_14.png -> t06_l05g14.png
+Renamed: m06_R_lines_05_chunk_15.png -> t06_l05g15.png
+Renamed: m06_R_lines_05_chunk_16.png -> t06_l05g16.png
+Renamed: m06_R_lines_05_chunk_17.png -> t06_l05g17.png
+Renamed: m06_R_lines_05_chunk_18.png -> t06_l05g18.png
+
+Statistics:
+Max number2 for 06: 05
+Total number of files: 112
+jsbien@JSBbookworm:~/git/tmp$ python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
+Generated t06_glyphids.tex
+jsbien@JSBbookworm:~/git/tmp$ python3 glyph2tex.py glyph-test/ glyphs4tex names.csv
+Usage: python glyph2tex.py <input_directory> <output_directory>
+jsbien@JSBbookworm:~/git/tmp$ python3 glyph2tex.py glyph-test/ glyphs4tex 
+Generated t06_glyphs.tex
+jsbien@JSBbookworm:~/git/tmp$ 
