@@ -852,7 +852,7 @@ Prepared by Paulina Buchwald-Pelcowa [layout confusing, misinterpretation possib
 % https://www.adfontes.uzh.ch/en/tutorium/schriften-lesen/schriftgeschichte/gotische-minuskeln-textura-und-textualis/
 \medskip
 
-\plate{408}{VIII}{1972}
+\plate{409}{VIII}{1972}
 
 Prepared by Paulina Buchwald-Pelcowa.
 
@@ -898,7 +898,73 @@ Ewangelia Św. Mateusza. Królewiec, [Aleksander Augezdecki], 1551. 4°.}
 % //
 %\endgl \xe
 
+ \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Tab. 10 pismo 8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Note "8. Pismo tekstowe, antykwa Qu/(G). Stopień 20 ww. = 101 mm (tercja). — Tabl. 410."
+% Note1 "Character set table prepared by Paulina Buchwald-Pelcowa"
+
+
+\pismoPL{Aleksander Augezdecki 8. Pismo tekstowe, antykwa Qu/(G, I). Stopień 20 ww. = 101/102 mm (tercja). — Tabl. 410.}
+
+\pismoEN{Aleksander Augezdecki 8. Text Roman type Qu/(G, I). Type size 20 lines = 101/102 mm (tertia). — Tabl. 410.}
+% https://www.adfontes.uzh.ch/en/tutorium/schriften-lesen/schriftgeschichte/gotische-minuskeln-textura-und-textualis/
+\medskip
+
+\plate{410}{VIII}{1972}
+
+Prepared by Paulina Buchwald-Pelcowa.
+
+\bigskip
+
+ \exampleBib{VIII:26}
+
+\bigskip
+\exampleDesc{[CONFESSIO AUGUSTANA. Trad. polon. Martinus Kwiatkowski]: Confessio Augustanae fidei to jest wyznanie
+wiary krześciańskiej. Szamotuły, Aleksander Augezdecki, [po 13 V] 1561. 4°.}
+
+\medskip
+\examplePage{\textit{Karta B₁a.}}
+
+  \bigskip
+\exampleLib{Biblioteka Zakł. Nar. im. Ossolinskich. Wroclaw.}
+
+\bigskip
+\exampleRef{\textit{Estreicher XIV 355. Wierzbowski 1393. Bohonos Ossol. 442. Drukarze IV 31 i 85.}}
+
+\bigskip
+\exampleDig{\url{https://dbc.wroc.pl/dlibra/publication/15990/edition/14101} page 13}
+
+\medskip
+
+    \examplePL{Pismo 8: kolumna [? -- JSB]  i pierwszy zestaw.}
+
+    \medskip
+
+    \exampleEN{Font 7. The text column [?] and the first font table.}
+
+
+\bigskip
+
+
+\fontID{Au-08}{10}
+
+% \exdisplay \bg \gla
+ \input {t10_glyphs.tex}
+%//
+%\glpismo%
+ \input {t10_glyphids.tex}
+% //
+%\endgl \xe
+
 \end{document}
+
+python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
+python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
+python3 glyph2tex.py glyph-test glyphs4tex/
 
 Confessio 13.
 
