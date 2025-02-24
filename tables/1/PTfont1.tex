@@ -90,6 +90,7 @@
 %\newcommand{\PTglyph}[2]{\includegraphics[height=#1ex]{glyphs/#2}}
 % \newcommand{\PTglyph}[2]{\includegraphics[height=8ex]{glyphs/#2}}
 \newcommand{\PTglyph}[2]{\includegraphics[height=7ex]{glyphs/#2}}
+%\newcommand{\PTglyph}[2]{\includegraphics[height=6ex]{glyphs/#2}}
 \newcommand{\PTglyphid}[1]{#1}
 
 \parindent0pt
@@ -1590,7 +1591,7 @@ The font table prepared by Maria Błońska.
   \pismoPL{Jan Haller 5. Pismo tekstowe. Krój M⁴⁸. Stopień 20 ww. =81/82 mm. — Tabl. 168.}
 
 \pismoEN{Jan Haller 5. Text font. Typeface M⁴⁸. Type size 20 ww. =
-    81/82 mm. — Plate 18.}
+    81/82 mm. — Plate 168.}
 
 \plate{168}{IV}{1962}
 
@@ -1612,7 +1613,7 @@ The font table prepared by Maria Błońska.
 \exampleLib{Biblioteka Narodowa. Warszawa.}
 
 \bigskip
-\exampleRef{\textit{Estreicher X XVII. 13. Wierzbowski 773.}}
+\exampleRef{\textit{Estreicher XVII. 13. Wierzbowski 773.}}
 
 \bigskip
 \exampleDig{\url{http://old.mbc.malopolska.pl/dlibra/docmetadata?id=83069}
@@ -1647,9 +1648,74 @@ page 7.}
 % //
 %\endgl \xe
 
+  \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Tab. 25 Jan Haller pismo 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Note "6. Pismo komentarzowe. Krój M”. Stopień 20 ww. = 82 mm (interliniowane). — Tabl. 169."
+% Note1 "Character set table prepared by Maria Błońska"
+
+
+  \pismoPL{Jan Haller 6. Pismo komentarzowe. Krój M⁹¹. Stopień 20 ww. = 82 mm (interliniowane). — Tabl. 169.}
+
+\pismoEN{Jan Haller 6. Text font. Typeface M⁹¹. Type size 20 ww. =
+    82 mm (with extra leading). — Plate 169.}
+
+\plate{169}{IV}{1962}
+
+Prepared by Helena Kapełuś.\\
+The font table prepared by Maria Błońska.
+
+\bigskip
+
+\exampleBib{IV:23}
+
+\bigskip \exampleDesc{17.  THEOREMATA Autoris causarum cum
+  annotationibus ac expositione Iacobi de Gostynin. Kraków, Jan
+  Haller, 23. III. 1507. 4*..}
+  
+
+\medskip
+\examplePage{\textit{Karta b₃a.}}
+
+  \bigskip
+\exampleLib{Biblioteka Zakl. Nar. im. Ossolińskich. Wrocław.}
+
+\bigskip
+\exampleRef{\textit{Estreicher XV. 85. Wierzbowski 848.}}
+
+\bigskip
+\exampleDig{\url{https://www.wbc.poznan.pl/dlibra/publication/310579/} page 25.}
+  
+  % \medskip
+\bigskip
+
+    \examplePL{Pismo 4: naglówek. [Pismo 6: tekst - JSB]}
+
+    \medskip
+
+    \exampleEN{Font 4: the header [Font 6: the text - JSB]}
+
+
+\bigskip
+
+
+\fontID{Ha-06}{25}
+
+\fontstat{94}
+
+% \exdisplay \bg \gla
+ \input {t25_glyphs.tex}
+%//
+%\glpismo%
+ \input {t25_glyphids.tex}
+% //
+%\endgl \xe
+
   
 \end{document}
-
 
 python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
 python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
