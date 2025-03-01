@@ -125,6 +125,17 @@
 
 \def\Hb#1{{\fontspec{Junicode}#1}}
 
+\newcommand{\alfa}{\textit{alfa} (\J{α})}
+\renewcommand{\beta}{\textit{beta} (\J{β})}
+\renewcommand{\delta}{\textit{delta} (\J{δ})}
+\renewcommand{\epsilon}{\textit{epsilon} (\J{ε})}
+\renewcommand{\eta}{\textit{eta} (\J{η})}
+\renewcommand{\gamma}{\textit{gamma} (\J{γ})}
+\renewcommand{\kappa}{\textit{kappa} (\J{κ})}
+\newcommand{\jota}{\textit{jota} (\J{ι})}
+\renewcommand{\lambda}{\textit{lambda} (\J{λ})}
+
+
 \section{Introduction}
 \label{sec:introduction}
 
@@ -1915,7 +1926,7 @@ The font table prepared by Maria Błońska.
  
   \pismoPL{Jan Haller 9. Pismo tekstowe. Krój M⁴⁹. Stopień 20 ww. = 72 mm. — Tabl. 172.}
   
-\pismoEN{Jan Haller 8. Text font. Typeface M⁴¹. Type size 20 ww. =
+\pismoEN{Jan Haller 9. Text font. Typeface M⁴¹. Type size 20 ww. =
     72 mm . — Plate 172.}
 
 \plate{172}{IV}{1962}
@@ -1949,11 +1960,11 @@ The font table prepared by Maria Błońska.
 \bigskip
 
 \examplePL{Pismo 3: naglówek. — Pismo 9: tekst i pierwszy zestaw. —
-  Rubryka beta! z pismem 9. — Cyfry 7: z pismem 9.  z pismem 13. [\ldots]}
+  Rubryka \beta{} z pismem 9. — Cyfry 7: z pismem 9.  z pismem 13. [\ldots]}
 
     \medskip
 
-    \exampleEN{Font 3: the header. — Font 9: the text and the first character set. — Rubric beta! with digits from font 9}
+    \exampleEN{Font 3: the header. — Font 9: the text and the first character set. — Rubric \beta{} with digits from font 9}
 
 
 \bigskip
@@ -1971,7 +1982,76 @@ The font table prepared by Maria Błońska.
 % //
 %\endgl \xe
 
+
+ \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ % Tab. 29 Jan Haller pismo 10
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Note "10. Pismo komentarzowe. Krój M⁸⁷. Stopień 20 ww. = 72 mm. — Tabl. 173."
+% Note1 "Character set table prepared by Maria Błońska"
+
+
+  \pismoPL{Jan Haller 10. Pismo komentarzowe. Krój M⁸⁷. Stopień 20 ww. = 72 mm. — Tabl. 173.}
+  
+  \pismoEN{Jan Haller 10. Text font. Typeface M⁸⁷. Type size 20 ww. =
+    72 mm . — Plate 173.}
+
+\plate{172}{IV}{1962}
+
+Prepared by Helena Kapełuś.\\
+The font table prepared by Maria Błońska.
+
+\bigskip
+
+\exampleBib{IV:208}
+
+\bigskip
+
+
+\exampleDesc{IACOBUS FABER STAPULENSIS: Introductio in libros De Anima Aristotelis. Kraków, Jan Haller, 1522. 4⁰}
+  
+
+\medskip
+\examplePage{\textit{Karta A₂b}}
+
+  \bigskip
+\exampleLib{Biblioteka Zakł. Nar. im. Ossolińskich. Wrocław.}
+
+
+\bigskip
+\exampleRef{\textit{Estreicher. XIV. 150. Wierzbowski 993.}}
+
+% \bigskip
+% \exampleDig{\url page 7} 
+
+\bigskip
+
+\examplePL{Rubryka \eta{}: z pismem 10.}
+
+    \medskip
+
+    \exampleEN{Rubric \eta{} with font 10.}
+
+
+\bigskip
+
+
+\fontID{Ha-10}{29}
+
+\fontstat{102}
+
+% \exdisplay \bg \gla
+ \input {t29_glyphs.tex}
+%//
+%\glpismo%
+ \input {t29_glyphids.tex}
+% //
+%\endgl \xe
+
 \end{document}
+
 
 
 python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
