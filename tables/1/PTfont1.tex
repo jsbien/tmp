@@ -130,9 +130,10 @@
 \renewcommand{\delta}{\textit{delta} (\J{δ})}
 \renewcommand{\epsilon}{\textit{epsilon} (\J{ε})}
 \renewcommand{\eta}{\textit{eta} (\J{η})}
+\renewcommand{\theta}{\textit{theta} (\J{θ})}
 \renewcommand{\gamma}{\textit{gamma} (\J{γ})}
 \renewcommand{\kappa}{\textit{kappa} (\J{κ})}
-\newcommand{\jota}{\textit{jota} (\J{ι})}
+\renewcommand{\iota}{\textit{iota} (\J{ι})}
 \renewcommand{\lambda}{\textit{lambda} (\J{λ})}
 
 
@@ -1998,7 +1999,7 @@ The font table prepared by Maria Błońska.
   \pismoEN{Jan Haller 10. Text font. Typeface M⁸⁷. Type size 20 ww. =
     72 mm . — Plate 173.}
 
-\plate{172}{IV}{1962}
+\plate{173}{IV}{1962}
 
 Prepared by Helena Kapełuś.\\
 The font table prepared by Maria Błońska.
@@ -2050,9 +2051,115 @@ The font table prepared by Maria Błońska.
 % //
 %\endgl \xe
 
+ 
+ \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ % Tab. 30 Jan Haller pismo 11
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Note "11. Pismo tekstowe antykwowe. Krój Qlu (C). Stopień 20 ww. = 92 mm. — - Tabl. 174."
+% Note1 "Character set table prepared by Maria Błońska"
+
+
+  \pismoPL{Jan Haller 11. Pismo tekstowe antykwowe. Krój Q|u (C). Stopień 20 ww. = 92 mm. — - Tabl. 174.}
+  
+  \pismoEN{Jan Haller 11. Roman text font. Typeface Q|u (C). Type size 20 ww. =
+    92 mm . — Plate 174.}
+
+\plate{174}{IV}{1962}
+
+Prepared by Helena Kapełuś.\\
+The font table prepared by Maria Błońska.
+
+\bigskip
+
+\exampleBib{IV:163}
+
+\bigskip
+
+
+\exampleDesc{STANISLAUS ZABOROWSKI: Grammatices rudimenta. Kraków, Jan Haller, 1518. 4⁰}
+  
+% https://cyfrowe.mnk.pl/dlibra/publication/24392/edition/24082?language=en
+\medskip
+\examplePage{\textit{Karta K₃a}}
+
+  \bigskip
+\exampleLib{Biblioteka Narodowa. Warszawa.}
+
+
+
+\bigskip
+\exampleRef{\textit{Estreicher.XXXIV. 45. Wierzbowski 957.}}
+
+% \bigskip
+\exampleDig{\url{https://polona.pl/preview/dfb921b2-a937-4ee8-ad01-0724aa52c76a}
+  page 121}
+
+\bigskip
+
+\examplePL{Pismo 11 (tekst łaciński). — Rubryki \theta, \iota. — Cyfry 6.}
+
+    \medskip
+
+    \exampleEN{Font 11 (Latin text). — Rubric \theta{}, \iota. — Digits 6.}
+
+
+\bigskip
+
+\exampleBib{IV:16}
+
+\bigskip
+
+
+\exampleDesc{STANISLAUS ZABOROWSKI: Orthographia seu modus recte scribendi. Kraków, Jan Haller, IV. 1518. 4⁰.}
+
+
+
+
+\medskip
+\examplePage{\textit{Karta [5] a}}
+
+  \bigskip
+\exampleLib{Biblioteka Narodowa. Warszawa.}
+
+
+
+\bigskip
+\exampleRef{\textit{Estreicher.XXXIV. 52. Wierzbowski 48.}}
+
+% \bigskip
+\exampleDig{\url{https://polona.pl/preview/2db2e5da-ec87-426c-8e0d-e6b09093407a}
+  page 17}
+% https://zpe.gov.pl/kronika/759455
+
+\bigskip
+
+\examplePL{Pismo 11 (tekst polski). — Rubryka \theta{}. — Inicjał 60 (V).}
+
+    \medskip
+
+    \exampleEN{Font 11 (Polish text). — Rubric \theta{}. — Initial 60. (V)}
+
+
+\bigskip
+
+
+\fontID{Ha-11}{30}
+
+\fontstat{112}
+
+% \exdisplay \bg \gla
+ \input {t30_glyphs.tex}
+%//
+%\glpismo%
+ \input {t30_glyphids.tex}
+% //
+%\endgl \xe
+
+
 \end{document}
-
-
 
 python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
 python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
@@ -2062,6 +2169,11 @@ git:
 cd glyphs-final/
 cd ../glyphs4tex/
 
+???:
+https://www.wbc.poznan.pl/dlibra/publication/504801/edition/473399?language=pl
+Priorum analyticorum Aristotelis [...] libri duo castigate. Impressi secundum exemplar Jacobi Stapulensis
+Haller, Jan
+1510
 
 https://en.wikipedia.org/wiki/Traditional_point-size_names
 https://ewangelie.uw.edu.pl/przeklady
@@ -2279,11 +2391,6 @@ Glyphs: 94.
 % 23+38+33= 94 (953)
   
 \end{description}
-
-\section{Zeszyt II: Haller}
-\label{sec:zeszyt-ii}
-
-No font tables.
 
 \section{Zeszyt III: Ungler ---  pierwsza drukarnia}
 \label{sec:zeszyt-iii}
