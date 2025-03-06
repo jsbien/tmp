@@ -134,6 +134,7 @@
 \renewcommand{\eta}{\textit{eta} (\J{η})}
 \renewcommand{\theta}{\textit{theta} (\J{θ})}
 \renewcommand{\gamma}{\textit{gamma} (\J{γ})}
+\renewcommand{\chi}{\textit{chi} (\J{χ})}
 \renewcommand{\kappa}{\textit{kappa} (\J{κ})}
 \renewcommand{\iota}{\textit{iota} (\J{ι})}
 \renewcommand{\lambda}{\textit{lambda} (\J{λ})}
@@ -357,7 +358,11 @@ The abbreviation ``K.'' occuring in some descriptions stands for
 
 %        \textsc{Primary example:}
 
-      \newcommand{\exampleBib}[1]{{\relsize{2}\Junicode\textbf{The example:}\\[2ex] CATALOGUS LIBRORUM \textbf{#1}}}
+      \newcommand{\exampleBib}[1]{{\relsize{2}\Junicode\textbf{The
+            example:}\\[2ex] CATALOGUS LIBRORUM \textbf{#1}}}
+      \newcommand{\exampleBibExtra}[1]{{\relsize{2}\Junicode\textit{The
+            plate contains also an example without a font
+            table:}\\[2ex] CATALOGUS LIBRORUM \textbf{#1}}}
 
       \exampleBib{VIII:4a}
       \bigskip
@@ -370,6 +375,7 @@ The abbreviation ``K.'' occuring in some descriptions stands for
 Ewangelia Sw. Mateusza. Królewiec, [Aleksander Augezdecki], 1551. 4°.}
 
 \newcommand{\examplePage}[1]{{\relsize{0}\Junicode#1}}
+\newcommand{\examplePageEN}[1]{{\relsize{0}\Junicode#1}}
 
 \medskip
 \examplePage{\textit{Karta LXXXIIIb.}}
@@ -2161,8 +2167,6 @@ The font table prepared by Maria Błońska.
 %\endgl \xe
 
 
-\end{document}
-
  
  \newpage
 
@@ -2193,9 +2197,9 @@ The font table prepared by Maria Błońska.
   
 
 \medskip
-\examplePage{\textit{Karta ostatnia, kolofon.}
+\examplePage{\textit{Karta ostatnia, kolofon.}}
 
-\examplePageEN{\textit{Last page, colophon}
+\examplePageEN{\textit{Last page, colophon}}
 
   
   \bigskip
@@ -2219,67 +2223,66 @@ The font table prepared by Maria Błońska.
 
 \bigskip
 
-\exampleBib{IV:16}
+\bigskip
+
+
+\fontID{Ha-12}{31}
+
+\fontstat{100}
+
+% \exdisplay \bg \gla
+ \input {t31_glyphs.tex}
+%//
+%\glpismo%
+ \input {t31_glyphids.tex}
+% //
+%\endgl \xe
+
+ \relsize{-1}
+ 
+\exampleBibExtra{IV:26}
 
 \bigskip
 
-MICHAEL VRATISLAVIENSIS: Introductorium astronomiae Cracoviense almanach.
-Kraków, Jan Haller, 29. V. 1507. 4*.
-
-https://polona2.pl/item/introductoriu-m-astronomie-cracouiense-elucidans-almanach,NDQzMzg2MDM/0/#info:metadata
-1517
-
-https://dbc.wroc.pl/dlibra/publication/8925/edition/8046?language=pl
-1507!!!
-
-https://wbc.poznan.pl/dlibra/publication/402464/edition/314800
-1506
-
-
-\exampleDesc{STANISLAUS ZABOROWSKI: Orthographia seu modus recte scribendi. Kraków, Jan Haller, IV. 1518. 4⁰.}
+\exampleDesc{MICHAEL VRATISLAVIENSIS: Introductorium astronomiae Cracoviense almanach.
+Kraków, Jan Haller, 29. V. 1507. 4⁰.}
 
 
 
 
 \medskip
-\examplePage{\textit{Karta [5] a}}
+\examplePage{\textit{Karta A₆b}}
 
   \bigskip
-\exampleLib{Biblioteka Narodowa. Warszawa.}
-
+\exampleLib{Biblioteka Zakl. Nar. im. Ossolińskich. Wrocław}
 
 
 \bigskip
-\exampleRef{\textit{Estreicher.XXXIV. 52. Wierzbowski 48.}}
+\exampleRef{\textit{Estreicher XXXIII. 356.}}
+
+% https://polona2.pl/item/introductoriu-m-astronomie-cracouiense-elucidans-almanach,NDQzMzg2MDM/0/#info:metadata
+% 1517
+% https://dbc.wroc.pl/dlibra/publication/8925/edition/8046?language=pl
+% 1507!!!
+% https://wbc.poznan.pl/dlibra/publication/402464/edition/314800
+% 1506
+
 
 % \bigskip
-\exampleDig{\url{https://polona.pl/preview/2db2e5da-ec87-426c-8e0d-e6b09093407a}
-  page 17}
-% https://zpe.gov.pl/kronika/759455
+% \exampleDig{\url{https://dbc.wroc.pl/dlibra/publication/8925}
+%   page brak?!}
 
 \bigskip
 
-\examplePL{Pismo 11 (tekst polski). — Rubryka \theta{}. — Inicjał 60 (V).}
+\examplePL{Znaki Zodiaku. — Pismo 5. — Rubryka \beta{} z pismem 5. — Cyfry 2.}
 
     \medskip
 
-    \exampleEN{Font 11 (Polish text). — Rubric \theta{}. — Initial 60. (V)}
+    \exampleEN{Znaki Zodiaku. — Font 5. — Rubric \beta{} with font 5. — Digits 2}
 
 
-\bigskip
+\end{document}
 
-
-\fontID{Ha-11}{30}
-
-\fontstat{112}
-
-% \exdisplay \bg \gla
- \input {t30_glyphs.tex}
-%//
-%\glpismo%
- \input {t30_glyphids.tex}
-% //
-%\endgl \xe
 
 python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
 python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
