@@ -1,6 +1,8 @@
 % TO DO:
-% number tabular also in superscripts
-% line the baseline of images
+% https://en.wikipedia.org/wiki/Latin_delta
+% https://en.wikipedia.org/wiki/Insular_script
+% number tabular also in superscripts ???
+% line the baseline of images ???
 \documentclass[12pt]{article}
 \usepackage[a3paper,margin=1.5cm]{geometry}
 \usepackage{fontspec}
@@ -2160,6 +2162,124 @@ The font table prepared by Maria Błońska.
 
 
 \end{document}
+
+ 
+ \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ % Tab. 31 Jan Haller pismo 12
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Note "12. Pismo mszalne. Krój M⁶⁰. Stopień 20 ww. = 176 mm. — Tabl. 175."
+% Note1 "Character set table prepared by Maria Błońska"
+
+  \pismoPL{Jan Haller 12. Pismo mszalne. Krój M⁶⁰. Stopień 20 ww. = 176 mm. — Tabl. 175.}
+  
+  \pismoEN{Jan Haller 12. Missal font. Typeface M⁶⁰. Type size 20 ww. =
+    176 mm . — Plate 175.}
+
+\plate{175}{IV}{1962}
+
+Prepared by Helena Kapełuś.\\
+The font table prepared by Maria Błońska.
+
+\bigskip
+
+\exampleBib{IV:173}
+
+\bigskip
+
+\exampleDesc{PSALTERIUM secundum morem Ecclesiae Cracoviensis. Kraków, Jan Haller, 1518. 2⁰.}
+  
+
+\medskip
+\examplePage{\textit{Karta ostatnia, kolofon.}
+
+\examplePageEN{\textit{Last page, colophon}
+
+  
+  \bigskip
+\exampleLib{Biblioteka Narodowa. Warszawa.}
+
+\bigskip
+\exampleRef{\textit{Estreicher XXV. 387.}}
+
+% \bigskip
+% \exampleDig{\url{https://polona.pl/preview/dfb921b2-a937-4ee8-ad01-0724aa52c76a}
+%   page 121}
+
+\bigskip
+
+\examplePL{Pismo 12. — Rubryki \chi{}, \lambda{}. — Cyfry 8.}
+
+    \medskip
+
+    \exampleEN{Font 12. — Rubric \chi{}, \lambda. — Digits 8.}
+
+
+\bigskip
+
+\exampleBib{IV:16}
+
+\bigskip
+
+MICHAEL VRATISLAVIENSIS: Introductorium astronomiae Cracoviense almanach.
+Kraków, Jan Haller, 29. V. 1507. 4*.
+
+https://polona2.pl/item/introductoriu-m-astronomie-cracouiense-elucidans-almanach,NDQzMzg2MDM/0/#info:metadata
+1517
+
+https://dbc.wroc.pl/dlibra/publication/8925/edition/8046?language=pl
+1507!!!
+
+https://wbc.poznan.pl/dlibra/publication/402464/edition/314800
+1506
+
+
+\exampleDesc{STANISLAUS ZABOROWSKI: Orthographia seu modus recte scribendi. Kraków, Jan Haller, IV. 1518. 4⁰.}
+
+
+
+
+\medskip
+\examplePage{\textit{Karta [5] a}}
+
+  \bigskip
+\exampleLib{Biblioteka Narodowa. Warszawa.}
+
+
+
+\bigskip
+\exampleRef{\textit{Estreicher.XXXIV. 52. Wierzbowski 48.}}
+
+% \bigskip
+\exampleDig{\url{https://polona.pl/preview/2db2e5da-ec87-426c-8e0d-e6b09093407a}
+  page 17}
+% https://zpe.gov.pl/kronika/759455
+
+\bigskip
+
+\examplePL{Pismo 11 (tekst polski). — Rubryka \theta{}. — Inicjał 60 (V).}
+
+    \medskip
+
+    \exampleEN{Font 11 (Polish text). — Rubric \theta{}. — Initial 60. (V)}
+
+
+\bigskip
+
+
+\fontID{Ha-11}{30}
+
+\fontstat{112}
+
+% \exdisplay \bg \gla
+ \input {t30_glyphs.tex}
+%//
+%\glpismo%
+ \input {t30_glyphids.tex}
+% //
+%\endgl \xe
 
 python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
 python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
