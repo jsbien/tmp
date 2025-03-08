@@ -129,7 +129,7 @@
 
 \def\Hb#1{{\fontspec{Junicode}#1}}
 
-\newcommand{\alfa}{\textit{alfa} (\J{α})}
+\newcommand{\alfa}{\textit{alpha} (\J{α})}
 \renewcommand{\beta}{\textit{beta} (\J{β})}
 \renewcommand{\delta}{\textit{delta} (\J{δ})}
 \renewcommand{\epsilon}{\textit{epsilon} (\J{ε})}
@@ -2380,27 +2380,19 @@ The font table prepared by Maria Błońska and Anna Wolińska.
 
 \bigskip \exampleDesc{HESIODUS: Georgica. Kraków, Kasper Hochfeder [nakładem Jana Hallera], 1 VII 1505. 4⁰}
 
-IOANNES GLOGOVIENSIS:
-Minoris Donati interpretatio. Kraków, [Kasper Hochfeder] nakładem Jana Hallera,
-1503. 4.
-
 \medskip
-\examplePage{\textit{Karta a²a}}
+\examplePage{\textit{Karta a₀a}}
 
   \bigskip
 \exampleLib{Biblioteka Narodowa. Warszawa.}
-Biblioteka Jagiellońska. Kraków.
 
 \bigskip
 \exampleRef{\textit{Estreicher XVIII 168. Wierzbowski 836.}}
-Estreicher XVII 175. Wierzbowski 2040.
   
   % \medskip
 \bigskip
 
     \examplePL{Pismo 2: tekst i zestaw.}
-    Pismo 3.
-    Rubryki 8, a. — Cyfry 1, 2.
     
     \medskip
 
@@ -2426,7 +2418,6 @@ Estreicher XVII 175. Wierzbowski 2040.
 % //
 %\endgl \xe
 
-\end{document}
 
 
 \newpage
@@ -2440,46 +2431,48 @@ Estreicher XVII 175. Wierzbowski 2040.
 % Note1 "Character set table prepared by Maria Błońska and Anna Wolińska"
 
 
-\pismoPL{Kasper Hochfeder 2. Pismo nagłówkowe gotyckie. Krój
-  M⁸⁹. Stopień 20 ww. = 111/113 mm - Tabl. 20bis. (Występuje u Hallera
-  jako pismo 4. Tabl. 167)}
+\pismoPL{Kasper Hochfeder 3. Pismo tekstowe gotyckie. Krój
+  M⁸⁸. Stopień 20 ww. = 76/77 mm - Tabl. 21. (Występuje u Hallera
+  jako pismo 7. Tabl. 170)}
 
   
-\pismoEN{Kasper Hochfeder 2. Gothic header font. Typeface M⁸⁹. Type
-  size 20 lines = 111/113 mm. (Used by Haller as font 4. Plate 167)}
+\pismoEN{Kasper Hochfeder 2. Gothic text font. Typeface M⁸⁸. Type
+  size 20 lines = 76/77 mm. (Used by Haller as font 7. Plate 170)}
 
-\plate{20bis}{I}{1968}
+\plate{21}{I}{1968}
 
-Prepared by Maria Błońska (?).\\
+Prepared by Kazimierz Piekarski and  Maria Błońska.\\
 The font table prepared by Maria Błońska and Anna Wolińska.
 
 \bigskip
 
-\exampleBib{I:30}
+\exampleBib{I:8}
 
-\bigskip \exampleDesc{HESIODUS: Georgica. Kraków, Kasper Hochfeder [nakładem Jana Hallera], 1 VII 1505. 4⁰}
-
+\bigskip \exampleDesc{IOANNES GLOGOVIENSIS: Minoris Donati
+  interpretatio. Kraków, [Kasper Hochfeder] nakładem Jana Hallera,
+  1503. 4⁰.}
 
 
 \medskip
-\examplePage{\textit{Karta a²a}}
+\examplePage{\textit{Karta a₅b}}
 
   \bigskip
-\exampleLib{Biblioteka Narodowa. Warszawa.}
+\exampleLib{Biblioteka Jagiellońska. Kraków.}
 
 
 \bigskip
-\exampleRef{\textit{Estreicher XVIII 168. Wierzbowski 836.}}
+\exampleRef{\textit{Estreicher XVII 175. Wierzbowski 2040.}}
 
   
   % \medskip
 \bigskip
 
-    \examplePL{Pismo 2: tekst i zestaw.}
+\examplePL{Pismo 3.  Rubryki \beta{}, \alfa{}. — Cyfry 1, 2.}
 
+    
     \medskip
 
-    \exampleEN{Font 2: text and font repertoire}
+    \exampleEN{Font  3.  Rubrics \beta{}, \alfa{}. — Digits 1, 2.}
 
 
 \bigskip
@@ -2489,18 +2482,19 @@ The font table prepared by Maria Błońska and Anna Wolińska.
 % Lipsk:
 % https://cyfrowe.mnk.pl/dlibra/publication/25371/edition/25054?language=pl
 
-\fontID{Ho-02}{33}
+\fontID{Ho-03}{34}
 
-\fontstat{112}
+\fontstat{122}
 
 % \exdisplay \bg \gla
- \input {t33_glyphs.tex}
+ \input {t34_glyphs.tex}
 %//
 %\glpismo%
- \input {t33_glyphids.tex}
+ \input {t34_glyphids.tex}
 % //
 %\endgl \xe
 
+\end{document}
 
 python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
 python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
