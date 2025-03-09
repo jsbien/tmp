@@ -1,6 +1,6 @@
 name: Upload XMP Metadata
 on:
-  workflow_dispatch  # Triggered manually
+  workflow_dispatch  # Trigger manually
 
 jobs:
   upload:
@@ -9,7 +9,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_PAT }}  # Use the token for authentication
+          token: ${{ secrets.GITHUB_PAT }}  # Use the GitHub token
 
       - name: Upload XMP Metadata
         run: |
@@ -19,4 +19,4 @@ jobs:
           echo "# Placeholder for XMP Metadata File" > XMP_Metadata_Scans.md
           git add XMP_Metadata_Scans.md
           git commit -m "Add XMP Metadata summary"
-          git push
+          git push origin main  # Ensure it's pushing to the correct branch
