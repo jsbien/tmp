@@ -9,7 +9,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_PAT }}  # Use the GitHub token
+          token: ${{ secrets.ASKTHECODE }}  # Use the GitHub token
 
       - name: Upload XMP Metadata
         run: |
