@@ -1,6 +1,6 @@
 name: Upload XMP Metadata
 on:
-  workflow_dispatch  # You trigger it manually
+  workflow_dispatch  # Triggered manually
 
 jobs:
   upload:
@@ -8,14 +8,15 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_PAT }}  # Use the token for authentication
 
       - name: Upload XMP Metadata
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "github-actions@github.com"
-          git clone https://github.com/jsbien/tmp.git repo
-          cd repo
+
           echo "# Placeholder for XMP Metadata File" > XMP_Metadata_Scans.md
           git add XMP_Metadata_Scans.md
           git commit -m "Add XMP Metadata summary"
-          git push https://x-access-token:${{ secrets.GITHUB_PAT }}@github.com/jsbien/tmp.git
+          git push
