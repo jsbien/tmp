@@ -31,9 +31,9 @@ def load_dsed_file(dsed_directory, filename):
                     note = line.split("\"")[1]
     return year, note
 
-def create_id(printer, font, row, glyph):
-    """Generate an identifier."""
-    return f"{printer}-{font}{row}{glyph}"
+def create_identifier(printer, font, row, glyph):
+    """Generate an identifier following the format from glyphids2tex.py."""
+    return f"{printer}-{font}{row:02d}{glyph:02d}"
 
 def generate_sidecar_files(input_dir, output_dir, dsed_dir, meta_file):
     """Generate CSV sidecar files for each PNG file in input_dir."""
@@ -56,9 +56,11 @@ def generate_sidecar_files(input_dir, output_dir, dsed_dir, meta_file):
         if not meta_entry:
             continue  # Skip if no metadata entry found
         
-        printer, font, fascicule, plate = meta_entry['printer'], meta_entry['font'], meta_entry['fascicule'], meta_entry['plate']
+        printer_symbol = meta_entry['printer'][:2]  # First two letters
+        font_part = f"{meta_entry['font']}_" if meta_entry['font'].isdigit() and len(meta_entry['font']) == 2 else meta_entry['font']
+        fascicule, plate = meta_entry['fascicule'], meta_entry['plate']
         
-        id_value = create_id(printer, font, row, glyph)
+        id_value = create_identifier(printer_symbol, font_part, int(row), int(glyph))
         
         dsed_filename = meta_entry['filename'].replace(".djvu", "_4dsed.txt")
         year, description = load_dsed_file(dsed_dir, dsed_filename)
@@ -68,7 +70,7 @@ def generate_sidecar_files(input_dir, output_dir, dsed_dir, meta_file):
         with open(sidecar_filename, 'w', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(["table", "row", "glyph", "id", "printer", "font", "fascicule", "year", "plate", "description"])
-            writer.writerow([table, row, glyph, id_value, printer, font, fascicule, year, plate, description])
+            writer.writerow([table, row, glyph, id_value, meta_entry['printer'], meta_entry['font'], fascicule, year, plate, description])
     
 if __name__ == "__main__":
     import sys
