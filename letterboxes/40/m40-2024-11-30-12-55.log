@@ -1,8 +1,0 @@
-Arguments: input_file=masks/m40.tiff, djvu_file=Hochfeder-10_PT01_028.djvu, output_directory=40
-1: 23 8+9
-2: 31
-3: 28 1+2
-4: 27
-
-Invalid strips (no letterboxes):
-Timestamp: 2024-11-30T12:55:00.020856
