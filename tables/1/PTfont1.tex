@@ -2493,7 +2493,6 @@ The font table prepared by Maria Błońska and Anna Wolińska.
 % //
 %\endgl \xe
 
-
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2508,7 +2507,7 @@ The font table prepared by Maria Błońska and Anna Wolińska.
 
 \pismoPL{Kasper Hochfeder 4. Pismo marginalne gotyckie. Krój M⁹⁸. Stopień 20 ww. = 57/58 mm - Tabl. 22, (Występuje u Hallera jako pismo 6. Tabl. 169)}
   
-\pismoEN{Kasper Hochfeder. Gothic margin font. Typeface M⁹⁸. Type
+\pismoEN{Kasper Hochfeder 4. Gothic margin font. Typeface M⁹⁸. Type
   size 20 lines = 57/58 mm. (Used by Haller as font 6. Plate 169)}
 
 \plate{22}{I}{1968}
@@ -2566,7 +2565,75 @@ The font table prepared by Maria Błońska and Anna Wolińska.
 % //
 %\endgl \xe
 
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% from meta.csv
+ % Tab. 36,Hochfeder-05_PT01_023.djvu,Hochfeder,05,01,023
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ % from dsed4test:
+
+% Note "5. Pismo tekstowe gotyckie. Krój M⁸⁸. Stopień 20 ww. = 88/89 mm - Tabl. 23 [23]"
+% Note1 "Character set table prepared by Maria Błońska and Anna Wolińska"
+
+
+\pismoPL{Kasper Hochfeder 5. Pismo tekstowe gotyckie. Krój M⁸⁸. Stopień 20 ww. = 88/89 mm - Tabl. 23}
+  
+\pismoEN{Kasper Hochfeder. 5. Gothic text font. Typeface M⁸⁸. STypeface 20 lines = 88/89 mm - Plate 23}
+
+\plate{23}{I}{1968}
+
+Prepared by Kazimierz Piekarski and  Maria Błońska.\\
+The font table prepared by Maria Błońska and Anna Wolińska.
+
+\bigskip
+
+\exampleBib{I:8}
+
+\bigskip \exampleDesc{IOANNES GLOGOVIENSIS: Minoris Donati
+  interpretatio. Kraków, [Kasper Hochfeder] nakładem Jana Hallera,
+  1503. 4⁰.}
+
+
+\medskip
+\examplePage{\textit{F₇b}}
+
+  \bigskip
+\exampleLib{Biblioteka Jagiellońska. Kraków.}
+
+
+\bigskip
+\exampleRef{\textit{Estreicher XVII 175. Wierzbowski 2040.}}
+
+  
+  % \medskip
+\bigskip
+
+\examplePL{[Pismo 5.] Rubryka \chi{}}
+
+\medskip
+
+    \exampleEN{[Font 5.] Rubric \chi{}}
+
+
+
+\bigskip
+
+\fontID{Ho-05}{36}
+
+\fontstat{107}
+
+% \exdisplay \bg \gla
+ \input {t36_glyphs.tex}
+%//
+%\glpismo%
+ \input {t36_glyphids.tex}
+% //
+%\endgl \xe
+
 \end{document}
+
 
 python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
 python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
