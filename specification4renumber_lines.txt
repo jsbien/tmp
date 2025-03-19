@@ -1,3 +1,5 @@
+Specification of `renumber_lines.py` for ChatGPG
+
 Two arguments: input and output directories
 
 The input direcory contains the files named according to the schema
