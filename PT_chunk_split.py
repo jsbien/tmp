@@ -4,7 +4,7 @@ import numpy as np
 from datetime import datetime
 
 # Script version
-VERSION = "2.1"
+VERSION = "2.2"
 
 def log_message(log_file, message):
     """Helper function to write messages to the log file."""
@@ -13,7 +13,7 @@ def log_message(log_file, message):
     print(message)  # Immediate feedback
 
 def process_image(file_path, output_dir, log_file):
-    """Process a single image to detect and filter contours."""
+    """Process a single image to detect and filter contours while preserving top and bottom whitespace."""
     # Read the binary image
     binary = cv2.imread(file_path, cv2.IMREAD_UNCHANGED)
 
@@ -27,26 +27,21 @@ def process_image(file_path, output_dir, log_file):
     # Find contours and hierarchy
     contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
     log_message(log_file, f"Number of contours found: {len(contours)}")
-
-    # Print hierarchy information for debugging
     log_message(log_file, f"Hierarchy: {hierarchy}")
 
-    # Analyze hierarchy and process next-level contours if the whole image is detected
     base_name = os.path.splitext(os.path.basename(file_path))[0]
-
-    # Sort contours from left to right based on their bounding box x-coordinate
     sorted_contours = sorted(enumerate(contours), key=lambda c: cv2.boundingRect(c[1])[0])
 
     glyph_count = 0
+    img_height, img_width = binary.shape[:2]
     for index, contour in sorted_contours:
         x, y, w, h = cv2.boundingRect(contour)
 
         # Skip the whole-image contour
-        if w == binary.shape[1] and h == binary.shape[0]:
+        if w == img_width and h == img_height:
             log_message(log_file, f"Skipping whole-image contour #{index}")
             continue
 
-        # Process only valid contours (e.g., children of the outermost contour)
         parent = hierarchy[0, index, 3]
         if parent == 0 or parent == -1:  # Top-level or child of the outermost contour
             log_message(log_file, f"Processing contour #{index} (Parent: {parent})")
@@ -57,23 +52,25 @@ def process_image(file_path, output_dir, log_file):
 
             # Retain only the region inside the contour
             glyph_region = cv2.bitwise_and(binary, binary, mask=mask)
+            glyph_region[mask == 0] = 255  # Ensure the background is white
 
-            # Ensure the background is entirely white
-            glyph_region[mask == 0] = 255
+            # Trim horizontal space while preserving vertical whitespace
+            nonzero_coords = cv2.findNonZero(mask)
+            x_min, _ = nonzero_coords.min(axis=0)[0]
+            x_max, _ = nonzero_coords.max(axis=0)[0]
+            trimmed_glyph = glyph_region[:, x_min:x_max + 1]
 
-            # Crop the region to the bounding box
-            glyph_cropped = glyph_region[y:y + h, x:x + w]
+            # Create a full-size blank canvas with a white background preserving vertical space
+            full_canvas = np.full((img_height, trimmed_glyph.shape[1]), 255, dtype=np.uint8)
+            full_canvas[y:y+h, :] = trimmed_glyph[y:y+h, :]
 
-            # Invert the cropped region to ensure black glyph on white background
-            glyph_cropped = cv2.bitwise_not(glyph_cropped)
-
-            # Invert the final output to make the background white and the glyph black
-            glyph_cropped = cv2.bitwise_not(glyph_cropped)
+            # Ensure the glyph remains black on a white background
+            glyph_output = full_canvas
 
             # Save the glyph
             glyph_count += 1
             output_file = os.path.join(output_dir, f"{base_name}-{glyph_count}.png")
-            cv2.imwrite(output_file, glyph_cropped)
+            cv2.imwrite(output_file, glyph_output)
             log_message(log_file, f"Saved glyph to {output_file} (Contour #{index}, Parent: {parent})")
 
     # Visualize contours
