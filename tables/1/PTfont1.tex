@@ -2833,17 +2833,89 @@ IOHANNES???
  \input {t38_glyphids.tex}
 % //
 %\endgl \xe
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ split poprawione
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ \newpage
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% from meta.csv
+ % Tab. 39,Hochfeder,09,01,027
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ % from dsed4test:
+
+% Note "9. Pismo tekstowe gotyckie. Krój M⁴⁸. Stopień 20 ww. = 81/82 mm - Tabl. 27. (Występuje u Hallera jako pismo 5. Tabl. 168; u Unglera jako pismo4. Tabl. 115).  [27]"
+% Note1 "Character set table prepared by Maria Błońska and Anna Wolińska"
+
+ \pismoPL{Kasper Hochfeder 9. Pismo tekstowe gotyckie. Krój
+   M⁴⁸. Stopień 20 ww. = 81/82 mm - Tabl. 27. (Występuje u Hallera
+   jako pismo 5. Tabl. 168; u Unglera jako pismo 4. Tabl. 115).}
+  
+ \pismoEN{Kasper Hochfeder 9. Gothic text font. Typeface M⁴⁸. Type
+   size 20 lines = 81/82 mm - Plate 27. (used by Haller as font
+   5. Plate 168; by Ungler as font 4. Plate 115).}
+
+\plate{27}{I}{1968}
+
+Prepared by Kazimierz Piekarski and  Maria Błońska.\\
+The font table prepared by Maria Błońska and Anna Wolińska.
+
+\bigskip
+
+\exampleBib{I:15}
+
+\bigskip \exampleDesc{IOANNES DE DOBCZYCE: Opusculum de arte memorativa. Kraków, [Kasper Hochfeder], 13 IX 1504. 4⁰}
+
+\medskip
+\examplePage{\textit{[Karta] c₃b}}
+
+  \bigskip
+\exampleLib{Biblioteka Jagiellońska. Kraków.}
+
+
+\bigskip
+\exampleRef{\textit{Estreicher XV 255, Wierzbowski 831.}}
+
+\bigskip
+\exampleDig{\url{ https://polona.pl/preview/aa8a86f1-23fe-4ef8-b9f4-b36499c4a351}
+  page 263,\\ \url{https://www.wbc.poznan.pl/dlibra/publication/310297}
+  page 42}
+
+%algorismus!
+
+  
+  % \medskip
+\bigskip
+
+\examplePL{[Pismo 9] Rubryka \epsilon{}}
+
+\medskip
+
+\exampleEN{[Font 9] Rubric \epsilon{}}
+
+
+
+\bigskip
+
+\fontID{Ho-09}{39}
+
+\fontstat{112}
+
+% \exdisplay \bg \gla
+ \input {t39_glyphs.tex}
+%//
+%\glpismo%
+ \input {t39_glyphids.tex}
+% //
+%\endgl \xe
 \end{document}
 
 
-https://www.wbc.poznan.pl/dlibra/publication/310297
-
- https://www.wbc.poznan.pl/dlibra/publication/310297/edition/254454?language=pl
-
- https://wmbc.olsztyn.pl/Content/12080/09_o_krakowskim_traktacie.pdf
-
- https://polona.pl/preview/aa8a86f1-23fe-4ef8-b9f4-b36499c4a351
- 
 python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
 python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
 python3 glyph2tex.py glyph-test glyphs4tex/
