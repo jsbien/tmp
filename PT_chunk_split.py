@@ -22,7 +22,7 @@ def process_image(file_path, output_dir, log_file):
         return
 
     # Add a white border to prevent edge detection
-    binary = cv2.copyMakeBorder(binary, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=255)
+#    binary = cv2.copyMakeBorder(binary, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=255)
 
     # Find contours and hierarchy
     contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
