@@ -2915,6 +2915,87 @@ The font table prepared by Maria Błońska and Anna Wolińska.
 %\endgl \xe
 \end{document}
 
+ \newpage
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% from meta.csv
+ % Tab. 40,Hochfeder-10_PT01_028.djvu,Hochfeder,10,01,028
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ % from dsed4test:
+
+ % Note "10. Pismo komentarzowe gotyckie. Krój M¹⁶. Stopień 20 ww. = 69 mm - Tabl. 28 [28]"
+% Note1 "Character set table prepared by Maria Błońska and Anna Wolińska"
+
+ \pismoPL{Kasper Hochfeder 10. Pismo komentarzowe gotyckie. Krój M¹⁶. Stopień 20 ww. = 69 mm - Tabl. 28.}
+  
+ \pismoEN{Kasper Hochfeder 10. Gothic comment font. Typeface M¹⁶. Type
+   size 20 lines = 69 mm - Plate 28.}
+
+\plate{28}{I}{1968}
+
+Prepared by Kazimierz Piekarski and  Maria Błońska.\\
+The font table prepared by Maria Błońska and Anna Wolińska.
+
+\bigskip
+
+\exampleBib{I:16}
+
+\bigskip \exampleDesc{ IOANNES GLOGOVIENSIS: Exercitium veteris artis. Kraków, [Kasper Hochfeder]. 16 X 1504. 4⁰,
+War. B: nakładem Jana Hallera.}
+
+
+\medskip
+\examplePage{\textit{[Karta] L₇b}}
+
+  \bigskip
+\exampleLib{Biblioteka Jagiellońska. Kraków.}
+
+
+\bigskip
+\exampleRef{\textit{Estreicher XVII 173, 160. Wierzbowski 7.}}
+
+\bigskip
+\exampleDig{\url{https://www.wbc.poznan.pl/dlibra/publication/559203/}
+  page 176}
+
+%algorismus!
+
+  
+  % \medskip
+\bigskip
+
+\examplePL{Pismo 10: tekst i pierwszy zestaw. — Pismo 11: nagłówki i
+  drugi zestaw, — Rubryka \delta{}: z pismem 11. — Cyfry 4: z pismem
+  11}
+
+\medskip
+
+\exampleEN{Font 10: the text and the first font table. — Font 11: the
+  headers and the second font table. — Rubric \delta{} with font 11. —
+  Digits 4: with font 11}
+
+
+
+\bigskip
+
+\fontID{Ho-10}{40}
+
+\fontstat{112?}
+
+% \exdisplay \bg \gla
+ \input {t39_glyphs.tex}
+%//
+%\glpismo%
+ \input {t39_glyphids.tex}
+% //
+%\endgl \xe
+
+https://www.wbc.poznan.pl/dlibra/publication/559203/edition/479475?language=en
+
+page 176
+
+python3 glyphids2tex.py t34test_input/ t34test_output/ meta.csv 
 
 python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
 python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
