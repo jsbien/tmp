@@ -2990,24 +2990,25 @@ War. B: nakładem Jana Hallera.}
 % //
 %\endgl \xe
 
-\end{document}
 
  \newpage
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % from meta.csv
- % Tab. 40,Hochfeder-10_PT01_028.djvu,Hochfeder,10,01,028
+ % Tab. 41,Hochfeder-11_PT01_028.djvu,Hochfeder,11,01,028
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  % from dsed4test:
 
- % Note "10. Pismo komentarzowe gotyckie. Krój M¹⁶. Stopień 20 ww. = 69 mm - Tabl. 28 [28]"
+ % Note "11. Pismo mszalne gotyckie. Krój M²³. Stopień 20 ww. = 154/156 mm - Tabl. 25, 28. (Występuje u Hallera jako pismo 3. Tabl. 166; u Unglera jako pismo 11) [28]"
 % Note1 "Character set table prepared by Maria Błońska and Anna Wolińska"
 
- \pismoPL{Kasper Hochfeder 10. Pismo komentarzowe gotyckie. Krój M¹⁶. Stopień 20 ww. = 69 mm - Tabl. 28.}
+ \pismoPL{Kasper Hochfeder 11. Pismo mszalne gotyckie. Krój
+   M²³. Stopień 20 ww. = 154/156 mm - Tabl. 25, 28. (Występuje u
+   Hallera jako pismo 3. Tabl. 166; u Unglera jako pismo 11)}
   
- \pismoEN{Kasper Hochfeder 10. Gothic comment font. Typeface M¹⁶. Type
-   size 20 lines = 69 mm - Plate 28.}
+ \pismoEN{Kasper Hochfeder 11. Gothic missal font. Typeface M²³. Type
+   size 20 lines = 154/156 mm - Plate 28.}
 
 \plate{28}{I}{1968}
 
@@ -3056,23 +3057,25 @@ War. B: nakładem Jana Hallera.}
 
 \bigskip
 
-\fontID{Ho-10}{40}
+\fontID{Ho-11}{41}
 
-\fontstat{105}
+\fontstat{95}
 
 % \exdisplay \bg \gla
- \input {t39_glyphs.tex}
+ \input {t41_glyphs.tex}
 %//
 %\glpismo%
- \input {t39_glyphids.tex}
+ \input {t41_glyphids.tex}
 % //
 %\endgl \xe
 
-python3 glyphids2tex.py t34test_input/ t34test_output/ meta.csv 
+\end{document}
+
+python3 glyphids2tex.py glyph-test glyphs4tex/ meta.csv
 
 python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
 python3 glyph2tex.py glyph-test glyphs4tex/
-python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
+
 
 BAD! python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
 
