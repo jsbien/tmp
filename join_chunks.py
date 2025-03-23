@@ -5,7 +5,7 @@ import numpy as np
 import re
 
 # Script version
-VERSION = "1.2"
+VERSION = "1.3"
 
 def log(msg):
     print(f"[join_chunks v{VERSION}] {msg}")
@@ -26,6 +26,9 @@ def extract_prefix_and_number(filename):
     if not match:
         raise ValueError(f"Filename does not match expected pattern '<prefix>_NN.png': {filename}")
     return match.group(1), int(match.group(2))
+
+def build_filename(prefix, number, directory):
+    return os.path.join(directory, f"{prefix}_{number:02d}.png")
 
 def join_chunks(file1, file2):
     img1 = cv2.imread(file1, cv2.IMREAD_GRAYSCALE)
@@ -72,11 +75,20 @@ def join_chunks(file1, file2):
     log(f"Joined image saved to: {output_path}")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python join_chunks.py <file1> <file2>")
+    if len(sys.argv) not in [2, 3]:
+        print("Usage: python join_chunks.py <file1> [file2]")
         sys.exit(1)
 
     file1 = sys.argv[1]
-    file2 = sys.argv[2]
+
+    if len(sys.argv) == 3:
+        file2 = sys.argv[2]
+    else:
+        # Infer second filename by incrementing number
+        prefix, num1 = extract_prefix_and_number(file1)
+        num2 = num1 + 1
+        directory = os.path.dirname(file1)
+        file2 = build_filename(prefix, num2, directory)
+        log(f"Inferred second file: {file2}")
 
     join_chunks(file1, file2)
