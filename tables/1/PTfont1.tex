@@ -314,38 +314,43 @@ bibliography and in the specific part.
 \subsection{Other abbreviations}
 \label{sec:other-abbreviations}
 
-Knihopis
 
-Knih.
-Knihopis ćeskosłovenskych tiskń od doby nejstarsi aź do konce XVIH.
-stoleti. Red. Z. Tobolka. DilII. Tisky z let 1501—1800. Ć. 1 i nast. V Praze
-1936 i nast.
-https://www.digitalniknihovna.cz/nkp/periodical/uuid:595d5a00-baf9-11e3-b74a-5ef3fc9ae867
+TO DO!
 
-BM Germ.: Short-title catalogue
-Short-title catalogue of book printed in the German-speaking countries
-and German books printed in other countries from 1455 to 1600 now in
-the British Museum. London 1962.
+% Piekarski
 
-Bohonos Ossol.
+% Knihopis
 
-Drukarze IV 
+% Knih.
+% Knihopis ćeskosłovenskych tiskń od doby nejstarsi aź do konce XVIH.
+% stoleti. Red. Z. Tobolka. DilII. Tisky z let 1501—1800. Ć. 1 i nast. V Praze
+% 1936 i nast.
+% https://www.digitalniknihovna.cz/nkp/periodical/uuid:595d5a00-baf9-11e3-b74a-5ef3fc9ae867
 
-Boh. Ossol.
-Drukarze IV
+% BM Germ.: Short-title catalogue
+% Short-title catalogue of book printed in the German-speaking countries
+% and German books printed in other countries from 1455 to 1600 now in
+% the British Museum. London 1962.
 
-M. Bohonos: Katalog starych druków Biblioteki Zakładu Narodowego
-im. Ossolińskich. Polonica wieku XVI. Z materiałów rejestracyjnych
-zebranych zespołowo pod kierownictwem Kazimierza Zatheya opraco-
-wała... Wrocław 1965.
+% Bohonos Ossol.
 
-Drukarze dawnej Polski od XV do XVIII wieku. T. 4: Pomorze. Oprac.
-A. Kawecka-Gryczowa oraz K. Korotajowa. Wrocław 1962.
+% Drukarze IV 
 
-War.???
+% Boh. Ossol.
+% Drukarze IV
 
-The abbreviation ``K.'' occuring in some descriptions stands for
-\textit{Karty}, i.e. \textit{sheets}.
+% M. Bohonos: Katalog starych druków Biblioteki Zakładu Narodowego
+% im. Ossolińskich. Polonica wieku XVI. Z materiałów rejestracyjnych
+% zebranych zespołowo pod kierownictwem Kazimierza Zatheya opraco-
+% wała... Wrocław 1965.
+
+% Drukarze dawnej Polski od XV do XVIII wieku. T. 4: Pomorze. Oprac.
+% A. Kawecka-Gryczowa oraz K. Korotajowa. Wrocław 1962.
+
+% War.???
+
+% The abbreviation ``K.'' occuring in some descriptions stands for
+% \textit{Karty}, i.e. \textit{sheets}.
 
 \newpage
 \section{Font tables}
@@ -3070,6 +3075,83 @@ War. B: nakładem Jana Hallera.}
 %\endgl \xe
 
 \end{document}
+
+
+ \newpage
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% from meta.csv
+ % Tab. 42,Ungler1-01_PT03_112.djvu,Ungler1,01,03,112
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ % from dsed4test:
+
+% Fascicule "III"
+% Publisher "Zakład Narodowy imienia Ossolińskich — Wydawnictwo"
+% Addres "Kraków  Wrocław Warszawa"
+% Year "1959"
+% Note "1. Pismo tekstowe gotyckie. Krój M⁹¹. Stopień 20 ww. == 76/77 mm. — Tabl. 112."
+
+
+ \pismoPL{Florian Ungler 1. Pismo tekstowe gotyckie. Krój M⁹¹. Stopień 20 ww. == 76/77 mm. — Tabl. 112.}
+  
+ \pismoEN{Florian Ungler 1. Gothic text font. Typeface M⁹¹. Type size 20 ww. == 76/77 mm. — Plate 112.}
+
+\plate{112}{III}{1959}
+
+The plate prepared by Henryk Bułhak.\\
+The font table prepared by Maria Błońska.
+
+\bigskip
+
+\exampleBib{III:3}
+
+\bigskip \exampleDesc{IOANNES DE SACROBOSCO: Algorithmus. Kraków, Florian Ungler, 31. I. 1511. 4⁰} 
+
+
+\medskip
+\examplePage{\textit{Karta b₅b}}
+
+  \bigskip
+\exampleLib{Biblioteka Zakł. Nar. im. Ossolińskich. Wrocław.}
+
+
+\bigskip
+\exampleRef{\textit{Estreicher XXVI. 15. Piekarski U. 2.}
+
+  \bigskip
+  \exampleDig{%1523 \url{https://polona.pl/preview/ff92eeb7-0467-4359-bdd8-4be4de13358c}    page ???,
+    % 1522?: \url{https://www.wbc.poznan.pl/dlibra/publication/314379/} page    ???,
+    \url{https://dbc.wroc.pl/dlibra/publication/3586/} page 24}
+
+%algorismus!
+
+  
+  % \medskip
+\bigskip
+
+\examplePL{[Pismo 1] Rubryka \alpha{}. — Cyfry 1. — Inicjal 1 (P).}
+
+\medskip
+
+\exampleEN{[Font 1] Rubric \alpha{}  —
+  Digits 1. — Initial 1 (P)}
+
+
+\bigskip
+
+\fontID{Un1-1}{42}
+
+\fontstat{95?}
+
+% \exdisplay \bg \gla
+ \input {t42_glyphs.tex}
+%//
+%\glpismo%
+ \input {t42_glyphids.tex}
+% //
+%\endgl \xe
+
 
 python3 glyphids2tex.py glyph-test glyphs4tex/ meta.csv
 
