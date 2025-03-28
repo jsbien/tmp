@@ -3237,7 +3237,7 @@ Kraków, Florian Ungler, 10. IV. 1512. 4⁰.}
 
 \pismoPL{Florian Ungler 3. Pismo tekstowe gotyckie. Krój M⁹¹. Stopień 20 ww. == 72/73 mm. — Tabl. 114."}
   
- \pismoEN{Florian Ungler 2. Gothic text font. Typeface M⁹¹. Type size 20 ww. == 72/73 mm. — Plate 114.}
+ \pismoEN{Florian Ungler 3. Gothic text font. Typeface M⁹¹. Type size 20 ww. == 72/73 mm. — Plate 114.}
 
 \plate{114}{III}{1959}
 
@@ -3352,9 +3352,9 @@ The font table prepared by Henryk Bułhak and Maria Błońska.
 
 \bigskip
 
-\fontID{U1-04}{44}
+\fontID{U1-04}{45}
 
-\fontstat{129}
+\fontstat{74}
 
 % \exdisplay \bg \gla
  \input {t45_glyphs.tex}
@@ -3364,7 +3364,10 @@ The font table prepared by Henryk Bułhak and Maria Błońska.
 % //
 %\endgl \xe
 
+
 \end{document}
+
+PTglyphs.py
 
 The arguments:
 the obligatory input directory referenced here as <dir>
@@ -3379,33 +3382,49 @@ Action:
 
 2.
 
+
+2.1
+
 Check if <dir> contains the subdirectory `join`. If it exists but is
 empty: abort the run.
 
-2.1 Check the consistency of the directory content.
+2.2
 
-The directory should contain at least one file with `+` in the file
+Run
+
+python3 batch_join_chunks.py <dir>/join
+
+
+2.1 Check the consistency of the output
+
+The `join` directory should contain at least one file with `+` in the file
 name, e.g. `m44_R_lines_01_chunk_13+14.png`. Abort the run with an error
- message if not empty.
+ message if there is no such file.
 
- 2.2. Copy the file(s) with `+` in the file name to the input
+ 2.3
+ 
+ Ask the user if the output is acceptable and wait for an answer. 
+
+ 2.3. Copy the file(s) with `+` in the file name to the input
  directory with an informational message.
 
 3.
 
-Check if <dir> contains the subdirectory `join`. If it exists but is
+Check if <dir> contains the subdirectory `split`. If it exists but is
 empty: abort the run.
 
 3.1 Check the consistency of the directory content.
 
-The directory should contain at least one file with. Abort the run
+The directory should contain at least one file. Abort the run
 with an error message if the directory exists but is empty.
 
-3.2 Run a script:
+3.2
+
+Run a script:
 
 python3 PT_chunk_split.py <dir>/split/
 
-3.3. Ask the user if the output is acceptable and wai for an answer.
+3.3. Ask the user if the output is acceptable and wait for an answer.
 
 3.4. Process the script output
 
@@ -3416,6 +3435,40 @@ base name ends with `contours`.
 Copy the other files to the input directory with an informational
 message.
 
+4.
+
+Run the scripts and commands
+
+python3 renumber_glyphs.py <dir> glyphs-test
+python3 glyphids2tex.py glyph-test glyphs4tex/ meta.csv
+python3 glyph2tex.py glyph-test glyphs4tex/
+cp glyph-test/*.png tables/glyphs/
+
+From `glyphs4tex` copy to `tables` only those files which are not yet
+present there (rsync?).
+
+5.
+
+Change to `tables` and run
+
+xelatex  -file-line-error    -interaction=nonstopmode PTfonts.tex
+
+6.
+
+Return to the former directory.
+======================================================================================================================
+
+glyphs2git
+1 argument <arg>
+
+
+cp glyphs-test/*.png glyphs-final
+git add glyphs-final/*
+git add glyphs4tex/*
+git commit -m "<arg>"
+git push
+
+==========================================================================================================================================
 
 python3 glyphids2tex.py glyph-test glyphs4tex/ meta.csv
 
