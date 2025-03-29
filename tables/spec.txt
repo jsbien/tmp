@@ -1,0 +1,90 @@
+PTglyphs.py
+
+The arguments:
+the obligatory input directory referenced here as <dir>
+an optional ``--dry-run'' argument 
+
+Action:
+
+ 1.
+
+ Check the contented of `glyph-test`. Abort the run with an error
+ message if not empty.
+
+2.
+
+
+2.1
+
+Check if <dir> contains the subdirectory `join`. If it exists but is
+empty: abort the run.
+
+2.2
+
+Run
+
+python3 batch_join_chunks.py <dir>/join
+
+
+2.1 Check the consistency of the output
+
+The `join` directory should contain at least one file with `+` in the file
+name, e.g. `m44_R_lines_01_chunk_13+14.png`. Abort the run with an error
+ message if there is no such file.
+
+ 2.3
+ 
+ Ask the user if the output is acceptable and wait for an answer. 
+
+ 2.3. Copy the file(s) with `+` in the file name to the input
+ directory with an informational message.
+
+3.
+
+Check if <dir> contains the subdirectory `split`. If it exists but is
+empty: abort the run.
+
+3.1 Check the consistency of the directory content.
+
+The directory should contain at least one file. Abort the run
+with an error message if the directory exists but is empty.
+
+3.2
+
+Run a script:
+
+python3 PT_chunk_split.py <dir>/split/
+
+3.3. Ask the user if the output is acceptable and wait for an answer.
+
+3.4. Process the script output
+
+The directory python3 PT_chunk_split.py <dir>/split/output will
+contain two kinds of files. We *are not* interested in the files whose
+base name ends with `contours`.
+
+Copy the other files to the input directory with an informational
+message.
+
+4.
+
+Run the scripts and commands
+
+python3 renumber_glyphs.py <dir> glyphs-test
+python3 glyphids2tex.py glyph-test glyphs4tex/ meta.csv
+python3 glyph2tex.py glyph-test glyphs4tex/
+cp glyph-test/*.png tables/glyphs/
+
+From `glyphs4tex` copy to `tables` only those files which are not yet
+present there (rsync?).
+
+5.
+
+Change to `tables` and run
+
+xelatex  -file-line-error    -interaction=nonstopmode PTfonts.tex
+
+6.
+
+Return to the former directory.
+======================================================================================================================

@@ -1,0 +1,13 @@
+m48_R_lines_01_chunk_20.png
+
+grid
+
+keypress
+
+space -> glyph image light green
+s -> split image background yellow
+j -> join image background light orange
+del - noise grey
+
+automatic move to next glyph
+arrow navigation
