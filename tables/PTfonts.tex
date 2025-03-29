@@ -3327,7 +3327,7 @@ The font table prepared by Henryk Bułhak and Maria Błońska.
 \examplePage{\textit{Karta A₂b}}
 
   \bigskip
-  \exampleLib{Biblioteka Jagiellohska. Kraków.}
+  \exampleLib{Biblioteka Jagiellońska. Kraków.}
   
 
 \bigskip \exampleRef{\textit{Estreicher XII. 214. Piekarski U. 6.}}
@@ -3365,7 +3365,82 @@ The font table prepared by Henryk Bułhak and Maria Błońska.
 %\endgl \xe
 
 
+ \newpage
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% from meta.csv
+ % Tab. 46,Ungler1-05_PT03_116.djvu,Ungler1,05,03,116
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ 
+ % from dsed4test:
+% Note "5. Pismo tekstowe gotyckie. Krój M⁴⁸. Stopień 20 ww. == 89/90 mm. — Tabl. 116."
+% Note1 "Character set table prepared by Maria Błońska"
+
+
+
+\pismoPL{Florian Ungler 5. Pismo tekstowe gotyckie. Krój M⁴⁸. Stopień 20 ww. == 89/90 mm. — Tabl. 116.}
+  
+ \pismoEN{Florian Ungler 5. Gothic text font. Typeface M⁴⁸. Type size 20 ww. == 89/90 mm. — Plate 116.}
+
+\plate{116}{III}{1959}
+
+The plate prepared by Henryk Bułhak.\\
+The font table prepared by Henryk Bułhak and Maria Błońska.
+
+\bigskip
+
+\exampleBib{III:22}
+
+\bigskip \exampleDesc{IOANNES BURHARDUS: Ordo missae cum glossa Stanislai Zaborowski. Kraków,
+Florian Ungler, 29. XI. 1512. 4⁰}
+
+
+\medskip
+\examplePage{\textit{Karta C₂b}}
+
+  \bigskip
+  \exampleLib{Biblioteka Jagiellońska. Kraków.}
+  
+
+\bigskip \exampleRef{\textit{Estreicher XXIII. 413, XX XIV. 48. Wierzbowski 2067. Piekarski U. 18.}}
+
+  \bigskip
+  \exampleDig{\url{ https://cyfrowe.mnk.pl/dlibra/publication/865/} page 95}
+% Lipsk  https://kpbc.umk.pl/dlibra/publication/edition/146354/content
+% Paris   https://bibliotekacyfrowa.pl/en/dlibra/publication/53621/processus-iudiciarius-johannes-de-auerbach-1405-1469
+%  Ungler 1516? https://wbc.poznan.pl/dlibra/publication/505385/edition/473732/content?ref=L3B1YmxpY2F0aW9uLzQ5NDE4NC9lZGl0aW9uLzQyNTk4OA
+ 
+  
+  % \medskip
+\bigskip
+
+\examplePL{[Pismo 5]}
+
+\medskip
+
+\exampleEN{[Font ]}
+
+
+
+\bigskip
+
+\fontID{U1-05}{46}
+
+\fontstat{95}
+
+% \exdisplay \bg \gla
+ \input {t46_glyphs.tex}
+%//
+%\glpismo%
+ \input {t46_glyphids.tex}
+% //
+%\endgl \xe
+
 \end{document}
+
+
+
 
 PTglyphs.py
 
@@ -3469,6 +3544,8 @@ git commit -m "<arg>"
 git push
 
 ==========================================================================================================================================
+
+python3 PTglyphs.py glyphs-edited/45 --dry-run
 
 python3 glyphids2tex.py glyph-test glyphs4tex/ meta.csv
 
