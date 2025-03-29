@@ -1,12 +1,13 @@
-# distribute1.py - Version 1.3
+# distribute1.py - Version 1.4
 
 import os
 import sys
 import cv2
 import numpy as np
 import glob
+import matplotlib.pyplot as plt
 
-print("distribute1.py - Version 1.3")
+print("distribute1.py - Version 1.4")
 
 
 def get_number_from_filename(filename, pattern):
@@ -19,14 +20,12 @@ def get_number_from_filename(filename, pattern):
 
 def display_images(image_paths, title):
     images = []
-    dimensions = []
     for img_path in image_paths:
         img = cv2.imread(img_path)
         if img is None:
             print(f"Warning: Unable to read {img_path}")
             continue
-        images.append(img)
-        dimensions.append((img.shape[0], img.shape[1]))
+        images.append(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB for matplotlib
 
     num_images = len(images)
 
@@ -34,38 +33,20 @@ def display_images(image_paths, title):
         print("No images to display.")
         return
 
-    # Calculate the grid dimensions dynamically
     cols = int(np.ceil(np.sqrt(num_images)))
     rows = int(np.ceil(num_images / cols))
 
-    # Calculate max dimensions for each row and column
-    max_heights = [0] * rows
-    max_widths = [0] * cols
+    fig, axes = plt.subplots(rows, cols, figsize=(12, 8))
+    fig.suptitle(title)
+    plt.tight_layout(pad=2)
 
-    for idx, (h, w) in enumerate(dimensions):
+    for idx, img in enumerate(images):
         r, c = divmod(idx, cols)
-        max_heights[r] = max(max_heights[r], h)
-        max_widths[c] = max(max_widths[c], w)
+        ax = axes[r, c] if rows > 1 else (axes[c] if cols > 1 else axes)
+        ax.imshow(img)
+        ax.axis('off')
 
-    grid_height = sum(max_heights)
-    grid_width = sum(max_widths)
-
-    grid = np.zeros((grid_height, grid_width, 3), dtype=np.uint8)
-
-    y_offset = 0
-    for r in range(rows):
-        x_offset = 0
-        for c in range(cols):
-            idx = r * cols + c
-            if idx >= num_images:
-                break
-            img = images[idx]
-            h, w = img.shape[:2]
-            grid[y_offset:y_offset+h, x_offset:x_offset+w] = img
-            x_offset += max_widths[c]
-        y_offset += max_heights[r]
-
-    cv2.imshow(title, grid)
+    plt.show()
 
 
 def main():
@@ -94,13 +75,7 @@ def main():
 
         for number2, image_group in sorted(number2_groups.items()):
             display_images(image_group, f"Number1: {number1}, Number2: {number2}")
-            key = cv2.waitKey(0)
-            if key == 27:  # Escape key
-                confirm = input("Exit (y/n)? ")
-                if confirm.lower() == 'y':
-                    cv2.destroyAllWindows()
-                    sys.exit(0)
-        cv2.destroyAllWindows()
+            input("Press Enter to continue...")
 
 
 if __name__ == "__main__":
