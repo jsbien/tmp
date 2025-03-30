@@ -14,7 +14,7 @@ KEY_ACTIONS = {
     Qt.Key_Space: ("green", "glyph", "is glyph"),
     Qt.Key_S: ("blue", "split", "to split"),
     Qt.Key_J: ("orange", "join", "to join"),
-    Qt.Key_Delete: ("red", "noise", "is noise")
+    Qt.Key_N: ("red", "noise", "is noise")
 }
 
 class ImageGrid(QWidget):
