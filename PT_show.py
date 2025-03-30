@@ -1,11 +1,13 @@
 import sys
 import os
 import shutil
-from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLabel, QScrollArea
+from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLabel, QScrollArea, QMessageBox
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
+import re
+from itertools import groupby
 
-SCRIPT_VERSION = "3.0"
+SCRIPT_VERSION = "4.2"
 
 # Color and log mapping for each key
 KEY_ACTIONS = {
@@ -16,22 +18,34 @@ KEY_ACTIONS = {
 }
 
 class ImageGrid(QWidget):
-    def __init__(self, image_dir):
+    def __init__(self, image_dir, batches):
         super().__init__()
         self.setWindowTitle(f"Image Grid - {os.path.abspath(image_dir)}")
         self.setFocusPolicy(Qt.StrongFocus)
-
-        # Initialize navigation variables
+        self.image_dir = image_dir
+        self.batches = batches
+        self.current_batch = 0
         self.current_index = 0
         self.image_class = {}  # Store the class for each image
-
-        # Get PNG files sorted alphabetically
-        self.images = sorted([f for f in os.listdir(image_dir) if f.lower().endswith('.png')])
-        self.image_dir = image_dir
 
         # Create subdirectories if not exist
         for _, subdir, _ in KEY_ACTIONS.values():
             os.makedirs(os.path.join(image_dir, subdir), exist_ok=True)
+
+        self.initUI()
+
+    def initUI(self):
+        """Initialize the user interface for the current batch."""
+        # Clear the previous layout to avoid the "already has a layout" issue
+        if self.layout():
+            layout_item = self.layout().takeAt(0)
+            if layout_item:
+                widget = layout_item.widget()
+                if widget:
+                    widget.deleteLater()
+
+        # Get the current batch of images, sorted alphabetically
+        self.images = sorted(self.batches[self.current_batch])
 
         # Create a scrollable area
         scroll_area = QScrollArea(self)
@@ -48,7 +62,7 @@ class ImageGrid(QWidget):
             row = index // self.max_col
             col = index % self.max_col
             label = QLabel(self)
-            pixmap = QPixmap(os.path.join(image_dir, image))
+            pixmap = QPixmap(os.path.join(self.image_dir, image))
             label.setPixmap(pixmap)
             label.setStyleSheet("border: 2px solid transparent;")
             self.grid_layout.addWidget(label, row, col)
@@ -71,38 +85,27 @@ class ImageGrid(QWidget):
 
     def update_selection(self, new_index):
         """Update the selection highlighting."""
-        # Clear previous selection
         if 0 <= self.current_index < len(self.labels):
-            label = self.labels[self.current_index]
             color = self.image_class.get(self.current_index, "transparent")
-            label.setStyleSheet(f"border: 2px solid {color};")
-
-        # Update current index
+            self.labels[self.current_index].setStyleSheet(f"border: 2px solid {color};")
         self.current_index = new_index
-
-        # Highlight the new selection
         if 0 <= self.current_index < len(self.labels):
             self.labels[self.current_index].setStyleSheet("border: 2px solid black;")
 
     def classify_image(self, key):
-        """Classify the currently selected image based on the key press."""
+        """Classify the currently selected image."""
         if key in KEY_ACTIONS:
             color, category, log_message = KEY_ACTIONS[key]
             filename = self.images[self.current_index]
-
-            # Update classification and log
             self.image_class[self.current_index] = color
             print(f"{filename} {log_message}")
-
-            # Update the current label's style
             self.labels[self.current_index].setStyleSheet(f"border: 2px solid {color};")
-
-            # Move to the next image automatically
+            # Move to the next image, if it exists
             next_index = min(self.current_index + 1, len(self.labels) - 1)
             self.update_selection(next_index)
 
     def move_images(self):
-        """Move images to respective directories based on classification."""
+        """Move images to respective directories."""
         for index, color in self.image_class.items():
             filename = self.images[index]
             _, subdir, _ = next((v for k, v in KEY_ACTIONS.items() if v[0] == color), (None, None, None))
@@ -115,26 +118,46 @@ class ImageGrid(QWidget):
     def keyPressEvent(self, event):
         """Handle keyboard input."""
         key = event.key()
-
         if key in KEY_ACTIONS:
-            # Classify the current image
             self.classify_image(key)
         elif key == Qt.Key_Return or key == Qt.Key_Enter:
-            # Move images to respective subdirectories and exit
+            if len(self.image_class) < len(self.images):
+                print("Not all images in the current batch are classified.")
+                QMessageBox.warning(self, "Incomplete Batch", "Please classify all images before proceeding.")
+                return
+
             self.move_images()
-            print("Image classification completed.")
-            QApplication.quit()
-        else:
-            # Ignore other keys
-            return
+            self.current_batch += 1
+
+            if self.current_batch >= len(self.batches):
+                print("All images processed.")
+                QMessageBox.information(self, "Completed", "All images have been classified.")
+                QApplication.quit()
+            else:
+                self.initUI()
+        elif key == Qt.Key_Escape:
+            reply = QMessageBox.question(self, "Exit", "Are you sure you want to exit?", 
+                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                QApplication.quit()
 
     def mousePressEvent(self, event):
         """Ensure the widget gains focus when clicked."""
         self.setFocus()
 
+def group_files(files):
+    """Group files by their number1 and number2 components."""
+    grouped = []
+    def key_func(filename):
+        match = re.match(r"m(\d+)_R_lines_(\d+)_chunk_\d+\.png", filename)
+        return (int(match.group(1)), int(match.group(2))) if match else (None, None)
+    files.sort(key=key_func)
+    for _, group in groupby(files, key=key_func):
+        grouped.append(sorted(list(group)))
+    return grouped
+
 def main():
     print(f"Script version: {SCRIPT_VERSION}")
-
     if len(sys.argv) != 2:
         print("Usage: python PT_show.py <image_directory>")
         sys.exit(1)
@@ -144,8 +167,11 @@ def main():
         print(f"Error: {image_dir} is not a valid directory.")
         sys.exit(1)
 
+    files = [f for f in os.listdir(image_dir) if f.lower().endswith('.png')]
+    batches = group_files(files)
+
     app = QApplication(sys.argv)
-    window = ImageGrid(image_dir)
+    window = ImageGrid(image_dir, batches)
     window.show()
     sys.exit(app.exec_())
 
