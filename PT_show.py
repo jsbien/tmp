@@ -7,7 +7,7 @@ from PyQt5.QtCore import Qt
 import re
 from itertools import groupby
 
-SCRIPT_VERSION = "4.2"
+SCRIPT_VERSION = "4.5"
 
 # Color and log mapping for each key
 KEY_ACTIONS = {
@@ -34,15 +34,19 @@ class ImageGrid(QWidget):
 
         self.initUI()
 
+    def clear_layout(self):
+        """Clear the current layout before loading a new batch."""
+        layout = self.layout()
+        if layout:
+            for i in reversed(range(layout.count())):
+                widget = layout.itemAt(i).widget()
+                if widget:
+                    widget.setParent(None)
+                    widget.deleteLater()
+
     def initUI(self):
         """Initialize the user interface for the current batch."""
-        # Clear the previous layout to avoid the "already has a layout" issue
-        if self.layout():
-            layout_item = self.layout().takeAt(0)
-            if layout_item:
-                widget = layout_item.widget()
-                if widget:
-                    widget.deleteLater()
+        self.clear_layout()
 
         # Get the current batch of images, sorted alphabetically
         self.images = sorted(self.batches[self.current_batch])
@@ -100,8 +104,13 @@ class ImageGrid(QWidget):
             self.image_class[self.current_index] = color
             print(f"{filename} {log_message}")
             self.labels[self.current_index].setStyleSheet(f"border: 2px solid {color};")
-            # Move to the next image, if it exists
-            next_index = min(self.current_index + 1, len(self.labels) - 1)
+
+            # Safely move to the next image
+            if self.current_index < len(self.labels) - 1:
+                next_index = self.current_index + 1
+            else:
+                next_index = self.current_index  # Stay on the last image
+
             self.update_selection(next_index)
 
     def move_images(self):
