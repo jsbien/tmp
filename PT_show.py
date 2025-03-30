@@ -7,7 +7,7 @@ from PyQt5.QtCore import Qt
 import re
 from itertools import groupby
 
-SCRIPT_VERSION = "4.9"
+SCRIPT_VERSION = "6.0"
 
 # Color and log mapping for each key
 KEY_ACTIONS = {
@@ -18,11 +18,11 @@ KEY_ACTIONS = {
 }
 
 class ImageGrid(QWidget):
-    def __init__(self, image_dir, batches):
+    def __init__(self, image_dir, batches, current_batch=0):
         super().__init__()
         self.image_dir = image_dir
         self.batches = batches
-        self.current_batch = 0
+        self.current_batch = current_batch
         self.current_index = 0
         self.image_class = {}  # Store the class for each image
 
@@ -30,27 +30,14 @@ class ImageGrid(QWidget):
         for _, subdir, _ in KEY_ACTIONS.values():
             os.makedirs(os.path.join(image_dir, subdir), exist_ok=True)
 
+        # Set focus policy to ensure key events are captured
+        self.setFocusPolicy(Qt.StrongFocus)
+
         # Initialize the UI correctly
         self.initUI()
 
-    def clear_layout(self):
-        """Properly clear the current layout before loading a new batch."""
-        layout = self.layout()
-        if layout is not None:
-            # Remove all widgets from the layout
-            while layout.count():
-                child = layout.takeAt(0)
-                if child.widget():
-                    child.widget().deleteLater()
-            # Remove the layout from the widget
-            self.setLayout(None)
-            # Delete the layout explicitly to avoid residual references
-            del layout
-
     def initUI(self):
         """Initialize the user interface for the current batch."""
-        self.clear_layout()
-
         # Get the current batch of images, sorted alphabetically
         self.images = sorted(self.batches[self.current_batch])
 
@@ -74,12 +61,15 @@ class ImageGrid(QWidget):
         # Display images in the grid
         self.labels = []
         self.max_col = int(len(self.images) ** 0.5) + 1
+        image_width, image_height = 0, 0
         for index, image in enumerate(self.images):
             row = index // self.max_col
             col = index % self.max_col
             label = QLabel(self)
             pixmap = QPixmap(os.path.join(self.image_dir, image))
             label.setPixmap(pixmap)
+            image_width = max(image_width, pixmap.width())
+            image_height = max(image_height, pixmap.height())
             label.setStyleSheet("border: 2px solid transparent;")
             self.grid_layout.addWidget(label, row, col)
             self.labels.append(label)
@@ -96,7 +86,18 @@ class ImageGrid(QWidget):
         main_layout.addWidget(scroll_area)
         self.setLayout(main_layout)
 
-        # Set focus after initialization
+        # Adjust window size to fit images
+        total_width = image_width * self.max_col + 50
+        total_height = image_height * ((len(self.images) + self.max_col - 1) // self.max_col) + 100
+
+        # Get screen size and limit the window size
+        screen = QApplication.primaryScreen()
+        screen_size = screen.size()
+        total_width = min(total_width, screen_size.width())
+        total_height = min(total_height, screen_size.height())
+
+        # Resize the window
+        self.resize(total_width, total_height)
         self.setFocus()
 
     def update_selection(self, new_index):
@@ -107,6 +108,7 @@ class ImageGrid(QWidget):
         self.current_index = new_index
         if 0 <= self.current_index < len(self.labels):
             self.labels[self.current_index].setStyleSheet("border: 2px solid black;")
+        self.setFocus()
 
     def classify_image(self, key):
         """Classify the currently selected image."""
@@ -116,8 +118,6 @@ class ImageGrid(QWidget):
             self.image_class[self.current_index] = color
             print(f"{filename} {log_message}")
             self.labels[self.current_index].setStyleSheet(f"border: 2px solid {color};")
-
-            # Move to the next image safely
             next_index = min(self.current_index + 1, len(self.labels) - 1)
             self.update_selection(next_index)
 
@@ -137,6 +137,7 @@ class ImageGrid(QWidget):
         key = event.key()
         ctrl_pressed = event.modifiers() & Qt.ControlModifier
 
+        # Handle Ctrl+Space for batch classification
         if ctrl_pressed and key == Qt.Key_Space:
             for index in range(len(self.images)):
                 self.image_class[index] = "green"
@@ -144,6 +145,7 @@ class ImageGrid(QWidget):
                 print(f"{filename} is glyph")
                 self.labels[index].setStyleSheet("border: 2px solid green;")
             self.update_selection(0)
+
         elif key in KEY_ACTIONS:
             self.classify_image(key)
         elif key == Qt.Key_Return or key == Qt.Key_Enter:
@@ -152,26 +154,10 @@ class ImageGrid(QWidget):
                 QMessageBox.warning(self, "Incomplete Batch", "Please classify all images before proceeding.")
                 return
             self.move_images()
-            self.current_batch += 1
-            if self.current_batch >= len(self.batches):
-                print("All images processed.")
-                QMessageBox.information(self, "Completed", "All images have been classified.")
-                QApplication.quit()
-            else:
-                self.initUI()
-        elif key == Qt.Key_Escape:
-            reply = QMessageBox.question(self, "Exit", "Are you sure you want to exit?",
-                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-            if reply == QMessageBox.Yes:
-                QApplication.quit()
-        elif key == Qt.Key_Left:
-            self.update_selection(max(0, self.current_index - 1))
-        elif key == Qt.Key_Right:
-            self.update_selection(min(len(self.labels) - 1, self.current_index + 1))
-        elif key == Qt.Key_Up:
-            self.update_selection(max(0, self.current_index - self.max_col))
-        elif key == Qt.Key_Down:
-            self.update_selection(min(len(self.labels) - 1, self.current_index + self.max_col))
+            self.close()
+            if self.current_batch + 1 < len(self.batches):
+                self.new_window = ImageGrid(self.image_dir, self.batches, self.current_batch + 1)
+                self.new_window.show()
 
 def group_files(files):
     grouped = []
