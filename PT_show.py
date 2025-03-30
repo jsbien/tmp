@@ -7,13 +7,13 @@ from PyQt5.QtCore import Qt
 import re
 from itertools import groupby
 
-SCRIPT_VERSION = "6.0"
+SCRIPT_VERSION = "6.2"
 
 # Color and log mapping for each key
 KEY_ACTIONS = {
     Qt.Key_Space: ("green", "glyph", "is glyph"),
     Qt.Key_S: ("blue", "split", "to split"),
-    Qt.Key_J: ("orange", "join", "to join"),
+    Qt.Key_J: ("orange", "join", "is join"),
     Qt.Key_N: ("red", "noise", "is noise")
 }
 
@@ -135,29 +135,19 @@ class ImageGrid(QWidget):
     def keyPressEvent(self, event):
         """Handle keyboard input."""
         key = event.key()
-        ctrl_pressed = event.modifiers() & Qt.ControlModifier
-
-        # Handle Ctrl+Space for batch classification
-        if ctrl_pressed and key == Qt.Key_Space:
-            for index in range(len(self.images)):
-                self.image_class[index] = "green"
-                filename = self.images[index]
-                print(f"{filename} is glyph")
-                self.labels[index].setStyleSheet("border: 2px solid green;")
-            self.update_selection(0)
-
-        elif key in KEY_ACTIONS:
+        if key in KEY_ACTIONS:
             self.classify_image(key)
         elif key == Qt.Key_Return or key == Qt.Key_Enter:
-            if len(self.image_class) < len(self.images):
-                print("Not all images in the current batch are classified.")
-                QMessageBox.warning(self, "Incomplete Batch", "Please classify all images before proceeding.")
-                return
             self.move_images()
             self.close()
-            if self.current_batch + 1 < len(self.batches):
-                self.new_window = ImageGrid(self.image_dir, self.batches, self.current_batch + 1)
+            next_batch = self.current_batch + 1
+            if next_batch < len(self.batches):
+                self.new_window = ImageGrid(self.image_dir, self.batches, next_batch)
                 self.new_window.show()
+            else:
+                print("All images processed.")
+                QMessageBox.information(None, "Completed", "All images have been classified.")
+                QApplication.quit()
 
 def group_files(files):
     grouped = []
@@ -173,8 +163,12 @@ def main():
     print(f"Script version: {SCRIPT_VERSION}")
     image_dir = sys.argv[1]
     files = [f for f in os.listdir(image_dir) if f.lower().endswith('.png')]
-    batches = group_files(files)
+    if not files:
+        print("All images processed.")
+        QMessageBox.information(None, "Completed", "All images have been classified.")
+        sys.exit(0)
 
+    batches = group_files(files)
     app = QApplication(sys.argv)
     window = ImageGrid(image_dir, batches)
     window.show()
