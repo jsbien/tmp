@@ -1,5 +1,9 @@
-font="U2-15"
+glyph-id=
+font-id="U2-15"
+printer-id"U2"
 printer="Florian Ungler"
 activity="druga drukarnia: 1521—1536"
 PT plate="358"
+PT table="1"
+
 
