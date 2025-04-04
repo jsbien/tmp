@@ -1,0 +1,5 @@
+font="U2-15"
+printer="Florian Ungler"
+activity="druga drukarnia: 1521—1536"
+PT plate="358"
+
