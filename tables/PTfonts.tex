@@ -33,6 +33,29 @@
 \newcommand{\PTglyph}[2]{\includegraphics[height=7ex]{glyphs/#2}}
 \newcommand{\PTglyphid}[1]{#1}
 
+\newcommand{\pismoPL}[1]{{\relsize{2}\Junicode\textbf{#1}}}
+\newcommand{\pismoEN}[1]{{\relsize{1}\Junicode\begin{quote}#1\end{quote}}}
+\newcommand{\plate}[3]{\textbf{Plate #1} (fasc. #2, #3)}
+\newcommand{\exampleBib}[1]{{\relsize{2}\Junicode\textbf{The
+      example:}\\[2ex] CATALOGUS LIBRORUM \textbf{#1}}}
+\newcommand{\exampleBibExtra}[1]{{\relsize{2}\Junicode\textit{The
+      plate contains also an example without a font table:}\\[2ex]
+    CATALOGUS LIBRORUM \textbf{#1}}}
+\newcommand{\exampleDesc}[1]{{\relsize{0}\Junicode#1}}
+\newcommand{\exampleDig}[1]{{\relsize{0}\Junicode \textbf{Digitization(s) [JSB]:} #1}}
+\newcommand{\exampleLib}[1]{{\relsize{0}\Junicode \textbf{Library:} #1}}
+%\newcommand{\examplePL}[1]{{\relsize{0}\Junicode#1}}
+\newcommand{\examplePL}[1]{}
+%\newcommand{\exampleEN}[1]{{\relsize{0}\Junicode\begin{quote}#1\end{quote}}}
+\newcommand{\exampleEN}[1]{}
+\newcommand{\fontID}[2]{{\relsize{1}\Junicode\textbf{Font identifier} (JSB): #1 (table #2)}}
+\newcommand{\fontstat}[1]{{\relsize{1}\Junicode\textbf{Statistics} (JSB): #1 glyphs.}}
+\newcommand{\exampleRef}[1]{{\relsize{0}\Junicode \textbf{References:} #1}}
+\newcommand{\examplePage}[1]{{\relsize{0}\Junicode#1}}
+\newcommand{\examplePageEN}[1]{{\relsize{0}\Junicode#1}}
+
+
+
 \parindent0pt
 
 \begin{document}
@@ -302,7 +325,6 @@ Font tables: 89. Typoglyphs: 7\,676???
 % ls -l . | egrep -c '^-'
 \newpage
 
-\end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Tab. 01 Aleksander Augezdecki pismo 1
@@ -323,31 +345,19 @@ Font tables: 89. Typoglyphs: 7\,676???
 % Note2 "Scan (prepared by Biblioteka Uniwersytecka w Warszawie from their own copy) converted to DjVu with didjvu by Janusz S. Bień"
 % URL "https://github.com/jsbien/early_fonts_inventory/"
 
-\newcommand{\pismoPL}[1]{{\relsize{2}\Junicode\textbf{#1}}}
-%\textbf{1. Pisma tekstowe, szwabacha M⁸¹. Stopień 20 ww. = 102—103 mm (tercja). — Tabl. 402—404.}
-
 \pismoPL{Aleksander Augezdecki 1. Pisma tekstowe, szwabacha M⁸¹. Stopień 20 ww. = 102—103 mm (tercja). — Tabl. 402—404.}
 
-\newcommand{\pismoEN}[1]{{\relsize{1}\Junicode\begin{quote}#1\end{quote}}}
-
-% \begin{quote}
-%   1. Schwabacher text script. Typeface M⁸¹. Type size 20 lines = 102—103
-%   mm (tertia) - Plate 402-404.
-% \end{quote}
 
 \pismoEN{Aleksander Augezdecki 1. Schwabacher text script. Typeface M⁸¹. Type size 20 lines = 102—103 mm (tertia) - Plate 402-404.}
 
   
     \medskip
 
-    \newcommand{\plate}[3]{\textbf{Plate #1} (fasc. #2, #3)}
     
-%    \textbf{Plate 402} 
-
 \plate{402}{VIII}{1972}
     
-%     Original font table
-    Prepared by Paulina Buchwald-Pelcowa.
+The plate    prepared by Paulina Buchwald-Pelcowa.\\
+The font table    prepared by Paulina Buchwald-Pelcowa.\\
 
     \medskip
     
@@ -363,44 +373,27 @@ Font tables: 89. Typoglyphs: 7\,676???
 
       \bigskip
 
-%        \textsc{Primary example:}
-
-      \newcommand{\exampleBib}[1]{{\relsize{2}\Junicode\textbf{The
-            example:}\\[2ex] CATALOGUS LIBRORUM \textbf{#1}}}
-      \newcommand{\exampleBibExtra}[1]{{\relsize{2}\Junicode\textit{The
-            plate contains also an example without a font
-            table:}\\[2ex] CATALOGUS LIBRORUM \textbf{#1}}}
 
       \exampleBib{VIII:4a}
       \bigskip
-
-\newcommand{\exampleDesc}[1]{{\relsize{0}\Junicode#1}}
-\newcommand{\exampleDig}[1]{{\relsize{0}\Junicode \textbf{Digitization(s) [JSB]:} #1}}
 
 
 \exampleDesc{[TESTAMENTUM NOVUM. Evangelium secundum Matthaeum. Trad. polon. Stanislaus Murzynowski]:
 Ewangelia Sw. Mateusza. Królewiec, [Aleksander Augezdecki], 1551. 4°.}
 
-\newcommand{\examplePage}[1]{{\relsize{0}\Junicode#1}}
-\newcommand{\examplePageEN}[1]{{\relsize{0}\Junicode#1}}
-
 \medskip
 \examplePage{\textit{Karta LXXXIIIb.}}
 
-\newcommand{\exampleLib}[1]{{\relsize{0}\Junicode \textbf{Library:} #1}}
 
 \bigskip
 \exampleLib{Biblioteka Czartoryskich. Kraków.}
 
 \bigskip
-\newcommand{\exampleRef}[1]{{\relsize{0}\Junicode \textbf{References:} #1}}
 
 \exampleRef{\textit{Estreicher XIII 26. Wierzbowski 135.}}
 
 \bigskip
 \exampleDig{\url{https://www.dbc.wroc.pl/publication/33779} page 202.}
-
-\newcommand{\examplePL}[1]{{\relsize{0}\Junicode#1}}
 
 %      Pismo 1: tekst i zestaw wraz z zestawem liter ze znakami diakrytycznymi polskimi.
 
@@ -414,7 +407,6 @@ Ewangelia Sw. Mateusza. Królewiec, [Aleksander Augezdecki], 1551. 4°.}
       %   Font 1. The text and the table including letters with Polish diacritical marks.
       % \end{quote}
 
-\newcommand{\exampleEN}[1]{{\relsize{0}\Junicode\begin{quote}#1\end{quote}}}
 
 \exampleEN{Font 1. The text and the table including letters with Polish diacritical marks.}
 
@@ -428,13 +420,9 @@ Ewangelia Sw. Mateusza. Królewiec, [Aleksander Augezdecki], 1551. 4°.}
   
   \bigskip
   
-\newcommand{\fontID}[2]{{\relsize{1}\Junicode\textbf{Font identifier} (JSB): #1 (table #2)}}
-
-%    \textbf{Font identifier} (JSB): Au-01 (table 01)
 
     \fontID{Au-01}{01}
 
-\newcommand{\fontstat}[1]{{\relsize{1}\Junicode\textbf{Statistics} (JSB): #1 glyphs.}}
 
 \fontstat{241}
 
@@ -447,6 +435,8 @@ Ewangelia Sw. Mateusza. Królewiec, [Aleksander Augezdecki], 1551. 4°.}
 %\endgl \xe
 
 %\end{flushleft}
+
+\end{document}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -6342,6 +6332,8 @@ https://ewangelie.uw.edu.pl/przeklady
 % https://en.wikipedia.org/wiki/Insular_script
 % number tabular also in superscripts ???
 % line the baseline of images ???
+
+
 
 
 %%% Local Variables: 
