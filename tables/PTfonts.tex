@@ -1,85 +1,25 @@
-% 10.5281/zenodo.14992305
-% https://zenodo.org/uploads/14992305
-% TO DO:
-% https://en.wikipedia.org/wiki/Latin_delta
-% https://en.wikipedia.org/wiki/Insular_script
-% number tabular also in superscripts ???
-% line the baseline of images ???
 \documentclass[12pt]{article}
 \usepackage[a3paper,margin=1.5cm]{geometry}
 \usepackage{fontspec}
 \newfontfamily{\Junicode}{Junicode}[Numbers=Lining]
-%\fontspec[Numbers=Lining]{Junicode}
-\newcommand{\J}[1]{{\Junicode #1}}
-% \usepackage{polyglossia}
-% \setmainlanguage{polish}
-% \setotherlanguage{english}
-%\usepackage{csquotes}
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setotherlanguage{polish}
 
-\usepackage{metalogo}
-% \usepackage[polish]{varioref}
-% % dla varioref!
-% \def\eob{ę}
-\usepackage{xcolor}
+% \usepackage{metalogo}
+% \usepackage{xcolor}
 
 
 \usepackage{relsize}
 
 %\usepackage{float}
 
-\usepackage{caption}
+% \usepackage{caption}
 
 \usepackage[verbose]{hyperref}
 
 \usepackage{graphicx}
-% [hyphens]: options clash
 \usepackage{url}
-%\usepackage{natbib}
-
-% program name
-\newcommand{\pname}[1]{\textsf{#1}}
-
-
-% file name
-\newcommand{\fname}[1]{\texttt{#1}}
-
-\newcommand{\uname}[1]{\texttt{'#1'}}
-\newcommand{\ucode}[1]{\texttt{U+#1}}
-\newcommand{\usi}[1]{\texttt{#1}}
-
-% Aletheia
-\newcommand{\aname}[1]{\texttt{#1}}
-\newcommand{\acode}[1]{\texttt{#1}}
-
-% MUFI
-\newcommand{\mname}[1]{\texttt{'#1 \textsc{<mufi>'}}}
-\newcommand{\mcode}[1]{\texttt{M+#1}}
-
-
-
-%\usepackage{draftwatermark}
-% \usepackage[doublespacing]{setspace}
-
-\usepackage[draft]{fixme}
-
-% nie działa:?
-%\renewcommand{\topfraction}{0.9}
-\renewcommand{\floatpagefraction}{0.9}	% require fuller float pages
-\renewcommand{\topfraction}{0.9}	% max fraction of floats at top
-\setcounter{topnumber}{5}
-\setcounter{totalnumber}{5}  
-
-\renewcommand{\labelenumii}{\arabic{enumii}.}
-
-% \vrefwarning
-
-% https://tex.stackexchange.com/questions/54136/hyperref-link-spans-a-pagebreak-looks-ugly
-% nie zawsze działa!!!
-
-% retrieve absolute page numbers (physical pages, as opposed to the
-% ‘logical’ page number that is normally typeset when a page number is
-% requested;
-% \usepackage{zref-abspage}
 
 \usepackage{expex}
 
@@ -90,19 +30,12 @@
 
 % 1 height
 % 2 image
-
-%\newcommand{\PTglyph}[2]{\includegraphics[height=#1ex]{glyphs/#2}}
-% \newcommand{\PTglyph}[2]{\includegraphics[height=8ex]{glyphs/#2}}
 \newcommand{\PTglyph}[2]{\includegraphics[height=7ex]{glyphs/#2}}
-%\newcommand{\PTglyph}[2]{\includegraphics[height=6ex]{glyphs/#2}}
 \newcommand{\PTglyphid}[1]{#1}
 
 \parindent0pt
 
 \begin{document}
-%\gappto\captionslingua{\renewcommand{\chaptername}{Caput}}
-%\gappto\captionspolish{\renewcommand{\figurename}{Ilustracja}}
-
 
 \title{POLONIA TYPOGRAPHICA
   SAECULI SEDECIMI\\
@@ -116,17 +49,20 @@
 
 \maketitle
 
-\catcode`\&=11
-\catcode`\|=11
-\catcode`\_=11
+% \catcode`\&=11
+% \catcode`\|=11
 
-\def\apostrof{`}
+% glyphs ids:
+ \catcode`\_=11
+
+% \def\apostrof{`}
 
 
 % dodac indeks!:
 % \catcode`\`=\active
 % \def`#1{\fbox{{\znak#1}}}
 
+% Hoebler
 \def\Hb#1{{\fontspec{Junicode}#1}}
 
 \newcommand{\alfa}{\textit{alpha} (\J{α})}
@@ -148,6 +84,8 @@
 \section{Introduction}
 \label{sec:introduction}
 
+\subsection{Fascicules}
+
 % – teka I – Kasper Hochfeder (1503–1505), wyd. II 1968;
 % – teka II – Jan Haller (1505–1525), wyd. II 1963;
 % – teka III – Florian Ungler (1510–1516), wyd. 1959;
@@ -164,41 +102,44 @@
 % – teka XII – Maciej Szarfenberg (1527–1547), wyd. 1981.
 
         \begin{itemize}
-        \item I offline
-        \item II offline
-      \item III. Ungler — pierwsza drukarnia\\
-        {\tiny \url{https://polona.pl/preview/f021c751-e1bd-41ae-bb39-117399724bac}}
+        \item I Kasper Hochfeder (1503–1505), wyd. II 1968;\\offline
+        \item II Jan Haller (1505–1525), wyd. II 1963;\\offline
+      \item III. Florian Ungler (1510–1516), wyd. 1959; pierwsza drukarnia\\
+        {\url{https://polona.pl/preview/f021c751-e1bd-41ae-bb39-117399724bac}}
 %        Bułhak, Henryk (1930- ) - Polonia typographica saeculi sedecimi  zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia. Z. 3, Pierwsza drukarnia Floriana Unglera 1510-1516 - f021c751-e1bd-41ae-bb39-117399724bac.pdf
-\item IV offline
-      \item V. Ungler — druga drukarnia\\[.5ex]
-        {\tiny\url{https://crispa.uw.edu.pl/object/files/764299/display/Default}\\
-          \url{https://polona.pl/preview/29ab4ad7-f0a0-46c6-9f90-3d65e6407119}}
+\item IV Jan Haller (1505–1525), wyd. 1962;\\offline
+      \item V. Florian Ungler (1521–1536), wyd. 1964; druga drukarnia\\
+          \url{https://polona.pl/preview/29ab4ad7-f0a0-46c6-9f90-3d65e6407119}\\
 %        _- Polonia typographica saeculi sedecimi  zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia. Z. 5, Druga drukarnia Floriana Unglera 1521-1536  tabl. 176-245 - 29ab4ad7-f0a0-46c6-9f90-3d65e6407119.pdf
 %        brakuje tabel ????
+        \url{https://crispa.uw.edu.pl/object/files/764299/display/Default}
         % Crispa
-      \item VI. Ungler — druga drukarnia\\
+      \item VI. Florian Ungler (1521–1536), wyd. 1966; druga drukarnia\\
         {\url{https://polona.pl/preview/6e3ec50b-4be1-4581-945c-5665f4917178}}
  %       _- Polonia typographica saeculi sedecimi  zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia. Z. 6, Druga drukarnia Floriana Unglera 1521-1536  tablice 246-310 - 6e3ec50b-4be1-4581-945c-5665f4917178.pdf
-      \item VII. Ungler — druga drukarnia\\
+      \item VII. Florian Ungler (1521–1536), wyd. 1970; druga drukarnia\\
         {\url{https://polona.pl/preview/4d111123-7add-4a11-8d32-93635145ef4b}}
 %  _- Polonia typographica saeculi sedecimi  zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia. Z. 7, Druga drukarnia Floriana Unglera 1521-1536  tablice 311-365 - 4d111123-7add-4a11-8d32-93635145ef4b.pdf      
-\item VIII \url{https://polona.pl/preview/a3a4b39c-9cfa-434b-ba10-c2d8c7d89f62}
+      \item VIII. Aleksander Augezdecki (1549–1561?), wyd. 1972;\\
+        \url{https://polona.pl/preview/a3a4b39c-9cfa-434b-ba10-c2d8c7d89f62}
 %  _- Polonia typographica saeculi sedecimi  zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia. Z. 8, Aleksander Augezdecki  Królewiec - Szamotuły 1549-1561  tabl. 366-415 - a3a4b39c-9cfa-434b-ba10-c2d8c7d89f62.pdf
-\item IX \url{https://polona.pl/preview/a27a1dd3-0994-486b-9b87-5a4187bbeec2}
+\item IX. Maciej Wirzbięta (1555/7–1605), wyd. 1974;\\ \url{https://polona.pl/preview/a27a1dd3-0994-486b-9b87-5a4187bbeec2}
 %  _- Polonia typographica saeculi sedecimi  zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia. Z. 9, Maciej Wirzbięta, Kraków 15557-1605  tablice 416-475 - a27a1dd3-0994-486b-9b87-5a4187bbeec2.pdf
-\item X \url{https://polona.pl/preview/3717ea21-52eb-4dab-af8d-b84d897c71a1}
+\item X. Maciej Wirzbięta (1555/7–1605), wyd. 1975;\\ \url{https://polona.pl/preview/3717ea21-52eb-4dab-af8d-b84d897c71a1}
 %  _- Polonia typographica saeculi sedecimi  zbiór podobizn zasobu drukarskiego tłoczni polskich XVI stulecia. Z. 10, Maciej Wirzbięta, Kraków 15557-1605  tabl. 476-520 - 3717ea21-52eb-4dab-af8d-b84d897c71a1.pdf
-\item XI 
+\item XI. Maciej i Paweł Wirzbiętowie (1555/7–1609), wyd. 1981; \\
   \url{http://polona.pl/preview/3be15c17-50a5-45f8-b4ff-6571cbd515a0}\\
-  Crispa!
-      \item XII. Szarfenberg\\
+% tylko uW:
+  \url{https://crispa.uw.edu.pl/object/files/754259/display/Default}
+      \item XII. Maciej Szarfenberg (1527–1547), wyd. 1981.\\
+        \url{http://polona.pl/preview/0e5c0b64-9360-4d2f-824b-bb6e9d4bebfd}\\
         {\url{https://crispa.uw.edu.pl/object/files/754258/display/Default}}
-        \url{http://polona.pl/preview/0e5c0b64-9360-4d2f-824b-bb6e9d4bebfd}
       \end{itemize}
 
 
       For more information about \textsc{POLONIA TYPOGRAPHICA SAECULI
-        SEDECIMI} please consult e.g. the repository mentioned below.
+        SEDECIMI} please consult e.g. the GitHub repository mentioned
+      below.
 
 \bigskip
 
@@ -206,8 +147,6 @@ This PDF version of this paper is available as ??? on Zenodo
 ???. Please report noticed mistakes in the \textsf{Issues} tab in the
 repository \url{https://github.com/jsbien/early_fonts_inventory}.
 
-% \bigskip \textbf{Please remember this is a draft!} Some details still
-% require verification and improvements.
 
 \subsection{CATALOGUS LIBRORUM}
 \label{sec:catalogus-librorum}
@@ -359,7 +298,11 @@ TO DO!
 \section{\Huge Font tables}
 \label{sec:font-tables}
 
+Font tables: 89. Typoglyphs: 7\,676???
+% ls -l . | egrep -c '^-'
 \newpage
+
+\end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Tab. 01 Aleksander Augezdecki pismo 1
@@ -6391,6 +6334,15 @@ https://ewangelie.uw.edu.pl/przeklady
 
 
 (build_font_env) jsbien@JSBbookworm:~/git/tmp/dsed4test$ 
+
+% 10.5281/zenodo.14992305
+% https://zenodo.org/uploads/14992305
+% TO DO:
+% https://en.wikipedia.org/wiki/Latin_delta
+% https://en.wikipedia.org/wiki/Insular_script
+% number tabular also in superscripts ???
+% line the baseline of images ???
+
 
 %%% Local Variables: 
 %%% coding: utf-8-unix
