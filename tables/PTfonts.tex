@@ -1614,14 +1614,11 @@ The font table prepared by Helena Kapełuś and Maria Błońska.
 % //
 %\endgl \xe
 
-       \end{document}
-
-
  
   \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% Tab. 23 Jan Haller pismo 4
+% Tab. 23,Haller-04_PT04_167.djvu,Haller,04,04,167
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Note "4. Pismo nagłówkowe. Krój M⁸³. Stopień 20 ww. =112/114 mm. — Tabl. 167."
@@ -1638,8 +1635,8 @@ The font table prepared by Helena Kapełuś and Maria Błońska.
 
 \plate{167}{IV}{1962}
 
-Prepared by Helena Kapełuś.\\
-The font table prepared by Maria Błońska.
+The plate prepared by Helena Kapełuś.\\
+The font table prepared by Helena Kapełuś and Maria Błońska.
 
 \bigskip
 
@@ -1685,7 +1682,8 @@ The font table prepared by Maria Błońska.
 % //
 %\endgl \xe
 
-  \newpage
+\end{document}
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % Tab. 24 Jan Haller pismo 5
@@ -6235,159 +6233,72 @@ The font table prepared by Alodia Kawecka Gryczowa and Anna Wolińska}
 
 \end{document}
 
-
-
-PTglyphs.py
-
-The arguments:
-the obligatory input directory referenced here as <dir>
-an optional ``--dry-run'' argument 
-
-Action:
-
- 1.
-
- Check the contented of `glyph-test`. Abort the run with an error
- message if not empty.
-
-2.
-
-
-2.1
-
-Check if <dir> contains the subdirectory `join`. If it exists but is
-empty: abort the run.
-
-2.2
-
-Run
-
-python3 batch_join_chunks.py <dir>/join
-
-
-2.1 Check the consistency of the output
-
-The `join` directory should contain at least one file with `+` in the file
-name, e.g. `m44_R_lines_01_chunk_13+14.png`. Abort the run with an error
- message if there is no such file.
-
- 2.3
- 
- Ask the user if the output is acceptable and wait for an answer. 
-
- 2.3. Copy the file(s) with `+` in the file name to the input
- directory with an informational message.
-
-3.
-
-Check if <dir> contains the subdirectory `split`. If it exists but is
-empty: abort the run.
-
-3.1 Check the consistency of the directory content.
-
-The directory should contain at least one file. Abort the run
-with an error message if the directory exists but is empty.
-
-3.2
-
-Run a script:
-
-python3 PT_chunk_split.py <dir>/split/
-
-3.3. Ask the user if the output is acceptable and wait for an answer.
-
-3.4. Process the script output
-
-The directory python3 PT_chunk_split.py <dir>/split/output will
-contain two kinds of files. We *are not* interested in the files whose
-base name ends with `contours`.
-
-Copy the other files to the input directory with an informational
-message.
-
-4.
-
-Run the scripts and commands
-
-python3 renumber_glyphs.py <dir> glyphs-test
-python3 glyphids2tex.py glyph-test glyphs4tex/ meta.csv
-python3 glyph2tex.py glyph-test glyphs4tex/
-cp glyph-test/*.png tables/glyphs/
-
-From `glyphs4tex` copy to `tables` only those files which are not yet
-present there (rsync?).
-
-5.
-
-Change to `tables` and run
-
-xelatex  -file-line-error    -interaction=nonstopmode PTfonts.tex
-
-6.
-
-Return to the former directory.
-======================================================================================================================
-
-glyphs2git
-1 argument <arg>
-
-
-cp glyphs-test/*.png glyphs-final
-git add glyphs-final/*
-git add glyphs4tex/*
-git commit -m "<arg>"
-git push
-
-==========================================================================================================================================
-
-python3 PTglyphs.py glyphs-edited/45 --dry-run
-
-python3 glyphids2tex.py glyph-test glyphs4tex/ meta.csv
-
-python3 renumber_glyphs.py glyphs-edited/m10 glyph-test
-python3 glyph2tex.py glyph-test glyphs4tex/
-
-
-BAD! python3 glyphids2tex.py glyph-test/ glyphs4tex names.csv
-
-
-cp glyph-test/*.png glyphs-final/
-jsbien@JSBbookworm:~/git/tmp$ cp glyph-test/*.png tables/1/glyphs/
-jsbien@JSBbookworm:~/git/tmp$ cp glyphs4tex/m40* tables/1/
-cp: cannot stat 'glyphs4tex/m40*': No such file or directory
-jsbien@JSBbookworm:~/git/tmp$ cp glyphs4tex/t40* tables/1/
-jsbien@JSBbookworm:~/git/tmp$ 
-
-git:
-cd glyphs-final/
-cd ../glyphs4tex/
-
-???:
-https://www.wbc.poznan.pl/dlibra/publication/504801/edition/473399?language=pl
-Priorum analyticorum Aristotelis [...] libri duo castigate. Impressi secundum exemplar Jacobi Stapulensis
-Haller, Jan
-1510
-
-https://en.wikipedia.org/wiki/Traditional_point-size_names
-https://ewangelie.uw.edu.pl/przeklady
-
-
-
-
-
-
-
-(build_font_env) jsbien@JSBbookworm:~/git/tmp/dsed4test$ 
-
-% 10.5281/zenodo.14992305
-% https://zenodo.org/uploads/14992305
-% TO DO:
-% https://en.wikipedia.org/wiki/Latin_delta
-% https://en.wikipedia.org/wiki/Insular_script
-% number tabular also in superscripts ???
-% line the baseline of images ???
-
-
+24,Haller-05_PT04_168.djvu,Haller,05,04,168
+25,Haller-06_PT04_169.djvu,Haller,06,04,169
+26,Haller-07_PT04_170.djvu,Haller,07,04,170
+27,Haller-08_PT04_171.djvu,Haller,08,04,171
+28,Haller-09_PT04_172.djvu,Haller,09,04,172
+29,Haller-10_PT04_173.djvu,Haller,10,04,173
+30,Haller-11_PT04_174.djvu,Haller,11,04,174
+31,Haller-12_PT04_175.djvu,Haller,12,04,175
+32,Haller-13_PT04_172.djvu,Haller,13,04,172
+33,Hochfeder-02_PT01_020bis.djvu,Hochfeder,02,01,020
+34,Hochfeder-03_PT01_021.djvu,Hochfeder,03,01,021
+35,Hochfeder-04_PT01_022.djvu,Hochfeder,04,01,022
+36,Hochfeder-05_PT01_023.djvu,Hochfeder,05,01,023
+37,Hochfeder-06_PT01_024.djvu,Hochfeder,06,01,024
+38,Hochfeder-07_PT01_024.djvu,Hochfeder,07,01,024
+39,Hochfeder-09_PT01_027.djvu,Hochfeder,09,01,027
+40,Hochfeder-10_PT01_028.djvu,Hochfeder,10,01,028
+41,Hochfeder-11_PT01_028.djvu,Hochfeder,11,01,028
+42,Ungler1-01_PT03_112.djvu,Ungler1,01,03,112
+43,Ungler1-02_PT03_113.djvu,Ungler1,02,03,113
+44,Ungler1-03_PT03_114.djvu,Ungler1,03,03,114
+45,Ungler1-04_PT03_115.djvu,Ungler1,04,03,115
+46,Ungler1-05_PT03_116.djvu,Ungler1,05,03,116
+47,Ungler1-06_PT03_117.djvu,Ungler1,06,03,117
+48,Ungler1-07_PT03_118.djvu,Ungler1,07,03,118
+49,Ungler1-08_PT03_120.djvu,Ungler1,08,03,120
+50,Ungler1-09_PT03_120.djvu,Ungler1,09,03,120
+51,Ungler1-10_PT03_119.djvu,Ungler1,10,03,119
+52,Ungler2-01_PT05_239.djvu,Ungler2,01,05,239
+53,Ungler2-02_PT05_240.djvu,Ungler2,02,05,240
+54,Ungler2-03_PT05_241.djvu,Ungler2,03,05,241
+55,Ungler2-04_PT05_242.djvu,Ungler2,04,05,242
+56,Ungler2-05_PT05_243.djvu,Ungler2,05,05,243
+57,Ungler2-06_PT05_241.djvu,Ungler2,06,05,241
+58,Ungler2-09_PT05_244.djvu,Ungler2,09,05,244
+59,Ungler2-10_PT05_245.djvu,Ungler2,10,05,245
+60,Ungler2-11_PT05_245.djvu,Ungler2,11,05,245
+61,Ungler2-12_PT05_243.djvu,Ungler2,12,05,243
+62,Ungler2-13_PT05_243.djvu,Ungler2,13,05,243
+63,Ungler2-14_PT07_357.djvu,Ungler2,14,07,357
+64,Ungler2-15_PT07_358.djvu,Ungler2,15,07,358
+65,Ungler2-16_PT07_359.djvu,Ungler2,16,07,359
+66,Ungler2-17_PT07_357.djvu,Ungler2,17,07,357
+67,Ungler2-18_PT07_360.djvu,Ungler2,18,07,360
+68,Ungler2-19_PT07_360.djvu,Ungler2,19,07,360
+69,Ungler2-20_PT07_361.djvu,Ungler2,20,07,361
+70,Ungler2-21_PT07_362.djvu,Ungler2,21,07,362
+71,Ungler2-22_PT07_362.djvu,Ungler2,22,07,362
+72,Wirzbięta-01_PT09_469.djvu,Wirzbięta,01,09,469
+73,Wirzbięta-01u_PT11_570.djvu,Wirzbięta,01u,11,570
+74,Wirzbięta-02_PT09_469.djvu,Wirzbięta,02,09,469
+75,Wirzbięta-02u_PT11_570.djvu,Wirzbięta,02u,11,570
+76,Wirzbięta-03_PT09_469.djvu,Wirzbięta,03,09,469
+77,Wirzbięta-03u_PT11_570.djvu,Wirzbięta,03u,11,570
+78,Wirzbięta-03uu_PT11_570.djvu,Wirzbięta,03uu,11,570
+79,Wirzbięta-04_PT09_469.djvu,Wirzbięta,04,09,469
+80,Wirzbięta-04u_PT11_570.djvu,Wirzbięta,04u,11,570
+81,Wirzbięta-05_PT09_469.djvu,Wirzbięta,05,09,469
+82,Wirzbięta-05u_PT11_570.djvu,Wirzbięta,05u,11,570
+83,Wirzbięta-09_PT11_562.djvu,Wirzbięta,09,11,562
+84,Wirzbięta-10+8_PT11_563.djvu,Wirzbięta,10+8,11,563
+85,Wirzbięta-11+11a_PT11_564.djvu,Wirzbięta,11+11a,11,564
+86,Wirzbięta-12_PT11_564.djvu,Wirzbięta,12,11,564
+87,Wirzbięta-13_PT11_565.djvu,Wirzbięta,13,11,565
+88,Wirzbięta-14_PT11_565.djvu,Wirzbięta,14,11,565
+89,Wirzbięta-15_PT11_566.djvu,Wirzbięta,15,11,566
 
 
 %%% Local Variables: 
